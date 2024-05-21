@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://bylfj7fxbf6o5"]
+
+[ext_resource type="Script" path="res://World/tutorial.gd" id="1_b74v7"]
+[ext_resource type="Texture2D" uid="uid://dy062gy0jp6mt" path="res://Assets/Animations/softwareDolphin-removebg-preview.png" id="2_2x6my"]
+[ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="3_xntao"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_qg56i"]
+
+[node name="credits" type="CanvasLayer"]
+script = ExtResource("1_b74v7")
+
+[node name="Bubble Effects" type="Sprite2D" parent="."]
+
+[node name="Dolphin" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(839.375, 431.75)
+rotation = 0.0575959
+scale = Vector2(0.919388, 0.837065)
+texture = ExtResource("2_2x6my")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_xntao")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("4_qg56i")
+
+[node name="Control" type="Control" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="credits" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
+layout_mode = 2
+offset_right = 960.0
+offset_bottom = 327.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 0
+bbcode_enabled = true
+text = "[center][font_size=64] Credits:[/font_size][/center] 
+
+[font_size=24] Background[/font_size]: https://craftpix.net/freebies/ocean-and-clouds-free-pixel-art-backgrounds/
+
+[font_size=24] Player Character[/font_size]:  https://rvros.itch.io/animated-pixel-hero
+
+[font_size=24] TileSet[/font_size]: https://kenney.nl/assets/pixel-platformer
+
+[font_size=24] Enemy and Projectile[/font_size]: https://pixelfrog-assets.itch.io/pixel-adventure-2
+
+[font_size=24] Font[/font_size]: https://fontlibrary.org/en/font/clayborn
+
+[font_size=24] Vials[/font_size]: Jake 
+
+[font_size=24] Dolphin[/font_size]: Shelby"
+fit_content = true
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.5
+offset_top = -70.0
+offset_right = 92.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_qg56i")
+theme_override_font_sizes/font_size = 32
+text = "Return to Main Menu"
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjr8twi1l5kkb"]
+
+[ext_resource type="Script" path="res://Projectiles/enemy_projectile.gd" id="1_wfft1"]
+[ext_resource type="Shader" path="res://World/inverse.gdshader" id="2_hbmdt"]
+[ext_resource type="Texture2D" uid="uid://brke4mdx0bp11" path="res://Assets/Animations/Duck/Bullet.png" id="2_qywfp"]
+[ext_resource type="PackedScene" uid="uid://cbcejnjl5loqx" path="res://Projectiles/AcidParticles.tscn" id="3_vj87b"]
+[ext_resource type="PackedScene" uid="uid://67i2vl4bnmhs" path="res://Projectiles/BaseParticles.tscn" id="4_227i0"]
+[ext_resource type="PackedScene" uid="uid://dlesnyxd1hc3b" path="res://Projectiles/NeutralParticles.tscn" id="5_ri4ve"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqqh8"]
+shader = ExtResource("2_hbmdt")
+shader_parameter/active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh518"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uw88c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e02g3"]
+size = Vector2(152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfvjf"]
+size = Vector2(20, 171)
+
+[node name="enemy_Projectile" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 3
+gravity_scale = 0.01
+script = ExtResource("1_wfft1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dqqh8")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_qywfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hh518")
+
+[node name="FormulaLabel" type="RichTextLabel" parent="."]
+offset_left = -76.0
+offset_top = -30.0
+offset_right = 76.0
+offset_bottom = 15.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/outline_size = 0
+bbcode_enabled = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_uw88c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Explosion" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Acid" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("RectangleShape2D_e02g3")
+disabled = true
+
+[node name="Base" type="CollisionShape2D" parent="Explosion"]
+position = Vector2(0, -75.5)
+shape = SubResource("RectangleShape2D_lfvjf")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AcidParticles" parent="Explosion" instance=ExtResource("3_vj87b")]
+position = Vector2(0, -5)
+
+[node name="BaseParticles" parent="Explosion" instance=ExtResource("4_227i0")]
+position = Vector2(0, 2.5)
+
+[node name="NeutralParticles" parent="Explosion" instance=ExtResource("5_ri4ve")]
+position = Vector2(0, -10)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Explosion" to="." method="_on_explosion_body_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbcejnjl5loqx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ajhb8"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_tddxi"]
+offsets = PackedFloat32Array(0.00666667, 0.226667, 0.44, 0.853333, 1)
+colors = PackedColorArray(12, 1, 0.502, 1, 1, 0.905882, 0.662745, 1, 1, 0, 0, 1, 1, 0.305882, 0, 0.611765, 0, 0, 0, 0)
+
+[node name="AcidParticles" type="CPUParticles2D"]
+modulate = Color(3, 1, 1, 1)
+self_modulate = Color(2, 1, 1, 1)
+material = SubResource("CanvasItemMaterial_ajhb8")
+emitting = false
+amount = 240
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.2
+randomness = 1.0
+lifetime_randomness = 0.03
+emission_shape = 3
+emission_rect_extents = Vector2(100, 5)
+direction = Vector2(0, 1)
+spread = 120.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 20.0
+angular_velocity_min = 20.0
+angular_velocity_max = 60.0
+linear_accel_min = -5.0
+linear_accel_max = 2.0
+radial_accel_min = 1.0
+radial_accel_max = 5.0
+damping_min = 1.0
+damping_max = 8.0
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_max = 5.0
+color = Color(1, 0.196078, 0.196078, 0.784314)
+color_ramp = SubResource("Gradient_tddxi")
+anim_speed_min = 1.0
+anim_speed_max = 20.0
+anim_offset_min = 0.1414
+anim_offset_max = 0.5252

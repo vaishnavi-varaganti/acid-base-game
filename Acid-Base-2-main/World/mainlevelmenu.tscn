@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://c60pcej3kaueo"]
+
+[ext_resource type="Script" path="res://World/mainlevelmenu.gd" id="1_cdru5"]
+[ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_gxpix"]
+[ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_2505d"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_othyo"]
+
+[sub_resource type="GDScript" id="GDScript_5gkir"]
+script/source = "extends CanvasLayer
+
+
+
+
+func _on_play_pressed():
+	get_tree().change_scene_to_file(\"res://World/menu.tscn\")
+	pass 
+
+
+func _on_quit_pressed():
+	get_tree().quit() # Replace with function body.
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1thng"]
+
+[node name="Mainlevelmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cdru5")
+
+[node name="menu" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_5gkir")
+
+[node name="Panel" type="Panel" parent="menu"]
+offset_right = 1000.0
+offset_bottom = 720.0
+theme = ExtResource("1_gxpix")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1thng")
+
+[node name="BubbleParticles" parent="menu/Panel" instance=ExtResource("2_2505d")]
+texture_filter = 1
+position = Vector2(500, 800)
+amount = 8
+lifetime = 8.0
+randomness = 0.0
+lifetime_randomness = 0.0
+emission_rect_extents = Vector2(500, 4)
+spread = 3.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 200.0
+initial_velocity_max = 220.0
+angular_velocity_min = 5.0
+linear_accel_min = 0.0
+angle_min = -180.0
+angle_max = 180.0
+color_ramp = null
+
+[node name="Title" type="RichTextLabel" parent="menu/Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 968.0
+offset_bottom = 386.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[center][color=yellow]Level-1 [/color] 
+
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.771
+offset_top = -80.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_othyo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu/Panel/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Start Game" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Game
+"
+
+[node name="Tutorial" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Tutorial
+"
+
+[node name="Quit" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit
+"
+
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

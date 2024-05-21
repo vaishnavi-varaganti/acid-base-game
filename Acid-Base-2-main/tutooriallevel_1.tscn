@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbnb3axgv1p0g"]
+
+[ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_pmlav"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_fg8or"]
+[ext_resource type="Script" path="res://tutoriallevel1.gd" id="3_mi1tt"]
+
+[node name="tutooriallevel1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pmlav")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("2_fg8or")
+
+[node name="Control" type="Control" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
+layout_mode = 2
+offset_right = 960.0
+offset_bottom = 327.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 0
+bbcode_enabled = true
+text = "
+
+[center][font_size=64] [color=red]LEVEL 1 TUTORIAL[/color][/font_size][/center]
+
+
+[font_size=18]First level is Recognizing acids [/font_size]
+
+[font_size=18](a)The formula begins with an “H”, such as HCl. When the formula begins with “H”, it means that this hydrogen atom will leave thecompound as an H+ ion.  [/font_size]
+
+[font_size=18](b)The compound contains a carboxyl group. The carboxyl group might be written as “COOH” in the formula. For example, acetic acid can be written as CH3COOH. It can also be written as HC3H3O2. Either way, you can recognize it as an acid.    [/font_size]
+
+
+"
+fit_content = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.5
+offset_top = -70.0
+offset_right = 92.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_fg8or")
+theme_override_font_sizes/font_size = 32
+text = "Return to Menu"
+script = ExtResource("3_mi1tt")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
