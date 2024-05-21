@@ -1,0 +1,264 @@
+[gd_scene load_steps=16 format=3 uid="uid://cei4ksh8r3g52"]
+
+[ext_resource type="Texture2D" uid="uid://dxm7xv0oixqie" path="res://healthFull.png" id="1_2t3f8"]
+[ext_resource type="Script" path="res://World/hud.gd" id="1_r5ayd"]
+[ext_resource type="Theme" uid="uid://bq3lejhdqdsv5" path="res://Game_Theme.tres" id="2_gtp76"]
+[ext_resource type="Texture2D" uid="uid://bupaflb0ck8m2" path="res://World/main pause.png" id="4_p43ml"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_yl0th"]
+[ext_resource type="Texture2D" uid="uid://d05584uiyuoux" path="res://Assets/Animations/Duck/Jump (36x36).png" id="5_4lxbw"]
+[ext_resource type="Texture2D" uid="uid://vuuvu5kw6e68" path="res://Assets/Animations/Player/adventurer-crouch-00.png" id="6_q0nrh"]
+[ext_resource type="Texture2D" uid="uid://caydv5aqhxk4a" path="res://Assets/Animations/Duck/Fall (36x36).png" id="6_qst15"]
+[ext_resource type="Texture2D" uid="uid://coibffoxleuf1" path="res://Assets/Animations/Player/adventurer-crnr-grb-01.png" id="7_jb2li"]
+[ext_resource type="Texture2D" uid="uid://bmiyncj72wt8f" path="res://Assets/Animations/Duck/Idle (36x36).png" id="7_jk07a"]
+[ext_resource type="Texture2D" uid="uid://dmww8qsb15kfy" path="res://Assets/Animations/Player/adventurer-idle-01.png" id="8_8a45m"]
+[ext_resource type="Shader" path="res://blur.gdshader" id="8_26llr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtd2u"]
+shader = ExtResource("8_26llr")
+shader_parameter/lod = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kidqu"]
+atlas = ExtResource("7_jk07a")
+region = Rect2(216, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y573v"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("6_qst15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kidqu")
+}, {
+"duration": 5.0,
+"texture": ExtResource("5_4lxbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kidqu")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 6.0,
+"texture": ExtResource("6_q0nrh")
+}, {
+"duration": 15.0,
+"texture": ExtResource("7_jb2li")
+}, {
+"duration": 3.0,
+"texture": ExtResource("8_8a45m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8a45m")
+}],
+"loop": true,
+"name": &"player",
+"speed": 20.0
+}]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_r5ayd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme = ExtResource("2_gtp76")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="First" type="TextureRect" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_2t3f8")
+stretch_mode = 5
+
+[node name="Second" type="TextureRect" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_2t3f8")
+stretch_mode = 5
+
+[node name="Third" type="TextureRect" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_2t3f8")
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Level1" type="Label" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 100)
+layout_mode = 2
+theme = ExtResource("2_gtp76")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Score" type="Label" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 100)
+layout_mode = 2
+theme = ExtResource("2_gtp76")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Score: 
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_p43ml")
+
+[node name="VSeparator4" type="VSeparator" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_yl0th")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_mtd2u")
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverScreen" type="PanelContainer" parent="Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.5
+offset_top = -180.5
+offset_right = 296.5
+offset_bottom = 180.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GameOverScreen"]
+layout_mode = 2
+
+[node name="GameOverText" type="Label" parent="Control/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Score" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Score:
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "High Score:
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="Control/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="Control/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Return to Main Menu"
+
+[node name="Tutorial" type="Button" parent="Control/GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Return to Tutorial"
+
+[node name="VictoryAnims" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Duckdance" type="AnimatedSprite2D" parent="Control/VictoryAnims"]
+texture_filter = 1
+position = Vector2(715, 159)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_y573v")
+animation = &"duck"
+frame_progress = 0.423267
+
+[node name="PlayerVictory" type="AnimatedSprite2D" parent="Control/VictoryAnims"]
+texture_filter = 1
+position = Vector2(331, 147)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y573v")
+animation = &"player"
+frame_progress = 0.00425463
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
