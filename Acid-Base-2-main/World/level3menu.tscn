@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c60pcej3kaueo"]
+[gd_scene load_steps=7 format=3 uid="uid://dihjk4i67jg78"]
 
-[ext_resource type="Script" path="res://World/mainlevelmenu.gd" id="1_cdru5"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_gxpix"]
+[ext_resource type="Script" path="res://World/level3menu.gd" id="1_u02ao"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_2505d"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_othyo"]
 
@@ -22,14 +22,14 @@ func _on_quit_pressed():
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1thng"]
 
-[node name="Mainlevelmenu" type="Control"]
+[node name="Level3menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cdru5")
+script = ExtResource("1_u02ao")
 
 [node name="menu" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_5gkir")
@@ -70,7 +70,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center][color=yellow]Level-1 [/color] 
+text = "[center][color=yellow]Level-3 [/color] 
 
 "
 
@@ -98,7 +98,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Start Game
 "
-script = ExtResource("1_cdru5")
+script = ExtResource("1_u02ao")
 
 [node name="Tutorial" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer"]
 layout_mode = 2

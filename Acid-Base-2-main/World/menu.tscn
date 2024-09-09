@@ -102,7 +102,7 @@ text = "Exit
 
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level3" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level4" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
