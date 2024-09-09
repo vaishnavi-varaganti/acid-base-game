@@ -58,27 +58,27 @@ var combinedArray = [
 					["[font_size=40]H2O[/font_size]","Both"]
 					]
 var compoundArray = [
-					["[font_size=40]KNO2 (aq) + HClO4 (aq) →[/font_size]"],
-					["[font_size=40]KNO3 (aq) + HClO4 (aq) →[/font_size]"],
-					["[font_size=40]CH3COOH (aq) + CaCO3 (s) → [/font_size]"],
-					["[font_size=40]HCN (aq) + Ca(OH)2 (aq) →[/font_size]"],
-					["[font_size=40]HCl (aq) + H2O (l) →[/font_size]"],
-					["[font_size=40]HCN (aq) + H2O (l) →[/font_size]"],
-					["[font_size=40]CaCO3 (s) + H2O (l) →[/font_size]"],
-					["[font_size=40]HCl (aq) + Mg(OH)2 (aq) →[/font_size]"],
-					["[font_size=40]HNO2 (aq) + CaCO3 (s) →[/font_size]"],
-					["[font_size=40]Na2CO3 (aq) + HCl (aq) →[/font_size]"],
-					["[font_size=40]ZnS (s) + HCl (aq) →[/font_size]"],
-					["[font_size=40]K2SO3(aq) + HI (aq) →[/font_size]"],
-					["[font_size=40]CH3-NH2 + H2O →[/font_size]"],
-					["[font_size=40]CH3-NH2 + HCl →[/font_size]"],
-					["[font_size=40]CH3-NH3+ + H2O →[/font_size]"],
-					["[font_size=40]KClO4 (aq) + HBr (aq) →[/font_size]"],
-					["[font_size=40]CH3COOH (aq) + H2O (l) →[/font_size]"],
-					["[font_size=40]Na2SO3 (aq) + H2O (l) →[/font_size]"],
-					["[font_size=40]HNO3 (aq) + KOH (aq) →[/font_size]"],
-					["[font_size=40]CH3COOH (aq) + NaOH (aq) →[/font_size]"],
-					["[font_size=40]Ca(CN)2 (aq) + HBr (aq) →[/font_size]"]
+					["[font_size=40]KNO2 (aq) + HClO4 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]KNO3 (aq) + HClO4 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + CaCO3 (s) → [/font_size]", "Compound"],
+					["[font_size=40]HCN (aq) + Ca(OH)2 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]HCl (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HCN (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]CaCO3 (s) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HCl (aq) + Mg(OH)2 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]HNO2 (aq) + CaCO3 (s) →[/font_size]", "Compound"],
+					["[font_size=40]Na2CO3 (aq) + HCl (aq) →[/font_size]", "Compound"],
+					["[font_size=40]ZnS (s) + HCl (aq) →[/font_size]", "Compound"],
+					["[font_size=40]K2SO3(aq) + HI (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH2 + H2O →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH2 + HCl →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH3+ + H2O →[/font_size]", "Compound"],
+					["[font_size=40]KClO4 (aq) + HBr (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]Na2SO3 (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HNO3 (aq) + KOH (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + NaOH (aq) →[/font_size]", "Compound"],
+					["[font_size=40]Ca(CN)2 (aq) + HBr (aq) →[/font_size]", "Compound"]
 					]
 					#This list of chemical compounds can be expanded if need be.
 					#To add more, simply create a string array of size 2, containing the compound itself,
@@ -89,6 +89,7 @@ var compoundArray = [
 @onready var projectile = self
 @onready var acidExplosion = $Explosion/Acid
 @onready var baseExplosion = $Explosion/Base
+@onready var neutralExplosion = $Explosion/Neutral
 @onready var acidParticles = $Explosion/AcidParticles
 @onready var baseParticles = $Explosion/BaseParticles
 @onready var neutralParticles = $Explosion/NeutralParticles
@@ -102,10 +103,44 @@ func _ready():
 	neutralParticles.emitting = false
 	acidExplosion.disabled
 	baseExplosion.disabled
+	match Global.current_level:
+		1:
+			shoot_acid()
+		2:
+			shoot_base()
+		3:
+			shoot_random_acid_base()
+		4:
+			shoot_compound()
+
+func shoot_acid():
+	# Randomly select an acid from acidArray
 	var selection = randi_range(0, acidArray.size() - 1)
-	add_to_group(acidArray[selection][1])
+	add_to_group(acidArray[selection][1])  # Add it to the "Acid" group
 	formula.text = "[center]" + acidArray[selection][0] + "[/center]"
+	formula.set_custom_minimum_size(Vector2(100, 75))
 	
+func shoot_base():
+	# Randomly select a base from baseArray
+	var selection = randi_range(0, baseArray.size() - 1)
+	add_to_group(baseArray[selection][1])  # Add it to the "Base" group
+	formula.text = "[center]" + baseArray[selection][0] + "[/center]"
+	formula.set_custom_minimum_size(Vector2(100, 75))
+	
+func shoot_random_acid_base():
+	# Randomly decide whether to shoot an acid or base
+	if randi() % 2 == 0:
+		shoot_acid()
+	else:
+		shoot_base()
+		
+func shoot_compound():
+	# Randomly select a compound from compoundArray
+	var selection = randi_range(0, compoundArray.size() - 1)
+	add_to_group(compoundArray[selection][1])  # Add it to the "Compound" group
+	formula.text = "[center]" + compoundArray[selection][0] + "[/center]"
+	formula.set_custom_minimum_size(Vector2(750, 75))
+
 func _physics_process(delta):
 	rotation = 0.00
 	t += delta / duration
@@ -120,7 +155,6 @@ func _physics_process(delta):
 				acidParticles.emitting=true
 				await get_tree().create_timer(0.1).timeout
 				acidExplosion.disabled=false
-				
 			
 			if is_in_group("Base"):
 				baseParticles.emitting=true
@@ -128,13 +162,11 @@ func _physics_process(delta):
 				baseExplosion.disabled=false
 				#show_feedback("Base")
 			
-			if is_in_group("Both"):
-				neutralParticles.emitting=true
-				#show_feedback("Neutral")
+			if is_in_group("Compound"):
+				neutralParticles.emitting = true
+				await get_tree().create_timer(0.1).timeout
+				neutralExplosion.disabled=false
 			
-			if is_in_group("Neutral"):
-				neutralParticles.emitting=true
-				#show_feedback("Neutral")
 			await get_tree().create_timer(0.5).timeout
 			$"..".projectile_finished.emit()
 		formula.hide()

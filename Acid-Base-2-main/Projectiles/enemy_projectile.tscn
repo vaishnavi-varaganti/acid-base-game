@@ -36,6 +36,7 @@ texture = ExtResource("2_qywfp")
 shape = SubResource("CircleShape2D_hh518")
 
 [node name="FormulaLabel" type="RichTextLabel" parent="."]
+clip_contents = false
 offset_left = -76.0
 offset_top = -30.0
 offset_right = 76.0
@@ -57,6 +58,10 @@ shape = SubResource("CircleShape2D_uw88c")
 collision_layer = 0
 
 [node name="Acid" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("RectangleShape2D_e02g3")
+disabled = true
+
+[node name="Neutral" type="CollisionShape2D" parent="Explosion"]
 shape = SubResource("RectangleShape2D_e02g3")
 disabled = true
 
