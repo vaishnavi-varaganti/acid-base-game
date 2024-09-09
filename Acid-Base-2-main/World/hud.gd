@@ -22,9 +22,9 @@ func game_start():
 func game_over():
 	inGamePanel.hide()
 	gameOverScreen.show()
-	$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score: " 
-	#$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score:\n" + str($"..".score)
-	#$Control/GameOverScreen/VBoxContainer/HBoxContainer/HighScore.text = "High Score:\n" + str($"..".highscore)
+#	$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score: " 
+	$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score:\n" + str($"..".score)
+	$Control/GameOverScreen/VBoxContainer/HBoxContainer/HighScore.text = "High Score:\n" + str($"..".highscore)
 	
 func _on_restart_pressed():
 	game_start()
@@ -40,13 +40,29 @@ func _on_tutorial_pressed():
 
 
 
-
-
-
-
-
-func _on_button_pressed():
+#
+func _on_pause_pressed():
+	#get_tree().change_scene_to_file("res://resume_screen.tscn")
+	#get_tree().paused = true
 	get_tree().change_scene_to_file("res://resume_screen.tscn")
-	
-	
 	pass # Replace with function body.
+
+
+	
+	
+	
+	
+	 
+
+
+#func _on_option_button_item_selected(index):
+	#match index:
+		#0: pause_game()
+		#1: resume_game()
+		#
+#func pause_game():
+	#get_tree().paused = true
+	#
+#func resume_game():
+	#get_tree().paused = false
+	#pass # Replace with function body.
