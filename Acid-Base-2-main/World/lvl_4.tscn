@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cptb8iloglfde"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
-[ext_resource type="Script" path="res://World/lvl_1.gd" id="1_dnhna"]
+[ext_resource type="Script" path="res://World/lvl_4.gd" id="1_rged2"]
 [ext_resource type="PackedScene" uid="uid://bxyc5geuerhbe" path="res://Characters/enemy.tscn" id="2_qxas3"]
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
 [ext_resource type="Texture2D" uid="uid://v613bkk0jn8i" path="res://Assets/Textures/Ocean-and-Clouds-Free-Pixel-Art-Backgrounds3.png" id="3_3j0gx"]
@@ -28,8 +28,8 @@ glow_hdr_threshold = 0.9
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 36.0
 
-[node name="lvl3" type="Node2D" groups=["Map"]]
-script = ExtResource("1_dnhna")
+[node name="lvl4" type="Node2D" groups=["Map"]]
+script = ExtResource("1_rged2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0qi0o")

@@ -11,6 +11,10 @@ signal projectile_finished
 @onready var player_dead = false
 @onready var victory = false
 # --------- FUNCTIONS ---------- #
+
+func _ready():
+	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL - " + str(Global.current_level)
+	
 func update_score():
 	if not player_dead:
 		score += 1

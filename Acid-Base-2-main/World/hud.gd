@@ -8,6 +8,7 @@ extends CanvasLayer
 func _ready():
 	gameOverScreen.hide()
 	$Control/VictoryAnims.hide()
+	
 
 
 
