@@ -257,6 +257,32 @@ sprite_frames = SubResource("SpriteFrames_y573v")
 animation = &"player"
 frame_progress = 0.00425463
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 83.0
+offset_top = 180.0
+offset_right = 919.0
+offset_bottom = 251.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
