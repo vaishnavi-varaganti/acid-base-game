@@ -98,3 +98,6 @@ func restart():
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
 	$player_Lvl1.respawn_tween()
+	$hud/HBoxContainer/Option1.visible = true
+	$hud/HBoxContainer/Option2.visible = true
+	$hud/HBoxContainer/Option3.visible = true
