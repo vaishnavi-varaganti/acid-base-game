@@ -3,11 +3,13 @@ extends CanvasLayer
 # --------- VARIABLES ---------- #
 @onready var gameOverScreen = $Control
 @onready var inGamePanel = $PanelContainer
+@onready var options = $PanelContainer/HBoxContainer/OptionButton
 
 # --------- FUNCTIONS ---------- #
 func _ready():
 	gameOverScreen.hide()
 	$Control/VictoryAnims.hide()
+	
 	
 
 
@@ -37,17 +39,23 @@ func _on_tutorial_pressed():
 	get_tree().change_scene_to_file("res://World/tutorial.tscn")
 
 
-
-
-
-
-
-
-
-
-
-func _on_button_pressed():
-	get_tree().change_scene_to_file("res://resume_screen.tscn")
-	
-	
+func _on_option_button_item_selected(index):
+	match index:
+		0:  quit_game()
+		1:  resume_game()
+		2:  pause_game()
 	pass # Replace with function body.
+
+func quit_game():
+	get_tree().quit() # Quits the game.
+	
+func resume_game():
+	get_tree().paused = false
+	
+	#show()
+
+func pause_game():
+	get_tree().paused = true
+	options.show()
+
+

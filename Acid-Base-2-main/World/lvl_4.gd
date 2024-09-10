@@ -17,6 +17,7 @@ func _ready():
 	
 func update_score():
 	if not player_dead:
+		$hud/PanelContainer/HBoxContainer/ProgressBar.value+=10
 		score += 1
 		if (highscore<score):
 			highscore = score
@@ -92,6 +93,7 @@ func restart():
 	$enemy.attack_timer.start()
 	score = -1
 	update_score()
+	$hud/PanelContainer/HBoxContainer/ProgressBar.value=0
 	$player_Lvl1.lives = 6
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
