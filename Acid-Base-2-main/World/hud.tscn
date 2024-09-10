@@ -1,13 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://cei4ksh8r3g52"]
+[gd_scene load_steps=18 format=3 uid="uid://cei4ksh8r3g52"]
 
 [ext_resource type="Texture2D" uid="uid://dxm7xv0oixqie" path="res://healthFull.png" id="1_2t3f8"]
 [ext_resource type="Script" path="res://World/hud.gd" id="1_r5ayd"]
 [ext_resource type="Theme" uid="uid://bq3lejhdqdsv5" path="res://Game_Theme.tres" id="2_gtp76"]
-[ext_resource type="Texture2D" uid="uid://bupaflb0ck8m2" path="res://World/main pause.png" id="4_p43ml"]
+[ext_resource type="Texture2D" uid="uid://55khp2vl55qp" path="res://exit.png" id="4_syc85"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_yl0th"]
 [ext_resource type="Texture2D" uid="uid://d05584uiyuoux" path="res://Assets/Animations/Duck/Jump (36x36).png" id="5_4lxbw"]
+[ext_resource type="Texture2D" uid="uid://cw4evxkq1proi" path="res://resume.png" id="5_t5wf5"]
 [ext_resource type="Texture2D" uid="uid://vuuvu5kw6e68" path="res://Assets/Animations/Player/adventurer-crouch-00.png" id="6_q0nrh"]
 [ext_resource type="Texture2D" uid="uid://caydv5aqhxk4a" path="res://Assets/Animations/Duck/Fall (36x36).png" id="6_qst15"]
+[ext_resource type="Texture2D" uid="uid://cj2mnl7535t5k" path="res://pause.png" id="6_wav0d"]
 [ext_resource type="Texture2D" uid="uid://coibffoxleuf1" path="res://Assets/Animations/Player/adventurer-crnr-grb-01.png" id="7_jb2li"]
 [ext_resource type="Texture2D" uid="uid://bmiyncj72wt8f" path="res://Assets/Animations/Duck/Idle (36x36).png" id="7_jk07a"]
 [ext_resource type="Texture2D" uid="uid://dmww8qsb15kfy" path="res://Assets/Animations/Player/adventurer-idle-01.png" id="8_8a45m"]
@@ -121,9 +123,21 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/HBoxContainer"]
+process_mode = 3
 layout_mode = 2
-icon = ExtResource("4_p43ml")
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "Quit"
+popup/item_0/icon = ExtResource("4_syc85")
+popup/item_0/id = 0
+popup/item_1/text = "Resume"
+popup/item_1/icon = ExtResource("5_t5wf5")
+popup/item_1/id = 1
+popup/item_2/text = "Pause"
+popup/item_2/icon = ExtResource("6_wav0d")
+popup/item_2/id = 2
 
 [node name="VSeparator4" type="VSeparator" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
@@ -283,7 +297,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
