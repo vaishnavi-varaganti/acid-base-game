@@ -71,4 +71,3 @@ func is_valid_password(password: String) -> bool:
 			return true
 
 	return false
-	
