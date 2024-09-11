@@ -8,82 +8,78 @@ var t = 0.0
 var duration = 3.0
 @onready var handled = false
 var acidArray = [
-	["[font_size=30]HClO[font_size=15]4[/font_size][/font_size]", "Acid"],
-	["[font_size=30]CO[font_size=15]2[/font_size]H[/font_size]", "Acid"],
-	["[font_size=30]HNO[font_size=15]2[/font_size][/font_size]", "Acid"],
-	["[font_size=30]CH[font_size=15]3[/font_size]COOH[/font_size]", "Acid"],
-	["[font_size=30]HCN[/font_size]", "Acid"],
-	["[font_size=30]HCl[/font_size]", "Acid"],
-	["[font_size=30]HNO[font_size=15]3[/font_size][/font_size]", "Acid"],
-	["[font_size=30]H[font_size=15]2[/font_size]O[/font_size]", "Acid"],
-	["[font_size=30]H[font_size=15]2[/font_size]SO[font_size=15]4[/font_size][/font_size]", "Acid"],
-	["[font_size=30]H[font_size=15]2[/font_size]CO[font_size=15]3[/font_size][/font_size]", "Acid"],
-	["[font_size=30]H[font_size=15]3[/font_size]PO[font_size=15]4[/font_size][/font_size]", "Acid"]
+					["[font_size=40]HClO4[/font_size]","Acid"],
+					["[font_size=40]CO2H[/font_size]","Acid"],
+					["[font_size=40]HNO2[/font_size]","Acid"],
+					["[font_size=40]CH3COOH[/font_size]","Acid"],
+					["[font_size=40]HCN[/font_size]","Acid"],
+					["[font_size=40]HCl[/font_size]","Acid"],
+					["[font_size=40]HNO3[/font_size]","Acid"],
+					["[font_size=40]H2O[/font_size]","Acid"],
+					["[font_size=40]H2SO4[/font_size]","Acid"],
+					["[font_size=40]H2CO3[/font_size]","Acid"],
+					["[font_size=40]H3PO4[/font_size]","Acid"]
 				]
 					
 var baseArray = [
-	["[font_size=30]BaCrO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]MgC[font_size=15]2[/font_size]O[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]CaCO[font_size=15]3[/font_size][/font_size]", "Base"],
-	["[font_size=30]Na[font_size=15]2[/font_size]S[/font_size]", "Base"],
-	["[font_size=30]K[font_size=15]2[/font_size]SO[font_size=15]3[/font_size][/font_size]", "Base"],
-	["[font_size=30]CH[font_size=15]3[/font_size]-NH[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]Mg(OH)[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]K[font_size=15]3[/font_size]PO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]KNO[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]KMnO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30](Ca[font_size=15]3[/font_size])[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]H[font_size=15]2[/font_size]O[/font_size]", "Both"]
-]
-
+					["[font_size=40]BaCrO4[/font_size]","Base"],
+					["[font_size=40]MgC2O4[/font_size]","Base"],
+					["[font_size=40]CaCO3[/font_size]","Base"],
+					["[font_size=40]Na2[/font_size]S","Base"],
+					["[font_size=40]K2SO3[/font_size]","Base"],
+					["[font_size=40]CH3-NH2[/font_size]","Base"],
+					["[font_size=40]Mg(OH)2[/font_size]","Base"],
+					["[font_size=40]K3PO4[/font_size]","Base"],
+					["[font_size=40]KNO2[/font_size]","Base"],
+					["[font_size=40]KMnO4[/font_size]","Base"],
+					["[font_size=40](Ca3)2[/font_size]","Base"],
+					["[font_size=40]H2O[/font_size]","Both"]
+					]
 					
 var combinedArray = [
-	["[font_size=30]BaCrO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]HClO[font_size=15]4[/font_size][/font_size]", "Acid"],
-	["[font_size=30]CO[font_size=15]2[/font_size]H[/font_size]", "Acid"],
-	["[font_size=30]HNO[font_size=15]2[/font_size][/font_size]", "Acid"],
-	["[font_size=30]CH[font_size=15]3[/font_size]COOH[/font_size]", "Acid"],
-	["[font_size=30]MgC[font_size=15]2[/font_size]O[font_size=10]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]HCN[/font_size]", "Acid"],
-	["[font_size=30]CaCO[font_size=15]3[/font_size][/font_size]", "Base"],
-	["[font_size=30]Na[font_size=15]2[/font_size]S[/font_size]", "Base"],
-	["[font_size=30]K[font_size=15]2[/font_size]SO[font_size=15]3[/font_size][/font_size]", "Base"],
-	["[font_size=30]CH[font_size=15]3[/font_size]-NH[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]Mg(OH)[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]HCl[/font_size]", "Acid"],
-	["[font_size=30]HNO[font_size=15]3[/font_size][/font_size]", "Acid"],
-	["[font_size=30]K[font_size=15]3[/font_size]PO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30]KNO[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]KMnO[font_size=15]4[/font_size][/font_size]", "Base"],
-	["[font_size=30](Ca[font_size=15]3[/font_size])[font_size=15]2[/font_size][/font_size]", "Base"],
-	["[font_size=30]H[font_size=15]2[/font_size]O[/font_size]", "Both"]
-]
-
+					["[font_size=40]BaCrO4[/font_size]","Base"],
+					["[font_size=40]HClO4[/font_size]","Acid"],
+					["[font_size=40]CO2H[/font_size]","Acid"],
+					["[font_size=40]HNO2[/font_size]","Acid"],
+					["[font_size=40]CH3COOH[/font_size]","Acid"],
+					["[font_size=40]MgC2O4[/font_size]","Base"],
+					["[font_size=40]HCN[/font_size]","Acid"],
+					["[font_size=40]CaCO3[/font_size]","Base"],
+					["[font_size=40]Na2[/font_size]S","Base"],
+					["[font_size=40]K2SO3[/font_size]","Base"],
+					["[font_size=40]CH3-NH2[/font_size]","Base"],
+					["[font_size=40]Mg(OH)2[/font_size]","Base"],
+					["[font_size=40]HCl[/font_size]","Acid"],
+					["[font_size=40]HNO3[/font_size]","Acid"],
+					["[font_size=40]K3PO4[/font_size]","Base"],
+					["[font_size=40]KNO2[/font_size]","Base"],
+					["[font_size=40]KMnO4[/font_size]","Base"],
+					["[font_size=40](Ca3)2[/font_size]","Base"],
+					["[font_size=40]H2O[/font_size]","Both"]
+					]
 var compoundArray = [
-	["[font_size=30]KNO[font_size=15]2[/font_size] (aq) + HClO[font_size=15]4[/font_size] (aq) →[/font_size]", "Compound"],
-	["[font_size=30]KNO[font_size=15]3[/font_size] (aq) + HClO[font_size=15]4[/font_size] (aq) →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]COOH (aq) + CaCO[font_size=15]3[/font_size] (s) → [/font_size]", "Compound"],
-	["[font_size=30]HCN (aq) + Ca(OH)[font_size=15]2[/font_size] (aq) →[/font_size]", "Compound"],
-	["[font_size=30]HCl (aq) + H[font_size=15]2[/font_size]O (l) →[/font_size]", "Compound"],
-	["[font_size=30]HCN (aq) + H[font_size=15]2[/font_size]O (l) →[/font_size]", "Compound"],
-	["[font_size=30]CaCO[font_size=15]3[/font_size] (s) + H[font_size=15]2[/font_size]O (l) →[/font_size]", "Compound"],
-	["[font_size=30]HCl (aq) + Mg(OH)[font_size=15]2[/font_size] (aq) →[/font_size]", "Compound"],
-	["[font_size=30]HNO[font_size=15]2[/font_size] (aq) + CaCO[font_size=15]3[/font_size] (s) →[/font_size]", "Compound"],
-	["[font_size=30]Na[font_size=15]2[/font_size]CO[font_size=15]3[/font_size] (aq) + HCl (aq) →[/font_size]", "Compound"],
-	["[font_size=30]ZnS (s) + HCl (aq) →[/font_size]", "Compound"],
-	["[font_size=30]K[font_size=15]2[/font_size]SO[font_size=15]3[/font_size] (aq) + HI (aq) →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]-NH[font_size=15]2[/font_size] + H[font_size=15]2[/font_size]O →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]-NH[font_size=15]2[/font_size] + HCl →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]-NH[font_size=15]3[/font_size][sup][font_size=15]+[/font_size][/sup] + H[font_size=10]2[/font_size]O →[/font_size]", "Compound"],
-	["[font_size=30]KClO[font_size=15]4[/font_size] (aq) + HBr (aq) →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]COOH (aq) + H[font_size=15]2[/font_size]O (l) →[/font_size]", "Compound"],
-	["[font_size=30]Na[font_size=15]2[/font_size]SO[font_size=15]3[/font_size] (aq) + H[font_size=15]2[/font_size]O (l) →[/font_size]", "Compound"],
-	["[font_size=30]HNO[font_size=15]3[/font_size] (aq) + KOH (aq) →[/font_size]", "Compound"],
-	["[font_size=30]CH[font_size=15]3[/font_size]COOH (aq) + NaOH (aq) →[/font_size]", "Compound"],
-	["[font_size=30]Ca(CN)[font_size=15]2[/font_size] (aq) + HBr (aq) →[/font_size]", "Compound"]
-]
-
-
+					["[font_size=40]KNO2 (aq) + HClO4 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]KNO3 (aq) + HClO4 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + CaCO3 (s) → [/font_size]", "Compound"],
+					["[font_size=40]HCN (aq) + Ca(OH)2 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]HCl (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HCN (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]CaCO3 (s) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HCl (aq) + Mg(OH)2 (aq) →[/font_size]", "Compound"],
+					["[font_size=40]HNO2 (aq) + CaCO3 (s) →[/font_size]", "Compound"],
+					["[font_size=40]Na2CO3 (aq) + HCl (aq) →[/font_size]", "Compound"],
+					["[font_size=40]ZnS (s) + HCl (aq) →[/font_size]", "Compound"],
+					["[font_size=40]K2SO3(aq) + HI (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH2 + H2O →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH2 + HCl →[/font_size]", "Compound"],
+					["[font_size=40]CH3-NH3+ + H2O →[/font_size]", "Compound"],
+					["[font_size=40]KClO4 (aq) + HBr (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]Na2SO3 (aq) + H2O (l) →[/font_size]", "Compound"],
+					["[font_size=40]HNO3 (aq) + KOH (aq) →[/font_size]", "Compound"],
+					["[font_size=40]CH3COOH (aq) + NaOH (aq) →[/font_size]", "Compound"],
+					["[font_size=40]Ca(CN)2 (aq) + HBr (aq) →[/font_size]", "Compound"]
+					]
 					#This list of chemical compounds can be expanded if need be.
 					#To add more, simply create a string array of size 2, containing the compound itself,
 					# as well as whether it is a  base, acid, neutral or both
