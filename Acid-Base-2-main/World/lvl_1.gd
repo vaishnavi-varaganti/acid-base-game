@@ -5,6 +5,8 @@ signal projectile_finished
 @onready var fullHeart = preload("res://healthFull.png")
 @onready var halfHeart = preload("res://healthHalf.png")
 
+
+
 @onready var score = 0
 @onready var highscore = 0
 @onready var paused = false
