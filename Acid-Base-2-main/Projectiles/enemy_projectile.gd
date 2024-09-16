@@ -24,7 +24,7 @@ var compoundArray = []
 
 # --------- FUNCTIONS ---------- #
 func _ready():
-	http_request.request("https://retoolapi.dev/vArnYz/data")
+	http_request.request("https://retoolapi.dev/Jqmkez/questions")
 	projectile_sprite.material.set_shader_parameter("active", false)
 	acidParticles.emitting = false
 	baseParticles.emitting = false
@@ -41,17 +41,18 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		if parse_result == OK:
 			var data = json.get_data()
 			for entry in data:
+				var formatted_compound = format_compound(entry["Compound"])
 				match entry["Type"]:
 					"Acid":
-						acidArray.append([entry["Compound"], "Acid"])
+						acidArray.append([formatted_compound, "Acid"])
 					"Base":
-						baseArray.append([entry["Compound"], "Base"])
+						baseArray.append([formatted_compound, "Base"])
 					"Compound":
-						compoundArray.append([entry["Compound"], "Compound"])
-			print("Data fetched successfully!")
-			#print("Acid Array:", acidArray)
+						compoundArray.append([formatted_compound, "Compound"])
+			print("Data fetched and formatted successfully!")
+			#print("Acid Array: ", acidArray)
 			#print("Base Array:", baseArray)
-			#print("Compound Array:", compoundArray)
+			#print("Reaction Array:", compoundArray)
 			match Global.current_level:
 				1:
 					shoot_acid()
@@ -66,7 +67,19 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	else:
 		print("Request failed. Status code: ", response_code)
 
-					
+func format_compound(compound: String) -> String:
+	var formatted = "[font_size=40]"
+	# Loop through each character in the compound string
+	for char in compound:
+		# Check if the character is a digit (subscript)
+		if '0' <= char and char <= '9':  # Checking if the character is between '0' and '9'
+			formatted += "[font_size=20]" + char + "[/font_size]"
+		else:
+			# Otherwise, add the normal character with default size
+			formatted += char
+	
+	formatted += "[/font_size]"
+	return formatted
 
 func shoot_acid():
 	#print("shooting acids")
