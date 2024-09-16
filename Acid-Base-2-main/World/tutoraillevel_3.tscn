@@ -40,7 +40,32 @@ theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64] [color=red]LEVEL 3 TUTORIAL[/color][/font_size][/center]
+[center][font_size=60] [color=Blue]LEVEL 3 TUTORIAL[/color][/font_size][/center]
+
+
+[center][font_size=15] [color=Red]Here’s a refined Level 3 Tutorial Menu designed to blend both Level I and Level II concepts, with a focus on creating a more challenging and comprehensive review:
+Level 3: Advanced Chemistry Concepts
+1. Molecular vs. Ionic Compounds Review
+Goal: Recognize and classify compounds as molecular or ionic based on their chemical formulas and bonding types.
+    Challenge: Given a list of compounds, quickly determine whether each compound is molecular (covalently bonded) or ionic (formed by transfer of electrons between metals and non-metals).
+    Example Compounds: NaCl (Ionic), CO2 (Molecular), CH4 (Molecular), MgO (Ionic).
+    Key Tip: Molecular compounds generally consist of non-metals, while ionic compounds contain metals and non-metals.
+
+2. Random Acid/Base Identification Challenge
+Goal: Identify whether a given compound is an acid or a base.
+    Challenge: Randomly presented formulas (e.g., HNO3, Na2CO3, NH4+), where you must decide whether each is an acid or a base.
+    Example:
+        HNO3 (Acid)
+        Na2CO3 (Base)
+        NH4+ (Acid, since NH3 is the base).
+    Bonus Task: After identifying, explain why each compound acts as an acid or base based on its ability to donate or accept H+ ions.
+
+3. Acid and Base Reactions
+Goal: Predict the products of acid-base reactions.
+    Challenge: Predict the outcome of interactions between acids and bases. Focus on neutralization reactions that form salts and water.
+    Example Reaction: NaOH (base) + HCl (acid) → NaCl (salt) + H2O (water).
+    Advanced Mode: Include polyatomic ions and less common acids/bases (e.g., H2SO4 + Na2CO3 → Na2SO4 + CO2 + H2O).
+
 "
 fit_content = true
 
