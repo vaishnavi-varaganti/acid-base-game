@@ -38,17 +38,22 @@ theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64] [color=red]LEVEL 1 TUTORIAL[/color][/font_size][/center]
+[center][font_size=64] [color= sky blue]LEVEL 1 TUTORIAL[/color][/font_size]
 
 
-[font_size=18]First level is Recognizing acids [/font_size]
 
-[font_size=18](a)The formula begins with an “H”, such as HCl. When the formula begins with “H”, it means that this hydrogen atom will leave thecompound as an H+ ion.  [/font_size]
-
-[font_size=18](b)The compound contains a carboxyl group. The carboxyl group might be written as “COOH” in the formula. For example, acetic acid can be written as CH3COOH. It can also be written as HC3H3O2. Either way, you can recognize it as an acid.    [/font_size]
+[font_size=20] [color=red] First level is Recognizing acids [/color] [/font_size][/center]
 
 
-"
+
+
+[font_size=18](a)  If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion. This is what makes the substance acidic.
+ For example, HCl is hydrochloric acid, which is a strong acid found in your stomach. [/font_size]
+
+
+[font_size=18](b)  If you see “COOH” in the formula, that’s another sign of an acid! The “COOH” part is called a carboxyl group, and it shows up in many acids.
+ For example, acetic acid, which is in vinegar, can be written as CH₃COOH. Sometimes it’s written a little differently, like HC₃H₃O₂, but you can still spot the acid because of the carboxyl group. Both of these formulas mean the same thing, they're just different ways to show the same acid [/font_size]
+increase line spacing"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
