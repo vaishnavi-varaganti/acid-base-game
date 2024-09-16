@@ -80,5 +80,8 @@ position = Vector2(0, 2.5)
 [node name="NeutralParticles" parent="Explosion" instance=ExtResource("5_ri4ve")]
 position = Vector2(0, -10)
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Explosion" to="." method="_on_explosion_body_entered"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
