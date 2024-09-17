@@ -100,4 +100,7 @@ one_shot = true
 
 [node name="hud" parent="." instance=ExtResource("8_eyruw")]
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]

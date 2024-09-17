@@ -101,9 +101,13 @@ func shoot_base():
 func shoot_random_acid_base():
 	# Randomly decide whether to shoot an acid or base
 	if randi() % 2 == 0:
+		Global.acidShooted = true
+		Global.baseShooted = false
 		shoot_acid()
 	else:
 		shoot_base()
+		Global.acidShooted = false
+		Global.baseShooted = true
 
 func shoot_compound():
 	# Randomly select a compound from compoundArray
