@@ -10,7 +10,6 @@ var duration = 5.0
 var acidArray = []
 var baseArray = []
 var compoundArray = []
-
 @onready var http_request = $HTTPRequest
 @onready var formula = $FormulaLabel
 @onready var projectile_sprite = $Sprite2D
@@ -77,7 +76,6 @@ func format_compound(compound: String) -> String:
 		else:
 			# Otherwise, add the normal character with default size
 			formatted += char
-	
 	formatted += "[/font_size]"
 	return formatted
 

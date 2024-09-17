@@ -4,22 +4,64 @@ extends Node2D
 signal projectile_finished
 @onready var fullHeart = preload("res://healthFull.png")
 @onready var halfHeart = preload("res://healthHalf.png")
-
-
-
 @onready var score = 0
 @onready var highscore = 0
 @onready var paused = false
 @onready var player_dead = false
 @onready var victory = false
 @onready var current_value = str(Global.current_level)
+@onready var http_request = $HTTPRequest
+@onready var acidArray = Global.acidArray
+@onready var baseArray = Global.baseArray
+@onready var compoundArray = Global.compoundArray
 
 # --------- FUNCTIONS ---------- #
 
 func _ready():
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL - " + current_value
-	
+	http_request.request("https://retoolapi.dev/Jqmkez/questions")
+	# Display options when the scene is loaded
+	display_options_level1()
+	# Connect the projectile_finished signal to update options when the projectile is shot
+	$enemy.connect("projectile_finished", _on_projectile_finished)
+
+func _on_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.get_data()
+			for entry in data:
+				match entry["Type"]:
+					"Acid":
+						acidArray.append([entry["Compound"], "Acid"])
+					"Base":
+						baseArray.append([entry["Compound"], "Base"])
+					"Compound":
+						compoundArray.append([entry["Compound"], "Compound"])
+			print("Data fetched and formatted successfully!")
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Request failed with status code: ", response_code)
+
+func display_options_level1():
+	await get_tree().create_timer(1.5).timeout
+	# Randomize options every time the projectile is fired
+	var correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
+	var wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+	var wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+	# Shuffle the options to display them in random order
+	var options = [correct_option, wrong_option1, wrong_option2]
+	options.shuffle()
+	# Set the text for each option button
+	$hud/HBoxContainer/Option1.text = options[0]
+	$hud/HBoxContainer/Option2.text = options[1]
+	$hud/HBoxContainer/Option3.text = options[2]
+	# Store the correct answer in a global variable
+	Global.correct_answer = correct_option
+
 func update_score():
 	if not player_dead:
 		$hud/PanelContainer/HBoxContainer/ProgressBar.value+=10
@@ -62,8 +104,11 @@ func update_lives(lives: int):
 		gameover()
 		
 func _on_projectile_finished():
+	# Update score and reset player_dead flag
 	update_score()
 	player_dead = false
+	# Update the options every time the projectile is fired
+	display_options_level1()
 	
 func gameover():
 	paused = true
@@ -73,14 +118,11 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "Game Over"
-		
 	$hud/Control/VictoryAnims.show()
-
 	# Hide buttons you don’t want to show on Game Over
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
 	$hud/HBoxContainer/Option3.visible = false
-	
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
