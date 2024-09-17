@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
 [ext_resource type="Texture2D" uid="uid://v613bkk0jn8i" path="res://Assets/Textures/Ocean-and-Clouds-Free-Pixel-Art-Backgrounds3.png" id="3_3j0gx"]
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
-[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
+[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
