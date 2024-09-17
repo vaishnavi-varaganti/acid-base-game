@@ -65,7 +65,7 @@ func display_options_level1():
 func update_score():
 	if not player_dead:
 		$hud/PanelContainer/HBoxContainer/ProgressBar.value+=10
-		score += 3
+		score += 1
 		if (highscore<score):
 			highscore = score
 		if (score >= 15):
