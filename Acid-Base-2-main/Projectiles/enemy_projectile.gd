@@ -10,6 +10,7 @@ var duration = 5.0
 var acidArray = []
 var baseArray = []
 var compoundArray = []
+var individualCompoundArray = []
 @onready var http_request = $HTTPRequest
 @onready var formula = $FormulaLabel
 @onready var projectile_sprite = $Sprite2D
@@ -20,10 +21,16 @@ var compoundArray = []
 @onready var acidParticles = $Explosion/AcidParticles
 @onready var baseParticles = $Explosion/BaseParticles
 @onready var neutralParticles = $Explosion/NeutralParticles
+@onready var reactionIndex = Global.reactionIndex
 
 # --------- FUNCTIONS ---------- #
 func _ready():
-	http_request.request("https://retoolapi.dev/Jqmkez/questions")
+	#http_request.request("https://retoolapi.dev/Jqmkez/questions")
+	match Global.current_level:
+		1, 2, 3:
+			http_request.request("https://retoolapi.dev/Jqmkez/questions")
+		4:
+			http_request.request("https://retoolapi.dev/JgRl9e/reactions")
 	projectile_sprite.material.set_shader_parameter("active", false)
 	acidParticles.emitting = false
 	baseParticles.emitting = false
@@ -31,7 +38,7 @@ func _ready():
 	acidExplosion.disabled = true
 	baseExplosion.disabled = true
 	neutralExplosion.disabled = true
-
+		
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json = JSON.new()  # Create an instance of the JSON class
@@ -39,42 +46,50 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		var parse_result = json.parse(body_string)
 		if parse_result == OK:
 			var data = json.get_data()
-			for entry in data:
-				var formatted_compound = format_compound(entry["Compound"])
-				match entry["Type"]:
-					"Acid":
-						acidArray.append([formatted_compound, "Acid"])
-					"Base":
-						baseArray.append([formatted_compound, "Base"])
-					"Compound":
-						compoundArray.append([formatted_compound, "Compound"])
-			print("Data fetched and formatted successfully!")
-			#print("Acid Array: ", acidArray)
-			#print("Base Array:", baseArray)
-			#print("Reaction Array:", compoundArray)
-			match Global.current_level:
-				1:
-					shoot_acid()
-				2:
-					shoot_base()
-				3:
-					shoot_random_acid_base()
-				4:
-					shoot_compound()
+			if Global.current_level == 4:
+				#handle_compound_reactions(data)  # Handle reactions from the new API
+				shoot_compound()
+			else:
+				handle_acids_bases(data)  # Handle acids and bases for levels 1, 2, 3
 		else:
 			print("Error parsing JSON.")
 	else:
 		print("Request failed. Status code: ", response_code)
 
+# Handles Level 4 compound reactions
+#func handle_compound_reactions(data):
+	#print("inside handle compound reactions")
+	#for entry in data:
+		#var formatted_compound = format_compound(entry["Reaction"])
+		#compoundArray.append([formatted_compound, "Compound"])
+		#individualCompoundArray.append([entry["Answer"], "Compound"])
+		#Global.compoundArray.append([formatted_compound, "Compound"])
+		#Global.individualCompoundArray.append([entry["Answer"], "Compound"])
+	#shoot_compound()
+	
+# Existing function for Levels 1, 2, 3
+func handle_acids_bases(data):
+	for entry in data:
+		var formatted_compound = format_compound(entry["Compound"])
+		match entry["Type"]:
+			"Acid":
+				acidArray.append([formatted_compound, "Acid"])
+			"Base":
+				baseArray.append([formatted_compound, "Base"])
+	match Global.current_level:
+		1:
+			shoot_acid()
+		2:
+			shoot_base()
+		3:
+			shoot_random_acid_base()
+
 func format_compound(compound: String) -> String:
 	var formatted = "[font_size=40]"
-	# Loop through each character in the compound string
 	for char in compound:
-		# Check if the character is a digit (subscript)
-		if '0' <= char and char <= '9':  # Checking if the character is between '0' and '9'
+		if '0' <= char and char <= '9': 
 			formatted += "[font_size=20]" + char + "[/font_size]"
 		else:
-			# Otherwise, add the normal character with default size
 			formatted += char
 	formatted += "[/font_size]"
 	return formatted
@@ -110,12 +125,17 @@ func shoot_random_acid_base():
 		Global.baseShooted = true
 
 func shoot_compound():
+	print("Inside Shoot compound method")
 	# Randomly select a compound from compoundArray
-	if compoundArray.size() > 0:
-		var selection = randi_range(0, compoundArray.size() - 1)
-		add_to_group(compoundArray[selection][1])  # Add it to the "Compound" group
-		formula.text = "[center]" + compoundArray[selection][0] + "[/center]"
+	if Global.compoundArray.size() > 0:
+		#var selection = randi_range(0, compoundArray.size() - 2)
+		#Global.reactionIndex = selection
+		add_to_group(Global.compoundArray[Global.reactionIndex][1]) 
+		print("The reaction index is", Global.reactionIndex)
+		print("The question is", Global.compoundArray[Global.reactionIndex][0])
+		formula.text = "[center]" + Global.compoundArray[Global.reactionIndex][0] + "[/center]"
 		formula.set_custom_minimum_size(Vector2(750, 75))
+		print("the question is prepared")
 
 func _physics_process(delta):
 	rotation = 0.00

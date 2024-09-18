@@ -12,7 +12,6 @@ signal projectile_finished
 @onready var http_request = $HTTPRequest
 @onready var acidArray = Global.acidArray
 @onready var baseArray = Global.baseArray
-@onready var compoundArray = Global.compoundArray
 
 # --------- FUNCTIONS ---------- #
 
@@ -36,8 +35,6 @@ func _on_request_completed(result, response_code, headers, body):
 						acidArray.append([entry["Compound"], "Acid"])
 					"Base":
 						baseArray.append([entry["Compound"], "Base"])
-					"Compound":
-						compoundArray.append([entry["Compound"], "Compound"])
 			print("Data fetched and formatted successfully!")
 		else:
 			print("Error parsing JSON: ", parse_result)
