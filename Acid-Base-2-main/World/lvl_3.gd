@@ -37,8 +37,6 @@ func _on_request_completed(result, response_code, headers, body):
 						acidArray.append([entry["Compound"], "Acid"])
 					"Base":
 						baseArray.append([entry["Compound"], "Base"])
-					"Compound":
-						compoundArray.append([entry["Compound"], "Compound"])
 			print("Data fetched and formatted successfully!")
 		else:
 			print("Error parsing JSON: ", parse_result)

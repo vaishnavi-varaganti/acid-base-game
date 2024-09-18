@@ -4,17 +4,60 @@ extends Node2D
 signal projectile_finished
 @onready var fullHeart = preload("res://healthFull.png")
 @onready var halfHeart = preload("res://healthHalf.png")
-
 @onready var score = 0
 @onready var highscore = 0
 @onready var paused = false
 @onready var player_dead = false
 @onready var victory = false
+@onready var http_request = $HTTPRequest
+@onready var reactionIndex = Global.reactionIndex
+@onready var compoundArray = Global.compoundArray
+@onready var individualCompoundArray = Global.individualCompoundArray
+
 # --------- FUNCTIONS ---------- #
 
 func _ready():
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL - " + str(Global.current_level)
-	
+	# Display options when the scene is loaded
+	display_options_level4()
+	#http_request.request("https://retoolapi.dev/JgRl9e/reactions")
+	# Connect the projectile_finished signal to update options when the projectile is shot
+	$enemy.connect("projectile_finished", _on_projectile_finished)
+
+#func _on_request_completed(result, response_code, headers, body):
+	#if response_code == 200:
+		#var json = JSON.new()
+		#var parse_result = json.parse(body.get_string_from_utf8())
+		#if parse_result == OK:
+			#var data = json.get_data()
+			#for entry in data:
+				#Global.compoundArray.append({"question": entry["Reaction"], "answer": entry["Answer"]})
+			#print("Data fetched and formatted successfully!")
+		#else:
+			#print("Error parsing JSON: ", parse_result)
+	#else:
+		#print("Request failed with status code: ", response_code)
+
+func display_options_level4():
+	print("RI is",Global.reactionIndex)
+	print(Global.individualCompoundArray)
+	if individualCompoundArray.size() < 3:
+		print("Not enough data in compoundArray to display options")
+		return
+	var correct_option = individualCompoundArray[Global.reactionIndex][0]
+	var	wrong_option1 = individualCompoundArray[randi_range(0, individualCompoundArray.size() - 2)][0]
+	var	wrong_option2 = individualCompoundArray[randi_range(0, individualCompoundArray.size() - 2)][0]
+	var options = [correct_option, wrong_option1, wrong_option2]
+	options.shuffle()
+	print("option 1", correct_option)
+	print("option 2", wrong_option1)
+	print("option 3", wrong_option2)
+	$hud/HBoxContainer/Option1.text = options[0]
+	$hud/HBoxContainer/Option2.text = options[1]
+	$hud/HBoxContainer/Option3.text = options[2]
+	Global.correct_answer = correct_option
+	print("the oprions are prepared")
+
 func update_score():
 	if not player_dead:
 		$hud/PanelContainer/HBoxContainer/ProgressBar.value+=10
@@ -57,8 +100,14 @@ func update_lives(lives: int):
 		gameover()
 		
 func _on_projectile_finished():
+	# Update score and reset player_dead flag
 	update_score()
 	player_dead = false
+	# Update the options every time the projectile is fired
+	display_options_level4()
+	
+func _on_question_prepared():
+	display_options_level4()
 	
 func gameover():
 	paused = true
