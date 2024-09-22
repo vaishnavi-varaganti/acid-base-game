@@ -13,6 +13,10 @@ signal projectile_finished
 @onready var http_request = $HTTPRequest
 @onready var acidArray = Global.acidArray
 @onready var baseArray = Global.baseArray
+@onready var option1 = $hud/HBoxContainer/Option1
+@onready var option2 = $hud/HBoxContainer/Option2
+@onready var option3 = $hud/HBoxContainer/Option3
+@export var lives = 6  # This is the master source for lives
 
 # --------- FUNCTIONS ---------- #
 
@@ -20,6 +24,7 @@ func _ready():
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL - " + current_value
 	http_request.request("https://retoolapi.dev/Jqmkez/questions")
+	connect_option_signals()
 	# Display options when the scene is loaded
 	display_options_level1()
 	# Connect the projectile_finished signal to update options when the projectile is shot
@@ -59,17 +64,48 @@ func display_options_level1():
 	# Store the correct answer in a global variable
 	Global.correct_answer = correct_option
 
-func update_score():
-	if not player_dead:
-		$hud/PanelContainer/HBoxContainer/ProgressBar.value+=10
-		score += 1
-		if (highscore<score):
-			highscore = score
-		if (score >= 15):
-			victory = true
-	$hud/PanelContainer/HBoxContainer/Score.text = "Score:" + str(score)
+func connect_option_signals():
+	option1.connect("pressed", _on_Option1_Selected)
+	option2.connect("pressed", _on_Option2_Selected)
+	option3.connect("pressed", _on_Option3_Selected)
+
+func _on_Option1_Selected():
+	check_answer($hud/HBoxContainer/Option1.text)
+		
+func _on_Option2_Selected():
+	check_answer($hud/HBoxContainer/Option2.text)
+		
+func _on_Option3_Selected():
+	check_answer($hud/HBoxContainer/Option3.text)
+
+func check_answer(selected_option: String):
+	print(selected_option, "is the option selected")
+	print(Global.correct_answer, "is the correct answer")
 	
-func update_lives(lives: int):
+	if selected_option == Global.correct_answer:
+		print("Correct Answer!!!")
+		update_score_and_progress()
+	else:
+		print("Wrong Answer!")
+		update_lives(lives - 1)  # Update lives directly here
+
+func update_score_and_progress():
+	# Increase score by 3 and progress bar by 10%
+	score += 3
+	$hud/PanelContainer/HBoxContainer/ProgressBar.value += 10
+	$hud/PanelContainer/HBoxContainer/Score.text = "Score: " + str(score)
+	if (highscore < score):
+		highscore = score
+	# Check if victory conditions are met
+	if score >= 15:
+		victory = true
+
+func update_lives(new_lives: int):
+	lives = new_lives  # Update the lives variable
+	# Ensure that player_lvl1.gd reflects the correct life count
+	$player_Lvl1.lives = lives
+
+	# Update the hearts display based on lives
 	if lives == 6:
 		$hud/PanelContainer/HBoxContainer/First.set_texture(fullHeart)
 		$hud/PanelContainer/HBoxContainer/Second.set_texture(fullHeart)
@@ -99,14 +135,12 @@ func update_lives(lives: int):
 		$hud/PanelContainer/HBoxContainer/Second.set_texture(null)
 		$hud/PanelContainer/HBoxContainer/Third.set_texture(null)
 		gameover()
-		
+
 func _on_projectile_finished():
-	# Update score and reset player_dead flag
-	update_score()
 	player_dead = false
 	# Update the options every time the projectile is fired
 	display_options_level1()
-	
+
 func gameover():
 	paused = true
 	$hud.game_over()
@@ -124,7 +158,7 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
-	
+
 func restart():
 	print("restart")
 	paused = false
@@ -135,8 +169,8 @@ func restart():
 	$enemy.set_physics_process(true)
 	$enemy.attack_timer.start()
 	score = -1
-	$hud/PanelContainer/HBoxContainer/ProgressBar.value=0
-	update_score()
+	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
+	update_score_and_progress()
 	$player_Lvl1.lives = 6
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
