@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=11 format=3 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_1.gd" id="1_dnhna"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxyc5geuerhbe" path="res://Characters/enemy.tscn" id="2_qxas3"]
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
-[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
+[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
@@ -27,6 +27,8 @@ glow_intensity = 5.0
 glow_hdr_threshold = 0.9
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 36.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_t1dwc"]
 
 [node name="lvl1" type="Node2D" groups=["Map"]]
 script = ExtResource("1_dnhna")
@@ -101,5 +103,42 @@ one_shot = true
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="correctPopup" type="Popup" parent="."]
+
+[node name="correct" type="Label" parent="correctPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.0
+offset_right = 20.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Correct Answer!"
+label_settings = SubResource("LabelSettings_t1dwc")
+
+[node name="wrongPopup" type="Popup" parent="."]
+
+[node name="wrong" type="Label" parent="wrongPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -7.0
+offset_right = 37.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wrong !!"
+
+[node name="popupTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
+[connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
