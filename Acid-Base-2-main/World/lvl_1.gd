@@ -18,6 +18,10 @@ signal projectile_finished
 @onready var option3 = $hud/HBoxContainer/Option3
 @export var lives = 6  # This is the master source for lives
 
+@onready var correct_popup = $correctPopup
+@onready var wrong_popup = $wrongPopup
+
+
 # --------- FUNCTIONS ---------- #
 
 func _ready():
@@ -84,10 +88,14 @@ func check_answer(selected_option: String):
 	
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
+		correct_popup.popup_centered()
 		update_score_and_progress()
+		$popupTimer.start()
 	else:
 		print("Wrong Answer!")
-		update_lives(lives - 1)  # Update lives directly here
+		wrong_popup.popup_centered()
+		update_lives(lives - 1)
+		$popupTimer.start()  # Update lives directly here
 
 func update_score_and_progress():
 	# Increase score by 3 and progress bar by 10%
@@ -178,3 +186,9 @@ func restart():
 	$hud/HBoxContainer/Option1.visible = true
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
+
+
+func _on_PopupTimer_timeout():
+	correct_popup.hide()
+	wrong_popup.hide()
+	pass # Replace with function body.
