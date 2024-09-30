@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://q2pxe47w6snq"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://q2pxe47w6snq"]
+
+[ext_resource type="FontFile" uid="uid://dn22uj0hn2mrl" path="res://Clayborn.ttf" id="1_po11t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ordpu"]
 bg_color = Color(0.117647, 0.392157, 0.627451, 1)
@@ -51,6 +53,8 @@ border_blend = true
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47f7v"]
 
 [resource]
+default_font = ExtResource("1_po11t")
+default_font_size = 30
 Button/colors/font_hover_color = Color(0.94902, 0.94902, 0.690196, 1)
 Button/colors/font_hover_pressed_color = Color(0.94902, 0.94902, 0.690196, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)

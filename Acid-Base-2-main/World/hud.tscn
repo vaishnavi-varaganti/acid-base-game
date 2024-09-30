@@ -279,6 +279,7 @@ offset_bottom = 251.0
 [node name="Option1" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
+theme = ExtResource("4_yl0th")
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 custom_minimum_size = Vector2(110, 0)
@@ -287,6 +288,7 @@ layout_mode = 2
 [node name="Option2" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
+theme = ExtResource("4_yl0th")
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
 custom_minimum_size = Vector2(110, 0)
@@ -295,6 +297,7 @@ layout_mode = 2
 [node name="Option3" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
+theme = ExtResource("4_yl0th")
 
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
