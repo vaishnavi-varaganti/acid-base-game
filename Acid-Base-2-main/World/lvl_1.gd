@@ -89,11 +89,13 @@ func check_answer(selected_option: String):
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
 		correct_popup.popup_centered()
+		#correct_popup.rect_min_size = Vector2(300, 15)
 		update_score_and_progress()
 		$popupTimer.start()
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
+		#wrong_popup.rect_min_size = Vector2(300, 15)
 		update_lives(lives - 1)
 		$popupTimer.start()  # Update lives directly here
 
@@ -105,8 +107,9 @@ func update_score_and_progress():
 	if (highscore < score):
 		highscore = score
 	# Check if victory conditions are met
-	if score >= 15:
+	if score >= 21:
 		victory = true
+		gameover()
 
 func update_lives(new_lives: int):
 	lives = new_lives  # Update the lives variable
