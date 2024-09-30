@@ -156,8 +156,8 @@ position = Vector2(390, 184)
 script = ExtResource("1_x0sv6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(42, -1)
-scale = Vector2(1.5, 1.5)
+position = Vector2(32, -13.5)
+scale = Vector2(2.05555, 2.19444)
 sprite_frames = SubResource("SpriteFrames_nv63c")
 animation = &"Idle"
 
