@@ -108,6 +108,7 @@ layout_mode = 2
 [node name="usernametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer"]
 custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="PasswordContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(500, 0)
@@ -122,9 +123,20 @@ text = "password
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
-[node name="Passwordtext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer"]
+[node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer"]
 custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "show"
 
 [node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 20)
@@ -148,5 +160,6 @@ text = "Cancel"
 [node name="status" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 layout_mode = 2
 
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_cancel_button_pressed"]
