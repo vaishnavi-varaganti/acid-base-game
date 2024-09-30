@@ -23,7 +23,7 @@ func game_over():
 	gameOverScreen.show()
 	$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score: " + str($"..".score)
 	#$Control/GameOverScreen/VBoxContainer/HBoxContainer/Score.text = "Score:\n" + str($"..".score)
-	$Control/GameOverScreen/VBoxContainer/HBoxContainer/HighScore.text = "High Score: " + str($"..".highscore)
+	#$Control/GameOverScreen/VBoxContainer/HBoxContainer/HighScore.text = "High Score: " + str($"..".highscore)
 	
 func _on_restart_pressed():
 	game_start()
