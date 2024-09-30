@@ -27,61 +27,46 @@ func _physics_process(_delta):
 	
 	# Handle jumping logic after question
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		anim.play("Jump")
-		jump()
+		pass
 	
 	# Fall logic when in the air
 	elif !is_on_floor() and anim.animation != "Jump" and not dodging and not returning:
-		anim.play("Fall")
+		#anim.play("Fall")
+		pass
 		
 	elif is_on_floor() and anim.animation == "Fall":
 		anim.play("Idle") 
 	
 	# Dodging and returning logic remains
-	if dodging:
-		t += _delta / duration
-		var q0 = positionA.lerp(positionC, min(t, 1.0))
-		var q1 = positionC.lerp(positionB, min(t, 1.0))
-		self.position = q0.lerp(q1, min(t, 1.0))
-		anim.flip_h = true
-		if self.position.distance_to(positionB) < 0.01:
-			anim.play("Wall_Cling")
-			await get_tree().create_timer(0.5).timeout
-			t = 0.0
-			anim.flip_h = false
-			dodging = false
-			returning = true
+	#if dodging:
+		#t += _delta / duration
+		#var q0 = positionA.lerp(positionC, min(t, 1.0))
+		#var q1 = positionC.lerp(positionB, min(t, 1.0))
+		#self.position = q0.lerp(q1, min(t, 1.0))
+		#anim.flip_h = true
+		#if self.position.distance_to(positionB) < 0.01:
+			#anim.play("Wall_Cling")
+			#await get_tree().create_timer(0.5).timeout
+			#t = 0.0
+			#anim.flip_h = false
+			#dodging = false
+			#returning = true
 			
-	elif returning:
-		anim.play("Dodge")
-		t += _delta / duration
-		var q0 = positionB.lerp(positionC, min(t, 1.0))
-		var q1 = positionC.lerp(positionA, min(t, 1.0))
-		self.position = q0.lerp(q1, min(t, 1.0))
-		if self.position.distance_to(positionA) < 0.01:
-			anim.play("Idle")
-			returning = false
-			positionA = self.position
-			t = 0.0
+	#elif returning:
+		#anim.play("Dodge")
+		#t += _delta / duration
+		#var q0 = positionB.lerp(positionC, min(t, 1.0))
+		#var q1 = positionC.lerp(positionA, min(t, 1.0))
+		#self.position = q0.lerp(q1, min(t, 1.0))
+		#if self.position.distance_to(positionA) < 0.01:
+			#anim.play("Idle")
+			#returning = false
+			#positionA = self.position
+			#t = 0.0
 
 # Handles animations to ensure no overwriting ongoing animations
 func _on_AnimatedSprite_animation_finished(): 
-	if anim.animation == "Jump" and !is_on_floor():
-		anim.play("Fall")
-		return # Skip the rest of the function to avoid playing "Idle" during jumps
-		 
-	elif anim.animation == "Dodge" and is_on_floor():
-		anim.play("Idle")
-		return
-		
-	elif anim.animation == "Wall_Cling":
-		anim.play("Wall_Cling")
-	
-	elif anim.animation == "Fall" and !is_on_floor():
-		anim.play("Fall") # Keep falling until player hits the ground
-	
-	else:
-		anim.play("Idle")
+	pass
 		
 func movement(delta):
 	
@@ -128,8 +113,8 @@ func jump_tween(): # Stretches out the player when jumping, making it look reali
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
 
 func ouch(): # When hit, inverts colors, freezes the game, and kills the player
-	anim.material.set_shader_parameter("active", true)
+	anim.material.set_shader_parameter("active", false)
 	set_physics_process(false)
 	await get_tree().create_timer(0.1).timeout
-	death_tween()
+	#death_tween()
 	set_physics_process(true)
