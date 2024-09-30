@@ -17,7 +17,7 @@ signal projectile_finished
 @onready var option2 = $hud/HBoxContainer/Option2
 @onready var option3 = $hud/HBoxContainer/Option3
 @export var lives = 6  # This is the master source for lives
-
+@onready var question_number = Global.question_number
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
 
@@ -54,6 +54,7 @@ func _on_request_completed(result, response_code, headers, body):
 
 func display_options_level1():
 	await get_tree().create_timer(1.5).timeout
+	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
 	# Randomize options every time the projectile is fired
 	var correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
