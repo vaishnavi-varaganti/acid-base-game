@@ -55,10 +55,16 @@ func _on_request_completed(result, response_code, headers, body):
 func display_options_level1():
 	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
+	
 	# Reset all option button colors to default 
 	$hud/HBoxContainer/Option1.modulate = Color(1, 1, 1)  
 	$hud/HBoxContainer/Option2.modulate = Color(1, 1, 1)  
 	$hud/HBoxContainer/Option3.modulate = Color(1, 1, 1) 
+	
+	$hud/HBoxContainer/Option1.disabled = false
+	$hud/HBoxContainer/Option2.disabled = false
+	$hud/HBoxContainer/Option3.disabled = false
+	
 	var correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	while wrong_option1 == correct_option:
@@ -90,6 +96,9 @@ func _on_Option3_Selected():
 func check_answer(selected_option: String):
 	print(selected_option, "is the option selected")
 	print(Global.correct_answer, "is the correct answer")
+	
+	# Disable all the options after a selection is made
+	disable_options()
 	
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
@@ -231,8 +240,12 @@ func restart():
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
 
-
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
 	wrong_popup.hide()
 	pass # Replace with function body.
+	
+func disable_options():
+	$hud/HBoxContainer/Option1.disabled = true
+	$hud/HBoxContainer/Option2.disabled = true
+	$hud/HBoxContainer/Option3.disabled = true
