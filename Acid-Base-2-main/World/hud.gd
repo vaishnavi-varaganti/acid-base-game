@@ -9,10 +9,6 @@ extends CanvasLayer
 func _ready():
 	gameOverScreen.hide()
 	$Control/VictoryAnims.hide()
-	
-	
-
-
 
 func _physics_process(delta):
 	$Control/VictoryAnims/Duckdance.play("duck")
@@ -32,8 +28,9 @@ func game_over():
 func _on_restart_pressed():
 	game_start()
 
-func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res:///World/menu.tscn")
+func _on_go_to_next_level_presses():
+	if Global.current_level == 1:
+		get_tree().change_scene_to_file("res://World/level2menu.tscn")
 
 func _on_tutorial_pressed():
 	get_tree().change_scene_to_file("res://World/tutorial.tscn")

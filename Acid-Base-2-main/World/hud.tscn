@@ -240,7 +240,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
-text = "Return to Main Menu"
+text = "Go To Next Level"
 
 [node name="Tutorial" type="Button" parent="Control/GameOverScreen/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
@@ -298,5 +298,5 @@ layout_mode = 2
 
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_go_to_next_level_presses"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
