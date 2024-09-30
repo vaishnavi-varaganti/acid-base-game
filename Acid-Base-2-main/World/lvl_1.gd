@@ -92,12 +92,14 @@ func check_answer(selected_option: String):
 		correct_popup.popup_centered()
 		#correct_popup.rect_min_size = Vector2(300, 15)
 		update_score_and_progress()
+		check_victory()
 		$popupTimer.start()
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
 		#wrong_popup.rect_min_size = Vector2(300, 15)
 		update_lives(lives - 1)
+		check_victory()
 		$popupTimer.start()  # Update lives directly here
 
 func update_score_and_progress():
@@ -107,9 +109,14 @@ func update_score_and_progress():
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: " + str(score)
 	if (highscore < score):
 		highscore = score
+		
+func check_victory():
 	# Check if victory conditions are met
-	if score >= 21:
+	if score >= 21 && Global.question_number == 10:
 		victory = true
+		gameover()
+	elif score < 21 && Global.question_number == 11:
+		victory = false
 		gameover()
 
 func update_lives(new_lives: int):
@@ -152,8 +159,11 @@ func _on_projectile_finished():
 	player_dead = false
 	# Update the options every time the projectile is fired
 	display_options_level1()
+	# Call check_victory after the projectile finishes, to ensure game logic continues
+	check_victory()
 
 func gameover():
+	await get_tree().create_timer(1.5).timeout
 	paused = true
 	$hud.game_over()
 	# Set Game Over text depending on victory or not
@@ -162,6 +172,7 @@ func gameover():
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "Game Over"
 	$hud/Control/VictoryAnims.show()
+	$hud/QuestionContainer/QuestionNumber.visible = false
 	# Hide buttons you don’t want to show on Game Over
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
