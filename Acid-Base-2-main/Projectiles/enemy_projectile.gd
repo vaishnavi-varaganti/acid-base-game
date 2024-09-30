@@ -99,6 +99,8 @@ func shoot_acid():
 	# Randomly select an acid from acidArray
 	if acidArray.size() > 0:
 		#print("The acid array is", acidArray)
+		Global.question_number += 1
+		print("The question number is:", Global.question_number)
 		var selection = randi_range(0, acidArray.size() - 1)
 		print(selection)
 		add_to_group(acidArray[selection][1])  # Add it to the "Acid" group
