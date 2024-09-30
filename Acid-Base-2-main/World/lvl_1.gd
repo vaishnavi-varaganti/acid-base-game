@@ -55,18 +55,18 @@ func _on_request_completed(result, response_code, headers, body):
 func display_options_level1():
 	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
-	# Randomize options every time the projectile is fired
 	var correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+	while wrong_option1 == correct_option:
+		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	var wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
-	# Shuffle the options to display them in random order
+	while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
+		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	var options = [correct_option, wrong_option1, wrong_option2]
 	options.shuffle()
-	# Set the text for each option button
 	$hud/HBoxContainer/Option1.text = options[0]
 	$hud/HBoxContainer/Option2.text = options[1]
 	$hud/HBoxContainer/Option3.text = options[2]
-	# Store the correct answer in a global variable
 	Global.correct_answer = correct_option
 
 func connect_option_signals():
