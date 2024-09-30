@@ -93,33 +93,60 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+[node name="UsernameContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "Enter Details
-"
 
-[node name="Username" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+[node name="Username" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer"]
 layout_mode = 2
 text = "Username "
 
-[node name="usernametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(150, 25)
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
-[node name="Password" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+[node name="usernametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer"]
+custom_minimum_size = Vector2(275, 35)
+layout_mode = 2
+
+[node name="PasswordContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Password" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer"]
 layout_mode = 2
 text = "password
 "
 
-[node name="Passwordtext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(150, 25)
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+[node name="Passwordtext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer"]
+custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
-text = "SignUp"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ActionContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer"]
+layout_mode = 2
+text = "Register"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer"]
+layout_mode = 2
+text = "Cancel"
 
 [node name="status" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 layout_mode = 2
 
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_cancel_button_pressed"]

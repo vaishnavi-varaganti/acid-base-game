@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cei4ksh8r3g52"]
+[gd_scene load_steps=19 format=3 uid="uid://cei4ksh8r3g52"]
 
 [ext_resource type="Texture2D" uid="uid://dxm7xv0oixqie" path="res://healthFull.png" id="1_2t3f8"]
 [ext_resource type="Script" path="res://World/hud.gd" id="1_r5ayd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bmiyncj72wt8f" path="res://Assets/Animations/Duck/Idle (36x36).png" id="7_jk07a"]
 [ext_resource type="Texture2D" uid="uid://dmww8qsb15kfy" path="res://Assets/Animations/Player/adventurer-idle-01.png" id="8_8a45m"]
 [ext_resource type="Shader" path="res://blur.gdshader" id="8_26llr"]
+[ext_resource type="FontFile" uid="uid://dn22uj0hn2mrl" path="res://Clayborn.ttf" id="15_7w6l8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtd2u"]
 shader = ExtResource("8_26llr")
@@ -298,6 +299,23 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
+
+[node name="QuestionContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = -1
+anchor_right = 0.04
+anchor_bottom = 0.056
+offset_left = 16.0
+offset_top = 126.0
+offset_right = 176.0
+offset_bottom = 133.68
+
+[node name="QuestionNumber" type="Label" parent="QuestionContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme = ExtResource("2_gtp76")
+theme_override_fonts/font = ExtResource("15_7w6l8")
+theme_override_font_sizes/font_size = 30
 
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
