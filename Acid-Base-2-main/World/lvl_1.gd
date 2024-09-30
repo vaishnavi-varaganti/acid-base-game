@@ -103,6 +103,7 @@ func check_answer(selected_option: String):
 		$popupTimer.start()  # Update lives directly here
 
 func update_score_and_progress():
+	Global.level1_correctAnswers += 1
 	# Increase score by 3 and progress bar by 10%
 	score += 3
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value += 10
@@ -115,8 +116,12 @@ func check_victory():
 	if score >= 21 && Global.question_number == 10:
 		victory = true
 		gameover()
+	elif Global.level1_correctAnswers == 7:
+		victory = true
+		gameover()
 	elif score < 21 && Global.question_number == 11:
 		victory = false
+		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
 		gameover()
 
 func update_lives(new_lives: int):
@@ -170,8 +175,12 @@ func gameover():
 	if victory:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
 	else:
-		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "Game Over"
+		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
+	var wrong_answers = 10 - Global.level1_correctAnswers
+	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level1_correctAnswers)            
+	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
+	Global.level1Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
 	# Hide buttons you don’t want to show on Game Over
 	$hud/HBoxContainer/Option1.visible = false
@@ -181,6 +190,7 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
+	Global.question_number = 1
 
 func restart():
 	print("restart")

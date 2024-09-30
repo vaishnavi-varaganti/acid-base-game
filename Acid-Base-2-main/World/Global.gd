@@ -17,6 +17,10 @@ var reactionIndex = -1
 var api_url1 = "https://retoolapi.dev/Jqmkez/questions"
 @onready var http_request = HTTPRequest.new()
 var question_number = 1
+var level1_correctAnswers = 0
+var level2_correctAnswers = 0
+var level3_correctAnswers = 0
+var level4_correctAnswers = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(http_request)  # Add the HTTPRequest node dynamically to the scene tree

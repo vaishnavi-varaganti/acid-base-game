@@ -206,12 +206,11 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
-text = "Score:
-0"
+text = "Score: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighScore" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer"]
+[node name="Questions" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -219,7 +218,38 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
-text = "High Score"
+text = "Questions: 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="CorrectlyAnswered" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Correct answers: 
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncorrectlyAnswered" type="Label" parent="Control/GameOverScreen/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "Wrong answers: 
+0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -237,13 +267,6 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
 text = "Go To Next Level"
 
-[node name="Tutorial" type="Button" parent="Control/GameOverScreen/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 32
-text = "Play Again"
-
 [node name="VictoryAnims" type="Control" parent="Control"]
 anchors_preset = 0
 offset_right = 40.0
@@ -251,16 +274,16 @@ offset_bottom = 40.0
 
 [node name="Duckdance" type="AnimatedSprite2D" parent="Control/VictoryAnims"]
 texture_filter = 1
-position = Vector2(715, 159)
-scale = Vector2(1.5, 1.5)
+position = Vector2(700, 151.5)
+scale = Vector2(2.05556, 1.91667)
 sprite_frames = SubResource("SpriteFrames_y573v")
 animation = &"duck"
 frame_progress = 0.423267
 
 [node name="PlayerVictory" type="AnimatedSprite2D" parent="Control/VictoryAnims"]
 texture_filter = 1
-position = Vector2(331, 147)
-scale = Vector2(2, 2)
+position = Vector2(274.25, 123.25)
+scale = Vector2(3.03, 3.14865)
 sprite_frames = SubResource("SpriteFrames_y573v")
 animation = &"player"
 frame_progress = 0.00425463
@@ -314,4 +337,3 @@ theme_override_font_sizes/font_size = 30
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_go_to_next_level_presses"]
-[connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Tutorial" to="." method="_on_play_again_pressed"]
