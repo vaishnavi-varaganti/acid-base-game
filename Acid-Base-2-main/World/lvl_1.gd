@@ -26,7 +26,7 @@ signal projectile_finished
 
 func _ready():
 	print($hud/PanelContainer/HBoxContainer/Level.text)
-	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL - " + current_value
+	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + current_value
 	http_request.request("https://retoolapi.dev/Jqmkez/questions")
 	connect_option_signals()
 	# Display options when the scene is loaded
