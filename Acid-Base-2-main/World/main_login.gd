@@ -1,14 +1,13 @@
 extends Control
 
 func _ready():
+	$menu/Panel/PanelContainer/VBoxContainer2/Status.visible = false
 	Firebase.Auth.login_succeeded.connect(on_login_succeeded)
 	Firebase.Auth.login_failed.connect(on_login_failed)
-	
-
 
 func _on_button_pressed():
-	var email = $menu/Panel/PanelContainer/VBoxContainer2/usernametext
-	var password = $menu/Panel/PanelContainer/VBoxContainer2/Passwordtext
+	var email = $menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer/usernametext
+	var password = $menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer/Passwordtext
 	var user = email.text
 	var passwd = password.text
 	Firebase.Auth.login_with_email_and_password(user, passwd)
@@ -19,8 +18,9 @@ func on_login_succeeded(auth):
 	Firebase.Auth.save_auth(auth)
 	get_tree().change_scene_to_file("res://World/menu.tscn")
 	
-	
 func on_login_failed(error_code, message):
+	$menu/Panel/PanelContainer/VBoxContainer2/Status.visible = true
+	$menu/Panel/PanelContainer/VBoxContainer2/Status.text = message
 	print(error_code)
 	print(message)
 
