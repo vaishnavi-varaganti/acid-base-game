@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=13 format=3 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_1.gd" id="1_dnhna"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="9_ey4vc"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -29,6 +30,10 @@ glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 36.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_t1dwc"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_klj27"]
+font_size = 40
 
 [node name="lvl1" type="Node2D" groups=["Map"]]
 script = ExtResource("1_dnhna")
@@ -104,9 +109,11 @@ one_shot = true
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="correctPopup" type="Popup" parent="."]
+size = Vector2i(350, 150)
+theme = ExtResource("9_ey4vc")
 
 [node name="correct" type="Label" parent="correctPopup"]
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(350, 150)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -118,12 +125,18 @@ offset_right = 20.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_ey4vc")
 text = "Correct Answer!"
 label_settings = SubResource("LabelSettings_t1dwc")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="wrongPopup" type="Popup" parent="."]
+size = Vector2i(350, 150)
+theme = ExtResource("9_ey4vc")
 
 [node name="wrong" type="Label" parent="wrongPopup"]
+custom_minimum_size = Vector2(350, 150)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -135,7 +148,11 @@ offset_right = 37.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Wrong !!"
+theme = ExtResource("9_ey4vc")
+text = "Wrong Answer!!"
+label_settings = SubResource("LabelSettings_klj27")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="popupTimer" type="Timer" parent="."]
 one_shot = true
