@@ -229,6 +229,9 @@ func restart():
 	$enemy.set_process(true)
 	$enemy.set_physics_process(true)
 	$enemy.attack_timer.start()
+	Global.level1Score = 0
+	Global.question_number = 1
+	Global.level1_correctAnswers = 0
 	score = -1
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	update_score_and_progress()
