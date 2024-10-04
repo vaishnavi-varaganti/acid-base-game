@@ -205,6 +205,7 @@ func gameover():
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
+	print("Correct answer count", Global.level1_correctAnswers)
 	var wrong_answers = 10 - Global.level1_correctAnswers
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level1_correctAnswers)            
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
@@ -218,7 +219,6 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
-	Global.question_number = 1
 
 func restart():
 	print("restart")
@@ -232,9 +232,10 @@ func restart():
 	Global.level1Score = 0
 	Global.question_number = 1
 	Global.level1_correctAnswers = 0
-	score = -1
+	score = 0
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
-	update_score_and_progress()
+	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"
+	$hud/QuestionContainer/QuestionNumber.visible = true
 	$player_Lvl1.lives = 6
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
