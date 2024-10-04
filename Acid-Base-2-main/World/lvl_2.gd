@@ -145,14 +145,17 @@ func check_victory():
 	if score >= 21 && Global.question_number == 10:
 		victory = true
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
+		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		gameover()
 	elif Global.level2_correctAnswers == 7:
 		victory = true
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
+		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		gameover()
 	elif score < 21 && Global.question_number == 11:
 		victory = false
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
+		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 		gameover()
 		
 func update_lives(new_lives: int):
