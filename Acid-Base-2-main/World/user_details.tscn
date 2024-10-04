@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi6q2yckt1pkq"]
+
+[ext_resource type="Script" path="res://World/main_login.gd" id="1_nq7q3"]
+[ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="2_sp7nn"]
+[ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="3_ihpsd"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_5rkuc"]
+
+[sub_resource type="GDScript" id="GDScript_vfwk2"]
+script/source = "extends CanvasLayer
+
+
+
+
+func _on_play_pressed():
+	get_tree().change_scene_to_file(\"res://World/menu.tscn\")
+	pass 
+
+
+func _on_quit_pressed():
+	get_tree().quit() # Replace with function body.
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhmk7"]
+
+[node name="UserDetails" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nq7q3")
+
+[node name="menu" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_vfwk2")
+
+[node name="Panel" type="Panel" parent="menu"]
+offset_right = 1000.0
+offset_bottom = 720.0
+theme = ExtResource("2_sp7nn")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lhmk7")
+
+[node name="BubbleParticles" parent="menu/Panel" instance=ExtResource("3_ihpsd")]
+texture_filter = 1
+position = Vector2(500, 800)
+amount = 8
+lifetime = 8.0
+randomness = 0.0
+lifetime_randomness = 0.0
+emission_rect_extents = Vector2(500, 4)
+spread = 3.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 200.0
+initial_velocity_max = 220.0
+angular_velocity_min = 5.0
+linear_accel_min = 0.0
+angle_min = -180.0
+angle_max = 180.0
+color_ramp = null
+
+[node name="Title" type="RichTextLabel" parent="menu/Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 968.0
+offset_bottom = 386.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[center][color=dark_red]Acid[/color] [color=deepskyblue]Base[/color][/center]
+[center]Game 
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.771
+offset_top = -80.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5rkuc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="menu/Panel/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FirstnameContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="FirstName" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/FirstnameContainer"]
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+text = "Firstname"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/FirstnameContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="firstnametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/FirstnameContainer"]
+custom_minimum_size = Vector2(275, 35)
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+scroll_fit_content_height = true
+
+[node name="LastnameContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Lastname" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/LastnameContainer"]
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+text = "Lastname"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/LastnameContainer"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+
+[node name="lastnametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/LastnameContainer"]
+custom_minimum_size = Vector2(275, 35)
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+scroll_fit_content_height = true
+
+[node name="Control2" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(348, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "PROCEED"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
