@@ -143,9 +143,11 @@ func check_victory():
 	# Check if victory conditions are met
 	if score >= 21 && Global.question_number == 10:
 		victory = true
+		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		gameover()
 	elif Global.level1_correctAnswers == 7:
 		victory = true
+		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		gameover()
 	elif score < 21 && Global.question_number == 11:
 		victory = false
