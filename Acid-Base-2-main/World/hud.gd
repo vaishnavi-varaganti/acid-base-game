@@ -32,6 +32,9 @@ func _on_go_to_next_level_presses():
 	if Global.current_level == 1:
 		get_tree().change_scene_to_file("res://World/level2menu.tscn")
 		Global.current_level = 2
+	if Global.current_level == 2:
+		get_tree().change_scene_to_file("res://World/level3menu.tscn")
+		Global.current_level = 3
 
 func _on_play_again_pressed():
 	if Global.current_level == 1:
