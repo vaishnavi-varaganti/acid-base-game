@@ -157,6 +157,17 @@ vertical_alignment = 1
 [node name="popupTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 218.0
+offset_top = 84.0
+offset_right = 295.0
+offset_bottom = 98.0
+scale = Vector2(10.1175, 6.6805)
+theme_override_font_sizes/font_size = 8
+text = "Identify acids"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
 [connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
