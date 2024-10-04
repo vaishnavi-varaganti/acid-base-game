@@ -19,7 +19,7 @@ signal projectile_finished
 
 func _ready():
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
-	http_request.request("https://retoolapi.dev/Jqmkez/questions")
+	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	# Display options when the scene is loaded
 	display_options_level3()
 	# Connect the projectile_finished signal to update options when the projectile is shot
