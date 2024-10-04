@@ -131,6 +131,26 @@ layout_mode = 2
 theme = ExtResource("4_5rkuc")
 scroll_fit_content_height = true
 
+[node name="SIDContainer2" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="SID" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/SIDContainer2"]
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+text = "SID
+"
+
+[node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/SIDContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="SIDtext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/SIDContainer2"]
+custom_minimum_size = Vector2(275, 35)
+layout_mode = 2
+theme = ExtResource("4_5rkuc")
+scroll_fit_content_height = true
+
 [node name="Control2" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
