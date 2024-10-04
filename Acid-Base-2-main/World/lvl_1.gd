@@ -25,6 +25,7 @@ signal projectile_finished
 # --------- FUNCTIONS ---------- #
 
 func _ready():
+	Global.question_number = 1
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + current_value
 	http_request.request("https://retoolapi.dev/Jqmkez/questions")
@@ -208,7 +209,11 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
 	print("Correct answer count", Global.level1_correctAnswers)
-	var wrong_answers = 10 - Global.level1_correctAnswers
+	var wrong_answers = 0
+	if score == 21:
+		wrong_answers = 0
+	else:
+		wrong_answers = 10 - Global.level1_correctAnswers
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level1_correctAnswers)            
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
 	Global.level1Score = score
