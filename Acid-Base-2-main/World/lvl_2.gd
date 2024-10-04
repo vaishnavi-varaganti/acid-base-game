@@ -209,7 +209,11 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
 	print("Correct answer count", Global.level2_correctAnswers)
-	var wrong_answers = 10 - Global.level2_correctAnswers
+	var wrong_answers = 0
+	if score == 21:
+		wrong_answers = 0
+	else:
+		wrong_answers = 10 - Global.level2_correctAnswers
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level2_correctAnswers)            
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
 	Global.level2Score = score
