@@ -7,6 +7,7 @@ func _ready():
 	Firebase.Auth.login_failed.connect(on_login_failed)
 
 func _on_button_pressed():
+	$menu/ButtonClickSound.play()
 	var email = $menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer/usernametext
 	var password = $menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer/LineEdit 
 	var user = email.text
@@ -32,3 +33,15 @@ func _on_button_2_pressed():
 func _on_show_password_pressed():
 	var password_field = $menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer/LineEdit 
 	password_field.secret = not password_field.secret 
+
+func _on_button_2_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass
+
+func _on_button_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass
+
+func _on_show_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass

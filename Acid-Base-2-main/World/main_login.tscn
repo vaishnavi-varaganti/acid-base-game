@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://boiv5m8gh3ph4"]
+[gd_scene load_steps=8 format=3 uid="uid://boiv5m8gh3ph4"]
 
 [ext_resource type="Script" path="res://World/main_login.gd" id="1_nq7q3"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="2_sp7nn"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="3_ihpsd"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_5rkuc"]
+[ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="5_kxipg"]
 
 [sub_resource type="GDScript" id="GDScript_vfwk2"]
 script/source = "extends CanvasLayer
@@ -170,6 +171,12 @@ layout_mode = 2
 theme = ExtResource("4_5rkuc")
 horizontal_alignment = 1
 
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="menu"]
+stream = ExtResource("5_kxipg")
+
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed_sound"]
