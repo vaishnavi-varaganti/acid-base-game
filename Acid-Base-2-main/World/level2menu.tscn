@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://btkmo8joygm6r"]
+[gd_scene load_steps=8 format=3 uid="uid://btkmo8joygm6r"]
 
 [ext_resource type="Script" path="res://World/level2menu.gd" id="1_1h5pe"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_gxpix"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_2505d"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_othyo"]
+[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="5_t3c1a"]
 
 [sub_resource type="GDScript" id="GDScript_5gkir"]
 script/source = "extends CanvasLayer
@@ -111,6 +112,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit
 "
+
+[node name="GameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t3c1a")
+autoplay = true
 
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
