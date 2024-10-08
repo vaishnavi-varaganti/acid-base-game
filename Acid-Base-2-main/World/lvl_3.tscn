@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccxd2sibswkrb"]
+[gd_scene load_steps=10 format=3 uid="uid://ccxd2sibswkrb"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_3.gd" id="1_o3ma8"]
@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
-[ext_resource type="AudioStream" uid="uid://dxkkn5bw6c8ow" path="res://Assets/Sounds/level_sound.ogg" id="9_xing7"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -102,11 +101,6 @@ one_shot = true
 [node name="hud" parent="." instance=ExtResource("8_eyruw")]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_xing7")
-volume_db = -12.0
-autoplay = true
 
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]

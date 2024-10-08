@@ -63,4 +63,14 @@ func pause_game():
 	get_tree().paused = true
 	options.show()
 
-
+func _on_option_1_pressed():
+	$ButtonClickSound.play()
+	pass 
+	
+func _on_option_2_pressed():
+	$ButtonClickSound.play()
+	pass 
+	
+func _on_option_3_pressed():
+	$ButtonClickSound.play()
+	pass 

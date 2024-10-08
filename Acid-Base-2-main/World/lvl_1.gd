@@ -104,6 +104,7 @@ func check_answer(selected_option: String):
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
 		correct_popup.popup_centered()
+		$correctPopup/Success_Sound.play()
 		# Highlight correct answer visually (optional, e.g., change button color or text)
 		$hud/HBoxContainer/Option1.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option1.text == Global.correct_answer else Color(1, 1, 1)
 		$hud/HBoxContainer/Option2.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option2.text == Global.correct_answer else Color(1, 1, 1)
@@ -116,6 +117,7 @@ func check_answer(selected_option: String):
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
+		$wrongPopup/Failure_Sound.play()
 		# Highlight the selected wrong answer in red
 		$hud/HBoxContainer/Option1.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option1.text == selected_option else Color(1, 1, 1)
 		$hud/HBoxContainer/Option2.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option2.text == selected_option else Color(1, 1, 1)

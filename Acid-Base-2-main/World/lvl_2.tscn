@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brg3joni68ypd"]
+[gd_scene load_steps=15 format=3 uid="uid://brg3joni68ypd"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_2.gd" id="1_tklvf"]
@@ -9,7 +9,8 @@
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="9_uujnd"]
-[ext_resource type="AudioStream" uid="uid://dxkkn5bw6c8ow" path="res://Assets/Sounds/level_sound.ogg" id="10_uuyih"]
+[ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="10_i60ry"]
+[ext_resource type="AudioStream" uid="uid://c4yluin1nompb" path="res://Assets/Sounds/failure_sound.wav" id="11_trhb4"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -132,6 +133,9 @@ label_settings = SubResource("LabelSettings_crr2e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Success_Sound" type="AudioStreamPlayer" parent="correctPopup"]
+stream = ExtResource("10_i60ry")
+
 [node name="wrongPopup" type="Popup" parent="."]
 size = Vector2i(350, 150)
 theme = ExtResource("9_uujnd")
@@ -155,13 +159,11 @@ label_settings = SubResource("LabelSettings_hx5jq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Failure_Sound" type="AudioStreamPlayer" parent="wrongPopup"]
+stream = ExtResource("11_trhb4")
+
 [node name="popupTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_uuyih")
-volume_db = -12.0
-autoplay = true
 
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
