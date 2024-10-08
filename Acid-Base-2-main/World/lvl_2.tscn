@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brg3joni68ypd"]
+[gd_scene load_steps=16 format=3 uid="uid://brg3joni68ypd"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_2.gd" id="1_tklvf"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="9_uujnd"]
 [ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="10_i60ry"]
 [ext_resource type="AudioStream" uid="uid://c4yluin1nompb" path="res://Assets/Sounds/failure_sound.wav" id="11_trhb4"]
+[ext_resource type="AudioStream" uid="uid://cqu7hklt24uhv" path="res://Assets/Sounds/game-sound.wav" id="12_2mkji"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -164,6 +165,10 @@ stream = ExtResource("11_trhb4")
 
 [node name="popupTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_2mkji")
+autoplay = true
 
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]

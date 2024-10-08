@@ -18,6 +18,7 @@ signal projectile_finished
 # --------- FUNCTIONS ---------- #
 
 func _ready():
+	$hud/TitleContainer/Title.text = "IDENTIFY THE ACIDS AND BASES"
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	# Display options when the scene is loaded

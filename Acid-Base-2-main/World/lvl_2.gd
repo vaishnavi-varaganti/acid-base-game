@@ -25,6 +25,7 @@ signal projectile_finished
 # --------- FUNCTIONS ---------- #
 
 func _ready():
+	$hud/TitleContainer/Title.text = "IDENTIFY THE ACID"
 	Global.question_number = 1
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
