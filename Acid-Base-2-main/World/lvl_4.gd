@@ -17,6 +17,7 @@ signal projectile_finished
 # --------- FUNCTIONS ---------- #
 
 func _ready():
+	$hud/TitleContainer/Title.text = "IDENTIFY THE INDIVIDUAL COMPOUNDS"
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	# Display options when the scene is loaded
 	display_options_level4()

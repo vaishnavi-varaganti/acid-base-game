@@ -343,6 +343,24 @@ stream = ExtResource("13_7217t")
 stream = ExtResource("14_q0t3k")
 autoplay = true
 
+[node name="TitleContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = -1
+anchor_right = 0.04
+anchor_bottom = 0.056
+offset_left = 454.0
+offset_top = 119.0
+offset_right = 956.0
+offset_bottom = 143.68
+
+[node name="Title" type="Label" parent="TitleContainer"]
+custom_minimum_size = Vector2(540, 50)
+layout_mode = 2
+theme = ExtResource("2_gtp76")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="item_selected" from="PanelContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/GameOverScreen/VBoxContainer/MainMenu" to="." method="_on_go_to_next_level_presses"]
