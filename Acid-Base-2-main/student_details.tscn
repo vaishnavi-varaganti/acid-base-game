@@ -136,7 +136,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="Password" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
+[node name="sid" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
 layout_mode = 2
 theme = ExtResource("3_0ri5x")
 text = "Enter SID"
