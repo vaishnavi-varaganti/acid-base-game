@@ -72,9 +72,8 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center][color=blue]Enter Details[/color] 
-
-"
+text = "[center][color=dark_red]STUDENT[/color] [color=deepskyblue]DETAILS[/color][/center]
+[center] "
 
 [node name="PanelContainer" type="PanelContainer" parent="menu/Panel"]
 layout_mode = 1
@@ -139,10 +138,10 @@ layout_mode = 2
 [node name="sid" type="Label" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
 layout_mode = 2
 theme = ExtResource("3_0ri5x")
-text = "Enter SID"
+text = "SID"
 
 [node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
-custom_minimum_size = Vector2(55, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
@@ -165,9 +164,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -251.5
-offset_top = -36.0
-offset_right = 251.5
+offset_left = -288.0
+offset_top = -122.0
+offset_right = 269.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -178,8 +178,7 @@ layout_mode = 2
 [node name="Button" type="Button" parent="menu/ActionContainer"]
 layout_mode = 2
 theme = ExtResource("3_0ri5x")
-text = "Next
-"
+text = "PROCEED"
 
 [node name="ButtonClickSound" type="AudioStreamPlayer" parent="menu/ActionContainer/Button"]
 stream = ExtResource("4_cs4xc")
