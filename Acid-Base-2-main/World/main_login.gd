@@ -27,6 +27,7 @@ func on_login_failed(error_code, message):
 	print(message)
 
 func _on_button_2_pressed():
+	$menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2/ButtonClickSound.play()
 	get_tree().change_scene_to_file("res://account_create.tscn")
 	pass # Replace with function body.
 	

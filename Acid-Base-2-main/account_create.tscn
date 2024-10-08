@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq0w6kohsb7xq"]
+[gd_scene load_steps=9 format=3 uid="uid://cq0w6kohsb7xq"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_hyoc6"]
 [ext_resource type="Script" path="res://Account Create.gd" id="1_vx51a"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_kt2hq"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_j3ypg"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="5_54cgf"]
+[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="6_boate"]
 
 [sub_resource type="GDScript" id="GDScript_o8nn4"]
 script/source = "extends CanvasLayer
@@ -163,6 +164,10 @@ layout_mode = 2
 
 [node name="ButtonClickSound" type="AudioStreamPlayer" parent="menu"]
 stream = ExtResource("5_54cgf")
+
+[node name="GameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_boate")
+autoplay = true
 
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]

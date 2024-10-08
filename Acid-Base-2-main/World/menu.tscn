@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://di8w1a601aass"]
+[gd_scene load_steps=7 format=3 uid="uid://di8w1a601aass"]
 
 [ext_resource type="Script" path="res://World/levelsmenu.gd" id="1_cynw2"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_nrrgv"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_sjy2v"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_lar54"]
+[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="5_2h582"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x828l"]
 
@@ -99,6 +100,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Exit
 "
+
+[node name="GameSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2h582")
+autoplay = true
 
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level2" to="." method="_on_level_2_pressed"]
