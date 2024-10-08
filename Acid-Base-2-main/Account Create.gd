@@ -26,6 +26,7 @@ func on_signup_failed(error_code, message):
 	$menu/Panel/PanelContainer/VBoxContainer2/status.text = "Sign up failed. Error: %s" % message
 
 func _on_button_pressed():
+	$menu/ButtonClickSound.play()
 	$menu/Panel/PanelContainer/VBoxContainer2/status.visible = false
 	var email = $menu/Panel/PanelContainer/VBoxContainer2/UsernameContainer/usernametext
 	var password = $menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer/LineEdit
@@ -39,9 +40,22 @@ func _on_button_pressed():
 	pass # Replace with function body.
 	
 func _on_cancel_button_pressed():
+	$menu/ButtonClickSound.play()
 	get_tree().change_scene_to_file("res://World/main_login.tscn")
 	pass
 
 func _on_show_password_pressed():
 	var password_field = $menu/Panel/PanelContainer/VBoxContainer2/PasswordContainer/LineEdit 
 	password_field.secret = not password_field.secret 
+	
+func _on_button_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass
+	
+func _on_button_2_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass
+
+func _on_show_pressed_sound():
+	$menu/ButtonClickSound.play()
+	pass
