@@ -21,6 +21,10 @@ var level1_correctAnswers = 0
 var level2_correctAnswers = 0
 var level3_correctAnswers = 0
 var level4_correctAnswers = 0
+var firstName = ""
+var lastName = ""
+var sid = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(http_request)  # Add the HTTPRequest node dynamically to the scene tree
@@ -30,6 +34,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func set_user_info(f_name: String, l_name: String, student_id: String) -> void:
+	firstName = f_name
+	lastName = l_name
+	sid = student_id
+	print("User information is: ", firstName + " " + lastName + " " + sid)
 	
 # Function to preload compoundArray from the API
 func preload_compound_data():
