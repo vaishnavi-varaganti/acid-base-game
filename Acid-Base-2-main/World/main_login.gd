@@ -18,7 +18,7 @@ func _on_button_pressed():
 func on_login_succeeded(auth):
 	print(auth)
 	Firebase.Auth.save_auth(auth)
-	get_tree().change_scene_to_file("res://World/menu.tscn")
+	get_tree().change_scene_to_file("res://student_details.tscn")
 	
 func on_login_failed(error_code, message):
 	$menu/Panel/PanelContainer/VBoxContainer2/Status.visible = true
