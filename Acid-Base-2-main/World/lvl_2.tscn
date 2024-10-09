@@ -170,6 +170,9 @@ one_shot = true
 stream = ExtResource("12_2mkji")
 autoplay = true
 
+[node name="HTTPRequest2" type="HTTPRequest" parent="."]
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
 [connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
+[connection signal="request_completed" from="HTTPRequest2" to="." method="_on_POST_request_completed"]
