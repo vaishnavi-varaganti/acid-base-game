@@ -105,7 +105,7 @@ func check_answer(selected_option: String):
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
 		correct_popup.popup_centered()
-		$wrongPopup/Failure_Sound.play()
+		$correctPopup/Success_Sound.play()
 		# Highlight correct answer visually (optional, e.g., change button color or text)
 		$hud/HBoxContainer/Option1.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option1.text == Global.correct_answer else Color(1, 1, 1)
 		$hud/HBoxContainer/Option2.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option2.text == Global.correct_answer else Color(1, 1, 1)
@@ -226,6 +226,7 @@ func gameover():
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
 	Global.level2Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
+	$hud/TitleContainer/Title.visible = false
 	# Hide buttons you don’t want to show on Game Over
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
@@ -251,6 +252,7 @@ func restart():
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"
 	$hud/QuestionContainer/QuestionNumber.visible = true
+	$hud/TitleContainer/Title.visible = true
 	$player_Lvl1.lives = 6
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))

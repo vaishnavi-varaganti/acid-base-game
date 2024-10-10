@@ -228,6 +228,7 @@ func gameover():
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
 	Global.level1Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
+	$hud/TitleContainer/Title.visible = false
 	# Hide buttons you don’t want to show on Game Over
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
@@ -253,6 +254,7 @@ func restart():
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"
 	$hud/QuestionContainer/QuestionNumber.visible = true
+	$hud/TitleContainer/Title.visible = true
 	$player_Lvl1.lives = 6
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
