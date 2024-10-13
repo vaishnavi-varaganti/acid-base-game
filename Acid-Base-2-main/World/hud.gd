@@ -47,8 +47,7 @@ func _on_play_again_pressed():
 func _on_option_button_item_selected(index):
 	match index:
 		0:  quit_game()
-		1:  resume_game()
-		2:  pause_game()
+		1:  pause_game()
 	pass # Replace with function body.
 
 func quit_game():
