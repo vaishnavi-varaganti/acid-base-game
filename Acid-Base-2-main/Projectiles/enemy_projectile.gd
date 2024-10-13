@@ -73,8 +73,10 @@ func handle_acids_bases(data):
 		var formatted_compound = format_compound(entry["Compound"])
 		match entry["Type"]:
 			"Acid":
+				Global.acidArray.append([entry["Compound"], "Acid"])
 				acidArray.append([formatted_compound, "Acid"])
 			"Base":
+				Global.baseArray.append([entry["Compound"], "Base"])
 				baseArray.append([formatted_compound, "Base"])
 	match Global.current_level:
 		1:
@@ -118,14 +120,17 @@ func shoot_base():
 
 func shoot_random_acid_base():
 	# Randomly decide whether to shoot an acid or base
-	if randi() % 2 == 0:
+	var random_choice = randi_range(0, 1)
+	if random_choice == 0 || Global.first_shot == true:
 		Global.acidShooted = true
 		Global.baseShooted = false
 		shoot_acid()
+		print("acid shooted")
 	else:
-		shoot_base()
 		Global.acidShooted = false
 		Global.baseShooted = true
+		shoot_base()
+		print("base shooted")
 
 func shoot_compound():
 	print("Inside Shoot compound method")
