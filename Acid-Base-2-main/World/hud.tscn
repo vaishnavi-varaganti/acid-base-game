@@ -348,9 +348,9 @@ custom_minimum_size = Vector2(0, 30)
 anchors_preset = -1
 anchor_right = 0.04
 anchor_bottom = 0.056
-offset_left = 454.0
+offset_left = 430.0
 offset_top = 119.0
-offset_right = 956.0
+offset_right = 940.0
 offset_bottom = 143.68
 
 [node name="Title" type="Label" parent="TitleContainer"]
