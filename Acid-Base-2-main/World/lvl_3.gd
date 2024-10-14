@@ -57,11 +57,19 @@ func display_options_level3():
 	if Global.acidShooted:
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+		while wrong_option1 == correct_option:
+			wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
+			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	elif Global.baseShooted:
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
+		while wrong_option1 == correct_option:
+			wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
+		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
+			wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var options = [correct_option, wrong_option1, wrong_option2]
 	options.shuffle()
 	$hud/HBoxContainer/Option1.text = options[0]

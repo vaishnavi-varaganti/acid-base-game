@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cptb8iloglfde"]
+[gd_scene load_steps=16 format=3 uid="uid://cptb8iloglfde"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_4.gd" id="1_rged2"]
@@ -9,6 +9,9 @@
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 [ext_resource type="AudioStream" uid="uid://cqu7hklt24uhv" path="res://Assets/Sounds/game-sound.wav" id="9_lsv7q"]
+[ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="10_xmbsr"]
+[ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="11_p1rv0"]
+[ext_resource type="AudioStream" uid="uid://c4yluin1nompb" path="res://Assets/Sounds/failure_sound.wav" id="12_ofye4"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -28,6 +31,12 @@ glow_intensity = 5.0
 glow_hdr_threshold = 0.9
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 36.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmqpw"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_6psi7"]
+font_size = 40
 
 [node name="lvl4" type="Node2D" groups=["Map"]]
 script = ExtResource("1_rged2")
@@ -107,6 +116,95 @@ one_shot = true
 stream = ExtResource("9_lsv7q")
 autoplay = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 252.0
+offset_right = 994.0
+offset_bottom = 303.0
+theme = ExtResource("10_xmbsr")
+alignment = 1
+
+[node name="Option1" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(450, 10)
+layout_mode = 2
+theme = ExtResource("10_xmbsr")
+
+[node name="Option2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(450, 10)
+layout_mode = 2
+theme = ExtResource("10_xmbsr")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+offset_top = 313.0
+offset_right = 1000.0
+offset_bottom = 367.0
+alignment = 1
+
+[node name="Option3" type="Button" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(450, 10)
+layout_mode = 2
+theme = ExtResource("10_xmbsr")
+
+[node name="correctPopup" type="Popup" parent="."]
+size = Vector2i(350, 150)
+theme = ExtResource("10_xmbsr")
+
+[node name="correct" type="Label" parent="correctPopup"]
+custom_minimum_size = Vector2(350, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.0
+offset_right = 20.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_xmbsr")
+text = "Correct Answer!"
+label_settings = SubResource("LabelSettings_dmqpw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Success_Sound" type="AudioStreamPlayer" parent="correctPopup"]
+stream = ExtResource("11_p1rv0")
+
+[node name="wrongPopup" type="Popup" parent="."]
+size = Vector2i(350, 150)
+theme = ExtResource("10_xmbsr")
+
+[node name="wrong" type="Label" parent="wrongPopup"]
+custom_minimum_size = Vector2(350, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -7.0
+offset_right = 37.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_xmbsr")
+text = "Wrong Answer!!"
+label_settings = SubResource("LabelSettings_6psi7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Failure_Sound" type="AudioStreamPlayer" parent="wrongPopup"]
+stream = ExtResource("12_ofye4")
+
+[node name="popupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_lsv7q")
+autoplay = true
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="ready" from="." to="." method="_ready"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
