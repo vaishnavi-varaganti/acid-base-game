@@ -20,7 +20,7 @@ signal projectile_finished
 @onready var question_number = Global.question_number
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
-
+var wrong_answer_count = 0
 
 # --------- FUNCTIONS ---------- #
 
@@ -100,6 +100,7 @@ func check_answer(selected_option: String):
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
+		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
 		# Highlight the selected wrong answer in red
 		$hud/HBoxContainer/Option1.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option1.text == selected_option else Color(1, 1, 1)
@@ -199,13 +200,11 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
 	print("Correct answer count", Global.level2_correctAnswers)
-	var wrong_answers = 0
 	if score == 21:
-		wrong_answers = 0
-	else:
-		wrong_answers = 10 - Global.level2_correctAnswers
+		wrong_answer_count = 0
+
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level2_correctAnswers)            
-	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
+	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answer_count)
 	Global.level2Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
 	$hud/TitleContainer/Title.visible = false
@@ -253,28 +252,23 @@ func disable_options():
 	$hud/HBoxContainer/Option2.disabled = true
 	$hud/HBoxContainer/Option3.disabled = true
 		
-func delete_existing_record():
-	if Global.user_id == null:
-		print("User ID not found. Cannot delete the record.")
-		return
-	
-	var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(Global.user_id)
-	print("Deleting record with URL: ", url)
-	
-	var headers = ["Content-Type: application/json"]
-	http_request.request(url, headers, HTTPClient.METHOD_DELETE)  # Send DELETE request
-	http_request.connect("request_completed", _on_delete_request_completed)
+func delete_multiple_records(user_ids: Array):
+	for user_id in user_ids:
+		var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(user_id)
+		print("Deleting record with URL: ", url)
+		
+		var headers = ["Content-Type: application/json"]
+		http_request.request(url, headers, HTTPClient.METHOD_DELETE)
+		http_request.connect("request_completed", _on_delete_request_completed)
 
 func _on_delete_request_completed(result, response_code, headers, body):
 	http_request.disconnect("request_completed", _on_delete_request_completed)
-
+	
 	if response_code == 200:
-		print("Delete request successful! Record deleted for User ID: ", Global.user_id)
-		# Now call the POST function to add the updated score after deletion
-		post_score()
+		print("Delete request successful!")
 	else:
 		print("Failed to delete record. Status code: ", response_code)
-		print("Response body: ", body.get_string_from_utf8())
+	post_score()
 
 func find_id_by_sid():
 	var headers = ["Content-Type: application/json"]
@@ -288,18 +282,20 @@ func _on_get_request_completed(result, response_code, headers, body):
 		if parse_result == OK:
 			var data = json.get_data()
 			print("Received Data: ", data)  # Log data for debugging
+			
+			var user_ids_to_delete = []  # List to store all IDs that match the SID
 
 			for entry in data:
-				# Ensure we are working with a dictionary and check SID
 				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):
 					if entry["SID"] == Global.sid:
-						Global.user_id = entry["id"]
-						print("Matching SID found. User ID: ", Global.user_id)
-						# Now call the delete function
-						delete_existing_record()  
-						break
-				else:
-					print("No matching SID found for: ", Global.sid)
+						user_ids_to_delete.append(entry["id"])
+						print("Matching SID found. User ID: ", entry["id"])
+			
+			if user_ids_to_delete.size() > 0:
+				delete_multiple_records(user_ids_to_delete)
+			else:
+				print("No matching SID found for: ", Global.sid)
+				post_score()
 		else:
 			print("Error parsing JSON: ", parse_result)
 	else:
