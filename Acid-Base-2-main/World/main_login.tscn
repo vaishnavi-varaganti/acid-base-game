@@ -182,8 +182,8 @@ stream = ExtResource("5_kxipg")
 stream = ExtResource("6_bug3o")
 autoplay = true
 
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]

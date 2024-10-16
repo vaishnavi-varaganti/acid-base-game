@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
 [ext_resource type="Texture2D" uid="uid://byofsf2qy6moj" path="res://Assets/Textures/Ocean-and-Clouds-Free-Pixel-Art-Backgrounds6.png" id="3_xpakd"]
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
-[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
+[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="9_uujnd"]
 [ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="10_i60ry"]
@@ -170,9 +170,6 @@ one_shot = true
 stream = ExtResource("12_2mkji")
 autoplay = true
 
-[node name="HTTPRequest2" type="HTTPRequest" parent="."]
-
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
 [connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
-[connection signal="request_completed" from="HTTPRequest2" to="." method="_on_POST_request_completed"]

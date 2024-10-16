@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxyc5geuerhbe" path="res://Characters/enemy.tscn" id="2_qxas3"]
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
-[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_1.tres" id="5_duct7"]
+[ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="9_ey4vc"]
 [ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="10_3aan3"]
@@ -175,6 +175,9 @@ one_shot = true
 stream = ExtResource("13_33gt7")
 autoplay = true
 
+[node name="HTTPRequest2" type="HTTPRequest" parent="."]
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
 [connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
+[connection signal="request_completed" from="HTTPRequest2" to="." method="_on_POST_request_completed"]
