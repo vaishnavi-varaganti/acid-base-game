@@ -25,6 +25,7 @@ var firstName = ""
 var lastName = ""
 var sid = ""
 var first_shot = true
+var user_id = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
