@@ -20,7 +20,7 @@ signal projectile_finished
 @onready var question_number = Global.question_number
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
-
+var data_posted = false
 
 # --------- FUNCTIONS ---------- #
 
@@ -150,8 +150,9 @@ func check_victory():
 		Global.level1Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
-		post_score()
 		gameover()
+		if(!data_posted):
+			post_score()
 	#elif Global.level1_correctAnswers == 7:
 		#victory = true
 		#Global.level1Score = score
@@ -275,6 +276,7 @@ func disable_options():
 	$hud/HBoxContainer/Option3.disabled = true
 	
 func post_score():
+	data_posted = true
 	var user_data = {
 		"SID": Global.sid,
 		"Lastname": Global.lastName,

@@ -29,30 +29,12 @@ func _ready():
 	Global.question_number = 1
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
-	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases$Panel/ButtonClickSound.play()")
+	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	connect_option_signals()
 	# Display options when the scene is loaded
 	display_options_level2()
 	# Connect the projectile_finished signal to update options when the projectile is shot
 	$enemy.connect("projectile_finished", _on_projectile_finished)
-
-func _on_request_completed(result, response_code, headers, body):
-	if response_code == 200:
-		var json = JSON.new()
-		var parse_result = json.parse(body.get_string_from_utf8())
-		if parse_result == OK:
-			var data = json.get_data()
-			for entry in data:
-				match entry["Type"]:
-					"Acid":
-						acidArray.append([entry["Compound"], "Acid"])
-					"Base":
-						baseArray.append([entry["Compound"], "Base"])
-			print("Data fetched and formatted successfully!")
-		else:
-			print("Error parsing JSON: ", parse_result)
-	else:
-		print("Request failed with status code: ", response_code)
 		
 func display_options_level2():
 	await get_tree().create_timer(1.5).timeout
@@ -161,6 +143,7 @@ func check_victory():
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 		gameover()
+	find_id_by_sid()
 		
 func update_lives(new_lives: int):
 	lives = new_lives  # Update the lives variable
@@ -269,3 +252,80 @@ func disable_options():
 	$hud/HBoxContainer/Option1.disabled = true
 	$hud/HBoxContainer/Option2.disabled = true
 	$hud/HBoxContainer/Option3.disabled = true
+		
+func delete_existing_record():
+	if Global.user_id == null:
+		print("User ID not found. Cannot delete the record.")
+		return
+	
+	var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(Global.user_id)
+	print("Deleting record with URL: ", url)
+	
+	var headers = ["Content-Type: application/json"]
+	http_request.request(url, headers, HTTPClient.METHOD_DELETE)  # Send DELETE request
+	http_request.connect("request_completed", _on_delete_request_completed)
+
+func _on_delete_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_delete_request_completed)
+
+	if response_code == 200:
+		print("Delete request successful! Record deleted for User ID: ", Global.user_id)
+		# Now call the POST function to add the updated score after deletion
+		post_score()
+	else:
+		print("Failed to delete record. Status code: ", response_code)
+		print("Response body: ", body.get_string_from_utf8())
+
+func find_id_by_sid():
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers)
+	http_request.connect("request_completed", _on_get_request_completed)
+
+func _on_get_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.get_data()
+			print("Received Data: ", data)  # Log data for debugging
+
+			for entry in data:
+				# Ensure we are working with a dictionary and check SID
+				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):
+					if entry["SID"] == Global.sid:
+						Global.user_id = entry["id"]
+						print("Matching SID found. User ID: ", Global.user_id)
+						# Now call the delete function
+						delete_existing_record()  
+						break
+				else:
+					print("No matching SID found for: ", Global.sid)
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Failed to GET data. Status code: ", response_code)
+		
+func post_score():
+	var user_data = {
+		"SID": Global.sid,
+		"Lastname": Global.lastName,
+		"Firstname": Global.firstName,
+		"Level_1_Score": str(Global.level1Score),
+		"Level_2_Score": str(Global.level2Score),
+		"Level_3_Score": "0",
+		"Level_4_Score": "0"
+	}
+	
+	var json_data = JSON.stringify(user_data)
+	print("Sending POST request with the following data: ", json_data)
+	
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers, HTTPClient.METHOD_POST, json_data)
+	http_request.connect("request_completed", _on_POST_request_completed)
+	
+func _on_POST_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_POST_request_completed)
+	if response_code == 200:
+		print("POST request successful! User data added to API.")
+	else:
+		print("Failed to POST user data. Status code: ", response_code)
