@@ -150,7 +150,6 @@ func check_victory():
 		Global.level2Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
-		post_score()
 		gameover()
 	#elif Global.level2_correctAnswers == 7:
 		#victory = true
@@ -270,25 +269,3 @@ func disable_options():
 	$hud/HBoxContainer/Option1.disabled = true
 	$hud/HBoxContainer/Option2.disabled = true
 	$hud/HBoxContainer/Option3.disabled = true
-
-func post_score():
-	var user_data = {
-		"SID": Global.sid,
-		"Lastname": Global.lastName,
-		"Firstname": Global.firstName,
-		"Level_1_Score": str(Global.level1Score),
-		"Level_2_Score": str(Global.level2Score),
-		"Level_3_Score": "0",
-		"Level_4_Score": "0"
-	}
-	var json_data = JSON.stringify(user_data)
-	print("Sending POST request with the following data: ", json_data)
-	var headers = ["Content-Type: application/json"]
-	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers, HTTPClient.METHOD_POST, json_data)
-	http_request.connect("request_completed", _on_POST_request_completed)
-	
-func _on_POST_request_completed(result, response_code, headers, body):
-	if response_code == 200:
-		print("POST request successful! User data added to API.")
-	else:
-		print("Failed to POST user data. Status code: ", response_code)
