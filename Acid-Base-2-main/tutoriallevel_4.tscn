@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqv3rm3oytuh6"]
+[gd_scene load_steps=4 format=3 uid="uid://bqv3rm3oytuh6"]
 
 [ext_resource type="Script" path="res://tutoriallevel_4.gd" id="1_a7d1m"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_r87ew"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_6cre8"]
-
-[sub_resource type="Theme" id="Theme_6qta4"]
 
 [node name="tutoriallevel_4" type="Control"]
 layout_mode = 3
@@ -33,16 +31,30 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_right = 960.0
-offset_bottom = 370.0
+offset_left = 1.0
+offset_right = 961.0
+offset_bottom = 717.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64][color=sky blue]LEVEL 4 TUTORIAL[/color][/font_size][/center]
-"
+[center][font_size=56][color=sky blue]LEVEL 4 TUTORIAL[/color][/font_size][/center]
+
+[center]Balancing the Equations[/center]
+
+ 1. Ensure the reactants are an acid and a base.
+
+ 2. For a base that is an anion, add the appropriate number of H+ ions based on its charge (e.g., CN- accepts 1 H+, CO32- accepts 2 H+).
+
+ 3. Combine the leftover cation from the base and the leftover anion from the acid to form the other product.
+
+ 4. Balance the equation.
+
+ 5. For a base that is an amine, add an H+ to the base (e.g., NH3 becomes NH4+).
+
+ 6. The other product is the leftover from the acid after donating an H+ (e.g., HCl leaves Cl-). Balance the equation."
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
@@ -52,13 +64,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -220.0
-offset_right = 50.0
-offset_bottom = -150.0
+offset_left = -143.0
+offset_top = -127.0
+offset_right = 110.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_6qta4")
+theme = ExtResource("2_6cre8")
+theme_override_font_sizes/font_size = 30
 text = "Return to menu"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
