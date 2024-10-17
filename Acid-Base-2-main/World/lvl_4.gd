@@ -139,7 +139,7 @@ func check_victory():
 	# Check if victory conditions are met
 	if score >= 21 && Global.question_number == 10 || Global.level4_correctAnswers == 7:
 		victory = true
-		Global.level2Score = score
+		Global.level4Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		gameover()
@@ -150,9 +150,11 @@ func check_victory():
 		#gameover()
 	elif score < 21 && Global.question_number == 11:
 		victory = false
+		Global.level4Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 		gameover()
+	find_id_by_sid()
 	
 func update_lives(new_lives: int):
 	lives = new_lives  # Update the lives variable
@@ -226,6 +228,7 @@ func gameover():
 	$hud/HBoxContainer/Option3.visible = false
 	$hud/HBoxContainer/VSeparator.visible = false
 	$hud/HBoxContainer/VSeparator2.visible = false
+	$hud/Control/GameOverScreen/VBoxContainer/MainMenu.visible = false
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
@@ -267,3 +270,77 @@ func disable_options():
 	$HBoxContainer/Option1.disabled = true
 	$HBoxContainer/Option2.disabled = true
 	$HBoxContainer2/Option3.disabled = true
+
+func delete_multiple_records(user_ids: Array):
+	for user_id in user_ids:
+		var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(user_id)
+		print("Deleting record with URL: ", url)
+		
+		var headers = ["Content-Type: application/json"]
+		http_request.request(url, headers, HTTPClient.METHOD_DELETE)
+		http_request.connect("request_completed", _on_delete_request_completed)
+
+func _on_delete_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_delete_request_completed)
+	
+	if response_code == 200:
+		print("Delete request successful!")
+	else:
+		print("Failed to delete record. Status code: ", response_code)
+	post_score()
+
+func find_id_by_sid():
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers)
+	http_request.connect("request_completed", _on_get_request_completed)
+
+func _on_get_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.get_data()
+			print("Received Data: ", data)  
+			
+			var user_ids_to_delete = []  
+
+			for entry in data:
+				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):
+					if entry["SID"] == Global.sid:
+						user_ids_to_delete.append(entry["id"])
+						print("Matching SID found. User ID: ", entry["id"])
+			
+			if user_ids_to_delete.size() > 0:
+				delete_multiple_records(user_ids_to_delete)
+			else:
+				print("No matching SID found for: ", Global.sid)
+				post_score()
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Failed to GET data. Status code: ", response_code)
+		
+func post_score():
+	var user_data = {
+		"SID": Global.sid,
+		"Lastname": Global.lastName,
+		"Firstname": Global.firstName,
+		"Level_1_Score": str(Global.level1Score),
+		"Level_2_Score": str(Global.level2Score),
+		"Level_3_Score": str(Global.level3Score),
+		"Level_4_Score": str(Global.level4Score)
+	}
+	
+	var json_data = JSON.stringify(user_data)
+	print("Sending POST request with the following data: ", json_data)
+	
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers, HTTPClient.METHOD_POST, json_data)
+	http_request.connect("request_completed", _on_POST_request_completed)
+	
+func _on_POST_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_POST_request_completed)
+	if response_code == 200:
+		print("POST request successful! User data added to API.")
+	else:
+		print("Failed to POST user data. Status code: ", response_code)
