@@ -21,6 +21,7 @@ signal projectile_finished
 @onready var question_number = Global.question_number
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
+var wrong_answer_count = 0
 
 # --------- FUNCTIONS ---------- #
 
@@ -108,6 +109,7 @@ func check_answer(selected_option: String):
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
+		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
 		# Highlight the selected wrong answer in red
 		$HBoxContainer/Option1.modulate = Color(1, 0, 0) if $HBoxContainer/Option1.text == selected_option else Color(1, 1, 1)
@@ -211,13 +213,10 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
 	print("Correct answer count", Global.level4_correctAnswers)
-	var wrong_answers = 0
 	if score == 21:
-		wrong_answers = 0
-	else:
-		wrong_answers = 10 - Global.level4_correctAnswers
+		wrong_answer_count = 0
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level4_correctAnswers)            
-	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
+	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answer_count)
 	Global.level4Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
 	$hud/TitleContainer/Title.visible = false

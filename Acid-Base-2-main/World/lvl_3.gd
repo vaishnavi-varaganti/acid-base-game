@@ -20,6 +20,7 @@ signal projectile_finished
 @export var lives = 6  # Master source for lives
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
+var wrong_answer_count = 0
 
 # --------- FUNCTIONS ---------- #
 
@@ -110,6 +111,7 @@ func check_answer(selected_option: String):
 	else:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
+		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
 		highlight_wrong_option(selected_option)
 		update_lives(lives - 1)
@@ -205,11 +207,9 @@ func gameover():
 	print("Correct answer count", Global.level3_correctAnswers)
 	var wrong_answers = 0
 	if score == 21:
-		wrong_answers = 0
-	else:
-		wrong_answers = 10 - Global.level3_correctAnswers
+		wrong_answer_count = 0
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level3_correctAnswers)
-	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answers)
+	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answer_count)
 	Global.level3Score = score
 	$hud/QuestionContainer/QuestionNumber.visible = false
 	$hud/TitleContainer/Title.visible = false
