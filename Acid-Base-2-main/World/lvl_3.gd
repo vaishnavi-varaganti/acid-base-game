@@ -39,11 +39,6 @@ func display_options_level3():
 	var correct_option = ""
 	var wrong_option1 = ""
 	var wrong_option2 = ""
-	if Global.first_shot == true:
-		correct_option = "NaOH"
-		wrong_option1 = "HCl"
-		wrong_option2 = "HNO3"
-		Global.first_shot == false
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
 	
 	# Reset button colors
@@ -55,7 +50,7 @@ func display_options_level3():
 	$hud/HBoxContainer/Option2.disabled = false
 	$hud/HBoxContainer/Option3.disabled = false
 	
-	if Global.acidShooted:
+	if (Global.question_number % 2 ==0):
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -63,7 +58,7 @@ func display_options_level3():
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
-	elif Global.baseShooted:
+	elif (Global.question_number % 2 !=0):
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -157,6 +152,7 @@ func check_victory():
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 		gameover()
+	find_id_by_sid()
 
 func update_lives(new_lives: int):
 	lives = new_lives
@@ -216,6 +212,8 @@ func gameover():
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
 	$hud/HBoxContainer/Option3.visible = false
+	$hud/HBoxContainer/VSeparator.visible = false
+	$hud/HBoxContainer/VSeparator2.visible = false
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
@@ -241,9 +239,84 @@ func restart():
 	$hud/HBoxContainer/Option1.visible = true
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
-	Global.first_shot = false
+	$hud/HBoxContainer/VSeparator.visible = true
+	$hud/HBoxContainer/VSeparator2.visible = true
 	
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
 	wrong_popup.hide()
 	pass
+
+func delete_multiple_records(user_ids: Array):
+	for user_id in user_ids:
+		var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(user_id)
+		print("Deleting record with URL: ", url)
+		
+		var headers = ["Content-Type: application/json"]
+		http_request.request(url, headers, HTTPClient.METHOD_DELETE)
+		http_request.connect("request_completed", _on_delete_request_completed)
+
+func _on_delete_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_delete_request_completed)
+	
+	if response_code == 200:
+		print("Delete request successful!")
+	else:
+		print("Failed to delete record. Status code: ", response_code)
+	post_score()
+
+func find_id_by_sid():
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers)
+	http_request.connect("request_completed", _on_get_request_completed)
+
+func _on_get_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.get_data()
+			print("Received Data: ", data)  
+			
+			var user_ids_to_delete = []  
+
+			for entry in data:
+				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):
+					if entry["SID"] == Global.sid:
+						user_ids_to_delete.append(entry["id"])
+						print("Matching SID found. User ID: ", entry["id"])
+			
+			if user_ids_to_delete.size() > 0:
+				delete_multiple_records(user_ids_to_delete)
+			else:
+				print("No matching SID found for: ", Global.sid)
+				post_score()
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Failed to GET data. Status code: ", response_code)
+		
+func post_score():
+	var user_data = {
+		"SID": Global.sid,
+		"Lastname": Global.lastName,
+		"Firstname": Global.firstName,
+		"Level_1_Score": str(Global.level1Score),
+		"Level_2_Score": str(Global.level2Score),
+		"Level_3_Score": str(Global.level3Score),
+		"Level_4_Score": "0"
+	}
+	
+	var json_data = JSON.stringify(user_data)
+	print("Sending POST request with the following data: ", json_data)
+	
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers, HTTPClient.METHOD_POST, json_data)
+	http_request.connect("request_completed", _on_POST_request_completed)
+	
+func _on_POST_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_POST_request_completed)
+	if response_code == 200:
+		print("POST request successful! User data added to API.")
+	else:
+		print("Failed to POST user data. Status code: ", response_code)
