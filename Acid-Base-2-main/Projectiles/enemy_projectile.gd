@@ -130,14 +130,12 @@ func shoot_base():
 
 # Shoots either acid or base for Level 3
 func shoot_random_acid_base():
-	var random_choice = randi_range(0, 1)
-	Global.question_number += 1
-	if random_choice == 0 or Global.first_shot == true:
+	if (Global.question_number % 2 ==0) :
 		Global.acidShooted = true
 		Global.baseShooted = false
 		shoot_acid()
 		print("acid shooted")
-	else:
+	elif (Global.question_number % 2 !=0):
 		Global.acidShooted = false
 		Global.baseShooted = true
 		shoot_base()

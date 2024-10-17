@@ -224,6 +224,8 @@ func gameover():
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
 	$hud/HBoxContainer/Option3.visible = false
+	$hud/HBoxContainer/VSeparator.visible = false
+	$hud/HBoxContainer/VSeparator2.visible = false
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
@@ -253,6 +255,8 @@ func restart():
 	$hud/HBoxContainer/Option1.visible = true
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
+	$hud/HBoxContainer/VSeparator.visible = true
+	$hud/HBoxContainer/VSeparator2.visible = true
 	
 func _on_PopupTimer_timeout():
 	correct_popup.hide()

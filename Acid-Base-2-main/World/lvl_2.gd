@@ -212,6 +212,8 @@ func gameover():
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
 	$hud/HBoxContainer/Option3.visible = false
+	$hud/HBoxContainer/VSeparator.visible = false
+	$hud/HBoxContainer/VSeparator2.visible = false
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
@@ -241,6 +243,8 @@ func restart():
 	$hud/HBoxContainer/Option1.visible = true
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
+	$hud/HBoxContainer/VSeparator.visible = true
+	$hud/HBoxContainer/VSeparator2.visible = true
 	
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
@@ -281,9 +285,9 @@ func _on_get_request_completed(result, response_code, headers, body):
 		var parse_result = json.parse(body.get_string_from_utf8())
 		if parse_result == OK:
 			var data = json.get_data()
-			print("Received Data: ", data)  # Log data for debugging
+			print("Received Data: ", data)  
 			
-			var user_ids_to_delete = []  # List to store all IDs that match the SID
+			var user_ids_to_delete = []  
 
 			for entry in data:
 				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):

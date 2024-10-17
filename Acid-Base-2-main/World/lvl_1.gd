@@ -162,7 +162,7 @@ func check_victory():
 		#$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		#post_level_1_score()
 		#gameover()
-	elif score < 21 && Global.question_number == 11:
+	if score < 21 && Global.question_number == 11:
 		victory = false
 		Global.level1Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
@@ -234,6 +234,8 @@ func gameover():
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
 	$hud/HBoxContainer/Option3.visible = false
+	$hud/HBoxContainer/VSeparator.visible = false
+	$hud/HBoxContainer/VSeparator2.visible = false
 	set_process(false)
 	set_physics_process(false)
 	$enemy.set_process(false)
@@ -263,6 +265,8 @@ func restart():
 	$hud/HBoxContainer/Option1.visible = true
 	$hud/HBoxContainer/Option2.visible = true
 	$hud/HBoxContainer/Option3.visible = true
+	$hud/HBoxContainer/VSeparator.visible = true
+	$hud/HBoxContainer/VSeparator2.visible = true
 
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
@@ -281,7 +285,7 @@ func post_score():
 		"Lastname": Global.lastName,
 		"Firstname": Global.firstName,
 		"Level_1_Score": str(Global.level1Score),
-		"Level_2_Score": str(Global.level2Score),
+		"Level_2_Score": "0",
 		"Level_3_Score": "0",
 		"Level_4_Score": "0"
 	}
