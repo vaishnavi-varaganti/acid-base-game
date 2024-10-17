@@ -17,7 +17,7 @@ var positionA = Vector2(175, 600)
 var positionB = Vector2(20, 400)
 var positionC = Vector2(100, 300)
 var t = 0.0
-var duration = 0.75
+var duration = 15.0
 var dodging = false
 var returning = false
 
