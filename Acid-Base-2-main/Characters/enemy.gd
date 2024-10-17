@@ -41,3 +41,8 @@ func _on_attack_duration_timer_timeout():
 
 func _on_projectile_finished():
 	$"..".projectile_finished.emit() # Replace with function body.
+	
+func _ready():
+	attack()
+	attack_timer.start()
+	
