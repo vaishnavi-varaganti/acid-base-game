@@ -27,7 +27,7 @@ var wrong_answer_count = 0
 
 func _ready():
 	$hud/TitleContainer/Title.text = "IDENTIFY THE INDIVIDUAL COMPOUNDS"
-	Global.question_number = 1
+	Global.question_number = 0
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	$hud/HBoxContainer/Option1.visible = false
 	$hud/HBoxContainer/Option2.visible = false
@@ -148,7 +148,7 @@ func check_victory():
 		#$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		#$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		#gameover()
-	elif score < 21 && Global.question_number == 11:
+	elif score < 21 && Global.question_number == 10:
 		victory = false
 		Global.level4Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
@@ -233,6 +233,7 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
+	Global.question_number = 1
 	
 func restart():
 	print("restart")
