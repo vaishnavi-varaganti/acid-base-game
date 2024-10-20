@@ -148,9 +148,9 @@ func highlight_correct_answer(correct_answer: String, highlight: bool):
 	for option in options:
 		var rich_text = option.get_node("RichText")  # Access the RichText node
 		if rich_text.text == correct_answer:
-			rich_text.bbcode_text = "[color=green]" + correct_answer + "[/color]" if highlight else correct_answer
+			rich_text.bbcode_text = "[center][color=green]" + correct_answer + "[/color][/center]" if highlight else correct_answer
 		else:
-			rich_text.bbcode_text = "[color=gray]" + rich_text.text + "[/color]"
+			rich_text.bbcode_text = "[center][color=gray]" + rich_text.text + "[/color][/center]"
 
 func highlight_wrong_answer(wrong_answer: String, correct_answer : String):
 	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
