@@ -26,7 +26,7 @@ var wrong_answer_count = 0
 # --------- FUNCTIONS ---------- #
 
 func _ready():
-	$hud/TitleContainer/Title.text = "IDENTIFY THE INDIVIDUAL COMPOUNDS"
+	$hud/TitleContainer/Title.text = "BALANCE THE REACTIONS"
 	Global.question_number = 0
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	$hud/HBoxContainer/Option1.visible = false
