@@ -53,8 +53,8 @@ motion_mirroring = Vector2(1720, 0)
 
 [node name="Background" type="Sprite2D" parent="MovingBackground/ParallaxLayer"]
 texture_filter = 1
-position = Vector2(440.25, 365.5)
-scale = Vector2(0.990598, 0.833673)
+position = Vector2(440.25, 416.5)
+scale = Vector2(0.990598, 0.729592)
 texture = ExtResource("3_tv1l7")
 
 [node name="player_Lvl1" parent="." instance=ExtResource("1_0511s")]
@@ -178,7 +178,10 @@ autoplay = true
 
 [node name="HTTPRequest2" type="HTTPRequest" parent="."]
 
+[node name="QuestionTimer" type="Timer" parent="."]
+
 [connection signal="projectile_finished" from="." to="." method="_on_projectile_finished"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_completed"]
 [connection signal="timeout" from="popupTimer" to="." method="_on_PopupTimer_timeout"]
 [connection signal="request_completed" from="HTTPRequest2" to="." method="_on_POST_request_completed"]
+[connection signal="timeout" from="QuestionTimer" to="." method="_on_Timer_timeout"]
