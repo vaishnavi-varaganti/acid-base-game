@@ -8,6 +8,7 @@ signal projectile_finished
 @onready var highscore = 0
 @onready var paused = false
 @onready var player_dead = false
+var option_selected = false
 @onready var victory = false
 @onready var current_value = str(Global.current_level)
 @onready var http_request = $HTTPRequest
@@ -24,6 +25,8 @@ var wrong_answer_count = 0
 @onready var question_timer = $hud/TimerContainer/Timer
 @onready var timer = $QuestionTimer
 @onready var wrong_popup_label = $wrongPopup/wrong
+var timer_expired = false
+
 
 # --------- FUNCTIONS ---------- #
 
@@ -40,6 +43,7 @@ func _ready():
 	$enemy.connect("projectile_finished", _on_projectile_finished)
 		
 func display_options_level2():
+	option_selected = false
 	start_question_timer()
 	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
@@ -83,12 +87,15 @@ func connect_option_signals():
 	option3.connect("pressed", _on_Option3_Selected)
 	
 func _on_Option1_Selected():
+	option_selected = true
 	check_answer($hud/HBoxContainer/Option1.get_node("RichText").text)
 		
 func _on_Option2_Selected():
+	option_selected = true
 	check_answer($hud/HBoxContainer/Option2.get_node("RichText").text)
 		
 func _on_Option3_Selected():
+	option_selected = true
 	check_answer($hud/HBoxContainer/Option3.get_node("RichText").text)
 
 func check_answer(selected_option: String):
@@ -109,7 +116,7 @@ func check_answer(selected_option: String):
 		update_score_and_progress()
 		check_victory()
 		$popupTimer.start()
-	elif selected_option != Global.correct_answer:
+	else :
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
 		wrong_answer_count +=1
@@ -121,8 +128,6 @@ func check_answer(selected_option: String):
 		update_lives(lives - 1)
 		check_victory()
 		$popupTimer.start()  # Update lives directly here
-	else:
-		_on_Timer_timeout()
 		
 		
 		
@@ -361,20 +366,21 @@ func _on_POST_request_completed(result, response_code, headers, body):
 		print("Failed to POST user data. Status code: ", response_code)
 		
 func start_question_timer():
+	timer_expired = false
 	timer.stop()  
 	timer.wait_time = 15  
+	timer.connect("timeout", Callable(self, "_on_question_timer_timeout"))
 	timer.start()
 	update_timer_label(16)  
+	
 	
 func _process(delta):
 	if timer.is_stopped() == false:
 		var remaining_time = int(timer.time_left)
 		update_timer_label(remaining_time)
 	
-func _on_Timer_timeout():
-	print("Time's up! Marking the question as incorrect.")
-	wrong_popup_label.text = "Time's up!"
-	wrong_popup.popup_centered()
+	
+func handle_wrong_answer():
 	wrong_answer_count += 1
 	$wrongPopup/Failure_Sound.play()
 	update_lives(lives - 1)
@@ -387,3 +393,16 @@ func update_timer_label(time_left: int):
 		question_timer.modulate = Color(1, 0, 0)  
 	else:
 		question_timer.modulate = Color(1, 1, 1)  
+
+
+func _on_question_timer_timeout():
+	print("Time's up!")
+	timer_expired = true
+	if not option_selected:
+		wrong_popup_label.text = "Time's up!"
+		wrong_popup.popup_centered()
+		handle_wrong_answer()
+	else:
+		print("An option was already selected.")
+		timer_expired = false
+
