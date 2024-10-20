@@ -306,6 +306,21 @@ custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
 
+[node name="RichText" type="RichTextLabel" parent="HBoxContainer/Option1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+mouse_filter = 2
+bbcode_enabled = true
+
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
@@ -315,6 +330,21 @@ custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
 
+[node name="RichText" type="RichTextLabel" parent="HBoxContainer/Option2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+mouse_filter = 2
+bbcode_enabled = true
+
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
@@ -323,6 +353,21 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
+
+[node name="RichText" type="RichTextLabel" parent="HBoxContainer/Option3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(10, 0)
+mouse_filter = 2
+bbcode_enabled = true
 
 [node name="QuestionContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 30)
