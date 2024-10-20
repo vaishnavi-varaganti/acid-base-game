@@ -62,10 +62,20 @@ func display_options_level2():
 		wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var options = [correct_option, wrong_option1, wrong_option2]
 	options.shuffle()
-	$hud/HBoxContainer/Option1.text = options[0]
-	$hud/HBoxContainer/Option2.text = options[1]
-	$hud/HBoxContainer/Option3.text = options[2]
-	Global.correct_answer = correct_option
+	$hud/HBoxContainer/Option1/RichText.text = format_option_text(options[0])
+	$hud/HBoxContainer/Option2/RichText.text = format_option_text(options[1])
+	$hud/HBoxContainer/Option3/RichText.text = format_option_text(options[2])
+	Global.correct_answer = format_option_text(correct_option)
+	
+func format_option_text(option: String) -> String:
+	var formatted = "[center][font_size=40]"
+	for char in option:
+		if '0' <= char and char <= '9': 
+			formatted += "[font_size=20]" + char + "[/font_size]"
+		else:
+			formatted += char
+	formatted += "[/font_size][/center]"
+	return formatted
 
 func connect_option_signals():
 	option1.connect("pressed", _on_Option1_Selected)
@@ -73,13 +83,13 @@ func connect_option_signals():
 	option3.connect("pressed", _on_Option3_Selected)
 	
 func _on_Option1_Selected():
-	check_answer($hud/HBoxContainer/Option1.text)
+	check_answer($hud/HBoxContainer/Option1.get_node("RichText").text)
 		
 func _on_Option2_Selected():
-	check_answer($hud/HBoxContainer/Option2.text)
+	check_answer($hud/HBoxContainer/Option2.get_node("RichText").text)
 		
 func _on_Option3_Selected():
-	check_answer($hud/HBoxContainer/Option3.text)
+	check_answer($hud/HBoxContainer/Option3.get_node("RichText").text)
 
 func check_answer(selected_option: String):
 	print(selected_option, "is the option selected")
@@ -93,33 +103,48 @@ func check_answer(selected_option: String):
 		correct_popup.popup_centered()
 		$correctPopup/Success_Sound.play()
 		# Highlight correct answer visually (optional, e.g., change button color or text)
-		$hud/HBoxContainer/Option1.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option1.text == Global.correct_answer else Color(1, 1, 1)
-		$hud/HBoxContainer/Option2.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option2.text == Global.correct_answer else Color(1, 1, 1)
-		$hud/HBoxContainer/Option3.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option3.text == Global.correct_answer else Color(1, 1, 1)
+		highlight_correct_answer(Global.correct_answer, true)
 		
 		#correct_popup.rect_min_size = Vector2(300, 15)
 		update_score_and_progress()
 		check_victory()
 		$popupTimer.start()
-	else:
+	elif selected_option != Global.correct_answer:
 		print("Wrong Answer!")
 		wrong_popup.popup_centered()
 		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
 		# Highlight the selected wrong answer in red
-		$hud/HBoxContainer/Option1.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option1.text == selected_option else Color(1, 1, 1)
-		$hud/HBoxContainer/Option2.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option2.text == selected_option else Color(1, 1, 1)
-		$hud/HBoxContainer/Option3.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option3.text == selected_option else Color(1, 1, 1)
-		
-		# Highlight the correct answer in green
-		$hud/HBoxContainer/Option1.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option1.text == Global.correct_answer else $hud/HBoxContainer/Option1.modulate
-		$hud/HBoxContainer/Option2.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option2.text == Global.correct_answer else $hud/HBoxContainer/Option2.modulate
-		$hud/HBoxContainer/Option3.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option3.text == Global.correct_answer else $hud/HBoxContainer/Option3.modulate
-		
+		highlight_wrong_answer(selected_option,Global.correct_answer)
+		highlight_correct_answer(Global.correct_answer, true)
 		#wrong_popup.rect_min_size = Vector2(300, 15)
 		update_lives(lives - 1)
 		check_victory()
 		$popupTimer.start()  # Update lives directly here
+	else:
+		_on_Timer_timeout()
+		
+		
+		
+func highlight_correct_answer(correct_answer: String, highlight: bool):
+	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
+	for option in options:
+		var rich_text = option.get_node("RichText")  # Access the RichText node
+		if rich_text.text == correct_answer:
+			rich_text.bbcode_text = "[center][color=green]" + correct_answer + "[/color][/center]" if highlight else correct_answer
+		else:
+			rich_text.bbcode_text = "[center][color=gray]" + rich_text.text + "[/color][/center]"
+
+func highlight_wrong_answer(wrong_answer: String, correct_answer : String):
+	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
+	for option in options:
+		var rich_text = option.get_node("RichText")  # Access the RichText node
+		if rich_text.text == wrong_answer:
+			rich_text.bbcode_text = "[color=red]" + wrong_answer + "[/color]"
+		elif rich_text.text == correct_answer:
+			rich_text.bbcode_text = "[color=green]" + correct_answer + "[/color]"
+		else:
+			rich_text.bbcode_text = "[color=red]" + rich_text.text + "[/color]"
 		
 func update_score_and_progress():
 	Global.level2_correctAnswers += 1
@@ -348,7 +373,7 @@ func _process(delta):
 	
 func _on_Timer_timeout():
 	print("Time's up! Marking the question as incorrect.")
-	wrong_popup_label.text = "Time's up!"wrong_popup_label.text = "Time's up!"
+	wrong_popup_label.text = "Time's up!"
 	wrong_popup.popup_centered()
 	wrong_answer_count += 1
 	$wrongPopup/Failure_Sound.play()
