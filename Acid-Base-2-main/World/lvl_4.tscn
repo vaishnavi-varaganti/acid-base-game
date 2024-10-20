@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://World/lvl_4.gd" id="1_rged2"]
 [ext_resource type="PackedScene" uid="uid://bxyc5geuerhbe" path="res://Characters/enemy.tscn" id="2_qxas3"]
 [ext_resource type="Script" path="res://World/MovingBackground.gd" id="2_se7v2"]
-[ext_resource type="Texture2D" uid="uid://v613bkk0jn8i" path="res://Assets/Textures/Ocean-and-Clouds-Free-Pixel-Art-Backgrounds3.png" id="3_3j0gx"]
+[ext_resource type="Texture2D" uid="uid://ks6bdpebeg2h" path="res://Assets/Textures/background4.png" id="3_23xpr"]
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
@@ -52,9 +52,9 @@ motion_mirroring = Vector2(1720, 0)
 
 [node name="Background" type="Sprite2D" parent="MovingBackground/ParallaxLayer"]
 texture_filter = 1
-position = Vector2(428, 305.5)
-scale = Vector2(1.04745, 1.0916)
-texture = ExtResource("3_3j0gx")
+position = Vector2(440, 391.5)
+scale = Vector2(1.34687, 1.10694)
+texture = ExtResource("3_23xpr")
 
 [node name="player_Lvl1" parent="." instance=ExtResource("1_0511s")]
 texture_filter = 1
