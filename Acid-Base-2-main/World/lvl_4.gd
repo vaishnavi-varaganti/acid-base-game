@@ -22,6 +22,9 @@ signal projectile_finished
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
 var wrong_answer_count = 0
+@onready var question_timer = $hud/TimerContainer/Timer
+@onready var timer = $QuestionTimer
+@onready var wrong_popup_label = $wrongPopup/wrong
 
 # --------- FUNCTIONS ---------- #
 
@@ -39,6 +42,7 @@ func _ready():
 	$enemy.connect("projectile_finished", _on_projectile_finished)
 
 func display_options_level4():
+	start_question_timer()
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
 	
 	# Reset all option button colors to default 
@@ -345,3 +349,31 @@ func _on_POST_request_completed(result, response_code, headers, body):
 		print("POST request successful! User data added to API.")
 	else:
 		print("Failed to POST user data. Status code: ", response_code)
+
+func start_question_timer():
+	timer.stop()  
+	timer.wait_time = 15
+	timer.start()
+	update_timer_label(15)  
+	
+func _process(delta):
+	if timer.is_stopped() == false:
+		var remaining_time = int(timer.time_left)
+		update_timer_label(remaining_time)
+	
+func _on_Timer_timeout():
+	print("Time's up! Marking the question as incorrect.")
+	wrong_popup_label.text = "Time's up!"
+	wrong_popup.popup_centered()
+	wrong_answer_count += 1
+	$wrongPopup/Failure_Sound.play()
+	update_lives(lives - 1)
+	check_victory()
+	$popupTimer.start()
+
+func update_timer_label(time_left: int):
+	question_timer.text = "Time Left: " +str(time_left) + " sec"
+	if time_left <= 5:
+		question_timer.modulate = Color(1, 0, 0)  
+	else:
+		question_timer.modulate = Color(1, 1, 1)  

@@ -24,6 +24,7 @@ var data_posted = false
 var wrong_answer_count = 0
 @onready var question_timer = $hud/TimerContainer/Timer
 @onready var timer = $QuestionTimer
+@onready var wrong_popup_label = $wrongPopup/wrong
 
 # --------- FUNCTIONS ---------- #
 
@@ -37,7 +38,6 @@ func _ready():
 	display_options_level1()
 	# Connect the projectile_finished signal to update options when the projectile is shot
 	$enemy.connect("projectile_finished", _on_projectile_finished)
-	start_question_timer()
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -58,6 +58,7 @@ func _on_request_completed(result, response_code, headers, body):
 		print("Request failed with status code: ", response_code)
 
 func display_options_level1():
+	start_question_timer()
 	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
 	
@@ -83,7 +84,6 @@ func display_options_level1():
 	$hud/HBoxContainer/Option2.text = options[1]
 	$hud/HBoxContainer/Option3.text = options[2]
 	Global.correct_answer = correct_option
-	start_question_timer()
 
 func connect_option_signals():
 	option1.connect("pressed", _on_Option1_Selected)
@@ -308,7 +308,7 @@ func _on_POST_request_completed(result, response_code, headers, body):
 
 func start_question_timer():
 	timer.stop()  
-	timer.wait_time = 15  
+	timer.wait_time = 15
 	timer.start()
 	update_timer_label(15)  
 	
@@ -319,6 +319,7 @@ func _process(delta):
 	
 func _on_Timer_timeout():
 	print("Time's up! Marking the question as incorrect.")
+	wrong_popup_label.text = "Time's up!"
 	wrong_popup.popup_centered()
 	wrong_answer_count += 1
 	$wrongPopup/Failure_Sound.play()
@@ -327,5 +328,9 @@ func _on_Timer_timeout():
 	$popupTimer.start()
 
 func update_timer_label(time_left: int):
-	question_timer.text = "Time Left: " + str(time_left) + " sec"
+	question_timer.text = "Time Left: " +str(time_left) + " sec"
+	if time_left <= 5:
+		question_timer.modulate = Color(1, 0, 0)  
+	else:
+		question_timer.modulate = Color(1, 1, 1)  
 
