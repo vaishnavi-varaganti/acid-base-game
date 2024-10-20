@@ -28,6 +28,7 @@ func game_over():
 func _on_restart_pressed():
 	Global.question_number = 1
 	game_start()
+	$"..".restart()
 
 func _on_go_to_next_level_presses():
 	if Global.current_level == 1:
@@ -50,8 +51,10 @@ func _on_play_again_pressed():
 
 func _on_option_button_item_selected(index):
 	match index:
-		0:  quit_game()
+		0:  pass
 		1:  pause_game()
+		2:  resume_game()
+		3:  quit_game()
 	pass # Replace with function body.
 
 func quit_game():

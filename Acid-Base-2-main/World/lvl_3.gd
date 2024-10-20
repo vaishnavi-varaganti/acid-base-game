@@ -27,7 +27,7 @@ var wrong_answer_count = 0
 
 func _ready():
 	$hud/TitleContainer/Title.text = "IDENTIFY THE ACIDS AND BASES"
-	Global.question_number = 1
+	Global.question_number = 0
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
@@ -146,7 +146,7 @@ func check_victory():
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		gameover()
-	elif score < 21 and Global.question_number == 11:
+	elif score < 21 and Global.question_number == 10:
 		victory = false
 		Global.level3Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
@@ -218,6 +218,7 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
+	Global.question_number = 1
 
 func restart():
 	print("restart")
