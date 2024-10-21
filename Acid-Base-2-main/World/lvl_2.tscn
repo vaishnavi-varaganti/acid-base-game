@@ -184,3 +184,4 @@ autoplay = true
 [connection signal="request_completed" from="HTTPRequest2" to="." method="_on_get_request_completed"]
 [connection signal="request_completed" from="HTTPRequest3" to="." method="_on_delete_request_completed"]
 [connection signal="request_completed" from="HTTPRequest4" to="." method="_on_POST_request_completed"]
+[connection signal="timeout" from="QuestionTimer" to="." method="_on_question_timer_timeout"]
