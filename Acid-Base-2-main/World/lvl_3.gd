@@ -24,6 +24,8 @@ var wrong_answer_count = 0
 @onready var question_timer = $hud/TimerContainer/Timer
 @onready var timer = $QuestionTimer
 @onready var wrong_popup_label = $wrongPopup/wrong
+var option_selected = false
+var timer_expired = false
 
 # --------- FUNCTIONS ---------- #
 
@@ -39,10 +41,12 @@ func _ready():
 	display_options_level3()
 
 func display_options_level3():
+	option_selected = false
 	start_question_timer()
 	var correct_option = ""
 	var wrong_option1 = ""
 	var wrong_option2 = ""
+	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
 	
 	# Reset button colors
@@ -72,13 +76,23 @@ func display_options_level3():
 			wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 	var options = [correct_option, wrong_option1, wrong_option2]
 	options.shuffle()
-	$hud/HBoxContainer/Option1.text = options[0]
-	$hud/HBoxContainer/Option2.text = options[1]
-	$hud/HBoxContainer/Option3.text = options[2]
-	Global.correct_answer = correct_option
+	$hud/HBoxContainer/Option1/RichText.text = format_option_text(options[0])
+	$hud/HBoxContainer/Option2/RichText.text = format_option_text(options[1])
+	$hud/HBoxContainer/Option3/RichText.text = format_option_text(options[2])
+	Global.correct_answer = format_option_text(correct_option)
 	print(correct_option)
 	print(wrong_option1)
 	print(wrong_option2)
+	
+func format_option_text(option: String) -> String:
+	var formatted = "[center][font_size=40]"
+	for char in option:
+		if '0' <= char and char <= '9': 
+			formatted += "[font_size=20]" + char + "[/font_size]"
+		else:
+			formatted += char
+	formatted += "[/font_size][/center]"
+	return formatted
 
 func connect_option_signals():
 	option1.connect("pressed", _on_Option1_Selected)
@@ -86,13 +100,16 @@ func connect_option_signals():
 	option3.connect("pressed", _on_Option3_Selected)
 
 func _on_Option1_Selected():
-	check_answer($hud/HBoxContainer/Option1.text)
+	option_selected = true
+	check_answer($hud/HBoxContainer/Option1.get_node("RichText").text)
 		
 func _on_Option2_Selected():
-	check_answer($hud/HBoxContainer/Option2.text)
+	option_selected = true
+	check_answer($hud/HBoxContainer/Option2.get_node("RichText").text)
 		
 func _on_Option3_Selected():
-	check_answer($hud/HBoxContainer/Option3.text)
+	option_selected = true
+	check_answer($hud/HBoxContainer/Option3.get_node("RichText").text)
 
 func check_answer(selected_option: String):
 	print(selected_option, "is the option selected")
@@ -103,37 +120,53 @@ func check_answer(selected_option: String):
 		print("Correct Answer!!!")
 		correct_popup.popup_centered()
 		$correctPopup/Success_Sound.play()
-		highlight_correct_option()
+		# Highlight correct answer visually (optional, e.g., change button color or text)
+		highlight_correct_answer(Global.correct_answer, true)
+		
+		#correct_popup.rect_min_size = Vector2(300, 15)
 		update_score_and_progress()
 		check_victory()
 		$popupTimer.start()
-	else:
+	else :
 		print("Wrong Answer!")
+		if timer_expired:
+			wrong_popup_label.text = "Time's up!"
+		else:
+			wrong_answer_count += 1
+			wrong_popup_label.text = "Wrong answer!"
+			$popupTimer.start()
 		wrong_popup.popup_centered()
-		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
-		highlight_wrong_option(selected_option)
+		highlight_wrong_answer(selected_option, Global.correct_answer)
+		highlight_correct_answer(Global.correct_answer, true)
 		update_lives(lives - 1)
 		check_victory()
-		$popupTimer.start()
 
-func highlight_correct_option():
-	# Highlight correct answer in green
-	$hud/HBoxContainer/Option1.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option1.text == Global.correct_answer else Color(1, 1, 1)
-	$hud/HBoxContainer/Option2.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option2.text == Global.correct_answer else Color(1, 1, 1)
-	$hud/HBoxContainer/Option3.modulate = Color(0, 1, 0) if $hud/HBoxContainer/Option3.text == Global.correct_answer else Color(1, 1, 1)
+func highlight_correct_answer(correct_answer: String, highlight: bool):
+	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
+	for option in options:
+		var rich_text = option.get_node("RichText")  # Access the RichText node
+		if rich_text.text == correct_answer:
+			rich_text.bbcode_text = "[center][color=green]" + correct_answer + "[/color][/center]" if highlight else correct_answer
+		else:
+			rich_text.bbcode_text = "[center][color=gray]" + rich_text.text + "[/color][/center]"
 
-func highlight_wrong_option(selected_option: String):
-	# Highlight wrong answer in red and correct one in green
-	$hud/HBoxContainer/Option1.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option1.text == selected_option else $hud/HBoxContainer/Option1.modulate
-	$hud/HBoxContainer/Option2.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option2.text == selected_option else $hud/HBoxContainer/Option2.modulate
-	$hud/HBoxContainer/Option3.modulate = Color(1, 0, 0) if $hud/HBoxContainer/Option3.text == selected_option else $hud/HBoxContainer/Option3.modulate
-	highlight_correct_option()
+func highlight_wrong_answer(wrong_answer: String, correct_answer : String):
+	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
+	for option in options:
+		var rich_text = option.get_node("RichText")  # Access the RichText node
+		if rich_text.text == wrong_answer:
+			rich_text.bbcode_text = "[color=red]" + wrong_answer + "[/color]"
+		elif rich_text.text == correct_answer:
+			rich_text.bbcode_text = "[color=green]" + correct_answer + "[/color]"
+		else:
+			rich_text.bbcode_text = "[color=red]" + rich_text.text + "[/color]"
 
 func disable_options():
 	$hud/HBoxContainer/Option1.disabled = true
 	$hud/HBoxContainer/Option2.disabled = true
 	$hud/HBoxContainer/Option3.disabled = true
+	timer.stop()
 
 func update_score_and_progress():
 	Global.level3_correctAnswers += 1
@@ -327,10 +360,12 @@ func _on_POST_request_completed(result, response_code, headers, body):
 		print("Failed to POST user data. Status code: ", response_code)
 
 func start_question_timer():
+	timer_expired = false
 	timer.stop()  
-	timer.wait_time = 15
+	timer.wait_time = 15  
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 	timer.start()
-	update_timer_label(15)  
+	update_timer_label(16) 
 	
 func _process(delta):
 	if timer.is_stopped() == false:
@@ -338,14 +373,13 @@ func _process(delta):
 		update_timer_label(remaining_time)
 	
 func _on_Timer_timeout():
-	print("Time's up! Marking the question as incorrect.")
-	wrong_popup_label.text = "Time's up!"
-	wrong_popup.popup_centered()
-	wrong_answer_count += 1
-	$wrongPopup/Failure_Sound.play()
-	update_lives(lives - 1)
-	check_victory()
-	$popupTimer.start()
+	print("Time's up!")
+	timer_expired = true
+	if not option_selected:
+		handle_wrong_answer()
+	else:
+		print("An option was already selected.")
+		timer_expired = false
 
 func update_timer_label(time_left: int):
 	question_timer.text = "Time Left: " +str(time_left) + " sec"
@@ -353,3 +387,13 @@ func update_timer_label(time_left: int):
 		question_timer.modulate = Color(1, 0, 0)  
 	else:
 		question_timer.modulate = Color(1, 1, 1)  
+		
+func handle_wrong_answer():
+	wrong_answer_count += 1
+	$wrongPopup/Failure_Sound.play()
+	wrong_popup_label.text = "Time's up!"
+	wrong_popup.popup_centered()
+	update_lives(lives - 1)
+	check_victory()
+	$popupTimer.start()
+
