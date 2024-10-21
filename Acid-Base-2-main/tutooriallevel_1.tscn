@@ -52,8 +52,7 @@ text = "
 
 
 [font_size=18](b)  If you see “COOH” in the formula, that’s another sign of an acid! The “COOH” part is called a carboxyl group, and it shows up in many acids.
- For example, acetic acid, which is in vinegar, can be written as CH₃COOH. Sometimes it’s written a little differently, like HC₃H₃O₂, but you can still spot the acid because of the carboxyl group. Both of these formulas mean the same thing, they're just different ways to show the same acid [/font_size]
-increase line spacing"
+ For example, acetic acid, which is in vinegar, can be written as CH₃COOH. Sometimes it’s written a little differently, like HC₃H₃O₂, but you can still spot the acid because of the carboxyl group. Both of these formulas mean the same thing, they're just different ways to show the same acid increase line spacing"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
