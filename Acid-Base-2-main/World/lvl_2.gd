@@ -118,16 +118,18 @@ func check_answer(selected_option: String):
 		$popupTimer.start()
 	else :
 		print("Wrong Answer!")
+		if timer_expired:
+			wrong_popup_label.text = "Time's up!"
+		else:
+			wrong_answer_count += 1
+			wrong_popup_label.text = "Wrong answer!"
+			$popupTimer.start()
 		wrong_popup.popup_centered()
-		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
-		# Highlight the selected wrong answer in red
-		highlight_wrong_answer(selected_option,Global.correct_answer)
+		highlight_wrong_answer(selected_option, Global.correct_answer)
 		highlight_correct_answer(Global.correct_answer, true)
-		#wrong_popup.rect_min_size = Vector2(300, 15)
 		update_lives(lives - 1)
 		check_victory()
-		$popupTimer.start()  # Update lives directly here
 		
 		
 		
@@ -383,6 +385,8 @@ func _process(delta):
 func handle_wrong_answer():
 	wrong_answer_count += 1
 	$wrongPopup/Failure_Sound.play()
+	wrong_popup_label.text = "Time's up!"
+	wrong_popup.popup_centered()
 	update_lives(lives - 1)
 	check_victory()
 	$popupTimer.start()
@@ -399,8 +403,6 @@ func _on_question_timer_timeout():
 	print("Time's up!")
 	timer_expired = true
 	if not option_selected:
-		wrong_popup_label.text = "Time's up!"
-		wrong_popup.popup_centered()
 		handle_wrong_answer()
 	else:
 		print("An option was already selected.")
