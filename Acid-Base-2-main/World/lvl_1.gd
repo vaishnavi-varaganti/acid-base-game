@@ -25,6 +25,8 @@ var wrong_answer_count = 0
 @onready var question_timer = $hud/TimerContainer/Timer
 @onready var timer = $QuestionTimer
 @onready var wrong_popup_label = $wrongPopup/wrong
+var option_selected = false
+var timer_expired = false
 
 # --------- FUNCTIONS ---------- #
 
@@ -60,6 +62,7 @@ func _on_request_completed(result, response_code, headers, body):
 		print("Request failed with status code: ", response_code)
 
 func display_options_level1():
+	option_selected = false
 	start_question_timer()
 	await get_tree().create_timer(1.5).timeout
 	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
@@ -129,19 +132,20 @@ func check_answer(selected_option: String):
 		update_score_and_progress()
 		check_victory()
 		$popupTimer.start()
-	else:
+	else :
 		print("Wrong Answer!")
+		if timer_expired:
+			wrong_popup_label.text = "Time's up!"
+		else:
+			wrong_answer_count += 1
+			wrong_popup_label.text = "Wrong answer!"
+			$popupTimer.start()
 		wrong_popup.popup_centered()
-		wrong_answer_count +=1
 		$wrongPopup/Failure_Sound.play()
-		highlight_wrong_answer(selected_option,Global.correct_answer)
+		highlight_wrong_answer(selected_option, Global.correct_answer)
 		highlight_correct_answer(Global.correct_answer, true)
-		# Highlight the selected wrong answer in red
-		
-		#wrong_popup.rect_min_size = Vector2(300, 15)
 		update_lives(lives - 1)
 		check_victory()
-		$popupTimer.start()  # Update lives directly here
 
 func highlight_correct_answer(correct_answer: String, highlight: bool):
 	var options = [$hud/HBoxContainer/Option1, $hud/HBoxContainer/Option2, $hud/HBoxContainer/Option3]
@@ -337,10 +341,12 @@ func _on_POST_request_completed(result, response_code, headers, body):
 		print("Failed to POST user data. Status code: ", response_code)
 
 func start_question_timer():
+	timer_expired = false
 	timer.stop()  
-	timer.wait_time = 15
+	timer.wait_time = 15  
+	timer.connect("timeout", Callable(self, "_on_question_timer_timeout"))
 	timer.start()
-	update_timer_label(15)  
+	update_timer_label(16)  
 	
 func _process(delta):
 	if timer.is_stopped() == false:
@@ -348,14 +354,13 @@ func _process(delta):
 		update_timer_label(remaining_time)
 	
 func _on_Timer_timeout():
-	print("Time's up! Marking the question as incorrect.")
-	wrong_popup_label.text = "Time's up!"
-	wrong_popup.popup_centered()
-	wrong_answer_count += 1
-	$wrongPopup/Failure_Sound.play()
-	update_lives(lives - 1)
-	check_victory()
-	$popupTimer.start()
+	print("Time's up!")
+	timer_expired = true
+	if not option_selected:
+		handle_wrong_answer()
+	else:
+		print("An option was already selected.")
+		timer_expired = false
 
 func update_timer_label(time_left: int):
 	question_timer.text = "Time Left: " +str(time_left) + " sec"
@@ -363,4 +368,13 @@ func update_timer_label(time_left: int):
 		question_timer.modulate = Color(1, 0, 0)  
 	else:
 		question_timer.modulate = Color(1, 1, 1)  
+		
+func handle_wrong_answer():
+	wrong_answer_count += 1
+	$wrongPopup/Failure_Sound.play()
+	wrong_popup_label.text = "Time's up!"
+	wrong_popup.popup_centered()
+	update_lives(lives - 1)
+	check_victory()
+	$popupTimer.start()
 
