@@ -16,7 +16,7 @@ signal projectile_finished
 @onready var option1 = $hud/HBoxContainer/Option1
 @onready var option2 = $hud/HBoxContainer/Option2
 @onready var option3 = $hud/HBoxContainer/Option3
-@export var lives = 6  # This is the master source for lives
+@export var lives = 6  
 @onready var question_number = Global.question_number
 @onready var correct_popup = $correctPopup
 @onready var wrong_popup = $wrongPopup
@@ -36,12 +36,9 @@ func _ready():
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + current_value
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	connect_option_signals()
-	# Display options when the scene is loaded
 	display_options_level1()
 	# Connect the projectile_finished signal to update options when the projectile is shot
 	$enemy.connect("projectile_finished", _on_projectile_finished)
-	
-
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -90,8 +87,6 @@ func display_options_level1():
 	$hud/HBoxContainer/Option3/RichText.text = format_option_text(options[2])
 	Global.correct_answer = format_option_text(correct_option)
 
-	
-
 func format_option_text(option: String) -> String:
 	var formatted = "[center][font_size=40]"
 	for char in option:
@@ -101,7 +96,6 @@ func format_option_text(option: String) -> String:
 			formatted += char
 	formatted += "[/font_size][/center]"
 	return formatted
-
 
 func connect_option_signals():
 	option1.connect("pressed", _on_Option1_Selected)
@@ -166,10 +160,6 @@ func highlight_wrong_answer(wrong_answer: String, correct_answer : String):
 			rich_text.bbcode_text = "[color=green]" + correct_answer + "[/color]"
 		else:
 			rich_text.bbcode_text = "[color=red]" + rich_text.text + "[/color]"
-
-	
-
-
 
 func update_score_and_progress():
 	Global.level1_correctAnswers += 1
@@ -275,7 +265,7 @@ func gameover():
 	set_physics_process(false)
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
-	Global.question_number = 1
+	Global.question_number = 0
 	question_timer.visible = false
 
 func restart():
@@ -288,7 +278,7 @@ func restart():
 	$enemy.set_physics_process(true)
 	$enemy.attack_timer.start()
 	Global.level1Score = 0
-	Global.question_number = 1
+	Global.question_number = 0
 	Global.level1_correctAnswers = 0
 	score = 0
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
@@ -305,6 +295,8 @@ func restart():
 	$hud/HBoxContainer/VSeparator.visible = true
 	$hud/HBoxContainer/VSeparator2.visible = true
 	question_timer.visible = true
+	start_question_timer()
+	wrong_answer_count = 0
 
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
