@@ -117,7 +117,7 @@ func shoot_acid():
 		var selection = randi_range(0, acidArray.size() - 1)
 		add_to_group(acidArray[selection][1])  # Add it to the "Acid" group
 		formula.text = "[center]" + acidArray[selection][0] + "[/center]"
-		formula.set_custom_minimum_size(Vector2(140, 75))
+		formula.set_custom_minimum_size(Vector2(200, 75))
 
 # Shoots base for Level 2
 func shoot_base():
@@ -126,7 +126,7 @@ func shoot_base():
 		var selection = randi_range(0, baseArray.size() - 1)
 		add_to_group(baseArray[selection][1])  # Add it to the "Base" group
 		formula.text = "[center]" + baseArray[selection][0] + "[/center]"
-		formula.set_custom_minimum_size(Vector2(140, 75))
+		formula.set_custom_minimum_size(Vector2(200, 75))
 
 # Shoots either acid or base for Level 3
 func shoot_random_acid_base():

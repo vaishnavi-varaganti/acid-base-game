@@ -26,8 +26,6 @@ func game_over():
 	#$Control/GameOverScreen/VBoxContainer/HBoxContainer/HighScore.text = "High Score: " + str($"..".highscore)
 	
 func _on_restart_pressed():
-	$"..".restart()
-	Global.question_number = 1
 	game_start()
 
 func _on_go_to_next_level_presses():
