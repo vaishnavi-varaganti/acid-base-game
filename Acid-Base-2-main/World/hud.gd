@@ -28,6 +28,7 @@ func game_over():
 func _on_restart_pressed():
 	if Global.current_level == 1:
 		Global.question_number = 0
+		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_1.tscn")
 		pass
 
