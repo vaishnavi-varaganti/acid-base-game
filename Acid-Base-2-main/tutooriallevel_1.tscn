@@ -37,9 +37,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
-text = "
+text = "[center][font_size=64] [color= sky blue]LEVEL 1 TUTORIAL[/color][/font_size]
 
-[center][font_size=64] [color= light green]LEVEL 1 TUTORIAL[/color][/font_size]
 
 
 [font_size=40] [color=green] First level is Recognizing bases [/color] [/font_size][/center]
@@ -53,6 +52,7 @@ text = "
 
 [font_size=20]	If you see a metal combined with oxygen, like in CaO (calcium oxide), this can also indicate a base. When mixed with water, it forms a basic solution.[/font_size]
 "
+
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
