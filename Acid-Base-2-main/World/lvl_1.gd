@@ -271,7 +271,6 @@ func gameover():
 	$enemy.set_physics_process(false)
 	Global.question_number = 0
 	question_timer.visible = false
-	Global.level1_correctAnswers = 0
 	find_id_by_sid()
 
 func restart():
