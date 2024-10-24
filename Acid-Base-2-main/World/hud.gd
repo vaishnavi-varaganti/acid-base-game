@@ -56,7 +56,10 @@ func _on_option_button_item_selected(index):
 	pass # Replace with function body.
 
 func quit_game():
-	get_tree().quit() # Quits the game.
+	if Global.current_level == 1:
+		Global.question_number = 0
+		get_tree().change_scene_to_file("res://World/mainlevelmenu.tscn")
+		
 	
 func resume_game():
 	get_tree().paused = false
