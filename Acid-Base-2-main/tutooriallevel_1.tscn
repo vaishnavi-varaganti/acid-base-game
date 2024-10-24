@@ -30,8 +30,9 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_right = 960.0
-offset_bottom = 327.0
+offset_left = 1.0
+offset_right = 993.0
+offset_bottom = 472.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 0
@@ -45,11 +46,13 @@ text = "
 [font_size=40] [color=green] First level is Recognizing acids [/color] [/font_size][/center]
 
 
-[font_size=20](a)  If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion. This is what makes the substance acidic.
-For example, HCl is hydrochloric acid, which is a strong acid found in your stomach. [/font_size]
+[font_size=20]	If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. [/font_size]
 
-[font_size=20](b)  If you see “COOH” in the formula, that’s another sign of an acid! The “COOH” part is called a carboxyl group, and it shows up in many acids.
-For example, acetic acid, which is in vinegar, can be written as CH₃COOH. Sometimes it’s written a little differently, like HC₃H₃O₂, but you can still spot the acid because of the carboxyl group. Both of these formulas mean the same thing, they're just different ways to show the same acid increase line spacing"
+[font_size=20]	This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion.[/font_size]
+
+[font_size=20]	This is what makes the substance acidic.[/font_size]
+
+[font_size=20]For example, HCl is hydrochloric acid, which is a strong acid found in your stomach.[/font_size]"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
