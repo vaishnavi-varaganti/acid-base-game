@@ -42,17 +42,17 @@ text = "
 [center][font_size=64] [color= light green]LEVEL 1 TUTORIAL[/color][/font_size]
 
 
+[font_size=40] [color=green] First level is Recognizing bases [/color] [/font_size][/center]
 
-[font_size=40] [color=green] First level is Recognizing acids [/color] [/font_size][/center]
 
+[font_size=20]	If you see a formula that ends with \"OH,\" like NaOH or KOH, it’s a clue that the compound is a base.[/font_size]
 
-[font_size=20]	If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. [/font_size]
+[font_size=20]	The \"OH\" stands for hydroxide, and when the compound is mixed with water, it releases OH⁻ ions, which make the substance basic.[/font_size]
 
-[font_size=20]	This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion.[/font_size]
+[font_size=20]	For example, NaOH is sodium hydroxide, a strong base commonly used in cleaning products.[/font_size]
 
-[font_size=20]	This is what makes the substance acidic.[/font_size]
-
-[font_size=20]For example, HCl is hydrochloric acid, which is a strong acid found in your stomach.[/font_size]"
+[font_size=20]	If you see a metal combined with oxygen, like in CaO (calcium oxide), this can also indicate a base. When mixed with water, it forms a basic solution.[/font_size]
+"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]

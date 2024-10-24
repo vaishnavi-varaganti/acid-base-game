@@ -1,50 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://e4v8ccm62wtn"]
+[gd_scene load_steps=5 format=3 uid="uid://e4v8ccm62wtn"]
 
 [ext_resource type="Script" path="res://tutoriallevel_2.gd" id="1_12rxy"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_a0wb0"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_cmd3y"]
 [ext_resource type="Script" path="res://World/tutorial3.gd" id="3_ghu0b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24t6l"]
-bg_color = Color(0.117647, 0.392157, 0.627451, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mfls"]
-bg_color = Color(0.117647, 0.392157, 0.627451, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_blend = true
-
-[sub_resource type="FontFile" id="FontFile_bs18a"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/30/0/ascent = 0.0
-cache/0/30/0/descent = 0.0
-cache/0/30/0/underline_position = 0.0
-cache/0/30/0/underline_thickness = 0.0
-cache/0/30/0/scale = 1.0
-cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
-cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="Theme_4jomv"]
-default_font = SubResource("FontFile_bs18a")
-default_font_size = 30
-/styles/disabled = SubResource("StyleBoxFlat_24t6l")
-/styles/hover = SubResource("StyleBoxFlat_1mfls")
 
 [node name="tutoriallevel_2" type="Control"]
 layout_mode = 3
@@ -80,11 +39,26 @@ size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
+
 [center][font_size=64] [color= light green]LEVEL 2 TUTORIAL[/color][/font_size]
 
-[font_size=20] [color=green] Second level is Recognizing Bases [/color] [/font_size][/center]
 
-[font_size=20]Anions can act as bases by accepting protons (H+), as seen in compounds like Na2CO3 where the carbonate ion (CO3²⁻) accepts two H+ ions. However, anions from strong acids, such as Cl⁻, Br⁻, I⁻, NO3⁻, ClO4⁻, and HSO4⁻, are exceptions and do not function as bases because they are too weak to accept protons. For instance, Cl⁻ cannot accept an H+ since it comes from HCl, a strong acid that dissociates completely. Molecules containing nitrogen atoms, such as NH3, are also bases because nitrogen typically has a lone pair of electrons that can accept H+. If the nitrogen atom in a molecule has a positive charge, like NH4⁺, the molecule has already accepted an H+ and is in its acidic form, capable of donating the H+ back to a base."
+
+[font_size=40] [color=green] Second level is Recognizing acids [/color] [/font_size][/center]
+
+
+[font_size=20]	If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. [/font_size]
+
+[font_size=20]	This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion.[/font_size]
+
+[font_size=20]	This is what makes the substance acidic.[/font_size]
+
+[font_size=20]	For example, HCl is hydrochloric acid, which is a strong acid found in your stomach.[/font_size]
+
+[font_size=20] 	If you see “COOH” in the formula, that’s another sign of an acid![/font_size]
+
+[font_size=20]	The “COOH” part is called a carboxyl group, and it shows up in many acids.[/font_size]
+"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
@@ -94,13 +68,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -103.0
-offset_top = -189.0
-offset_right = 38.0
-offset_bottom = -156.0
+offset_left = -131.0
+offset_top = -106.0
+offset_right = 131.0
+offset_bottom = -70.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_4jomv")
+theme = ExtResource("2_cmd3y")
 theme_override_colors/font_color = Color(0.913222, 0.989944, 0.968713, 1)
 theme_override_colors/font_focus_color = Color(0.232096, 0.131973, 0.669769, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.643221, 0.802146, 0.342258, 1)
