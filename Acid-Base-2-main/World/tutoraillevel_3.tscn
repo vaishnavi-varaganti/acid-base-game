@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6007g5fj3t22"]
+[gd_scene load_steps=4 format=3 uid="uid://c6007g5fj3t22"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_3ly1n"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_kep50"]
 [ext_resource type="Script" path="res://World/tutorial3.gd" id="3_p0g1e"]
-
-[sub_resource type="Theme" id="Theme_drx3p"]
 
 [node name="tutoriallevel_3" type="Control"]
 layout_mode = 3
@@ -42,15 +40,16 @@ text = "
 
 [center][font_size=64][color=light green]LEVEL 3 TUTORIAL[/color][/font_size][/center]
 
-[center][font_size=20] [color=green] Third  level is Recognizing Acids and Bases [/color][/font_size][/center]
 
-[font_size=18](a)Acids often start with \"H\" (like HCl) or contain COOH (like in acetic acid CH₃COOH).
+[center][font_size=40] [color=green] Third  level is Recognizing Acids and Bases [/color][/font_size][/center]
 
-[font_size=18](b)Bases usually end with OH (like NaOH) or contain ammonia (NH₃).
 
-[font_size=18](c)Carefully look at the chemical formulas and identify whether it's an acid or a base based on these clues.
+[font_size=20]	(a)Acids often start with \"H\" (like HCl) or contain COOH (like in acetic acid CH₃COOH).
 
-[font_size=18](d)Select the correct answer by recognizing if the compound is an acid or a base.
+[font_size=20]	(b)Bases usually end with OH (like NaOH) or contain ammonia (NH₃).
+
+[font_size=20]	(c)Carefully look at the chemical formulas and identify whether it's an acid or a base based on these clues.
+
 
 
 
@@ -72,7 +71,7 @@ offset_right = 50.0
 offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_drx3p")
+theme = ExtResource("2_kep50")
 text = "Return to menu"
 script = ExtResource("3_p0g1e")
 
