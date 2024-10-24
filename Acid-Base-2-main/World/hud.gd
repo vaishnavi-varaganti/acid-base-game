@@ -41,6 +41,11 @@ func _on_restart_pressed():
 		Global.level3_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_3.tscn")
 		pass
+	elif Global.current_level == 4:
+		Global.question_number = 0
+		Global.level4_correctAnswers = 0
+		get_tree().change_scene_to_file("res://World/lvl_4.tscn")
+		pass
 
 func _on_go_to_next_level_presses():
 	if Global.current_level == 1:
