@@ -111,6 +111,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
 theme = ExtResource("3_0ri5x")
+placeholder_text = "enter first name"
 scroll_fit_content_height = true
 
 [node name="lastnamecontainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
@@ -130,6 +131,7 @@ layout_mode = 2
 [node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/lastnamecontainer"]
 custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
+placeholder_text = "enter last name"
 
 [node name="sidcontainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(500, 0)
@@ -147,6 +149,7 @@ layout_mode = 2
 [node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
 custom_minimum_size = Vector2(275, 35)
 layout_mode = 2
+placeholder_text = "enter student id"
 
 [node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 20)
