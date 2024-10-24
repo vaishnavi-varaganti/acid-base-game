@@ -178,8 +178,6 @@ func check_victory():
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		gameover()
-		if(!data_posted):
-			post_score()
 	#elif Global.level1_correctAnswers == 7:
 		#victory = true
 		#Global.level1Score = score
@@ -187,7 +185,7 @@ func check_victory():
 		#$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
 		#post_level_1_score()
 		#gameover()
-	if score < 21 && Global.question_number == 10:
+	if score < 21 && lives == 0:
 		victory = false
 		Global.level1Score = score
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
@@ -273,6 +271,8 @@ func gameover():
 	$enemy.set_physics_process(false)
 	Global.question_number = 0
 	question_timer.visible = false
+	Global.level1_correctAnswers = 0
+	find_id_by_sid()
 
 func restart():
 	print("restart")
@@ -316,7 +316,6 @@ func disable_options():
 	timer.stop()
 	
 func post_score():
-	data_posted = true
 	var user_data = {
 		"SID": Global.sid,
 		"Lastname": Global.lastName,
@@ -335,6 +334,7 @@ func _on_POST_request_completed(result, response_code, headers, body):
 	http_request.disconnect("request_completed", _on_POST_request_completed)
 	if response_code == 200:
 		print("POST request successful! User data added to API.")
+		data_posted = true
 	else:
 		print("Failed to POST user data. Status code: ", response_code)
 
@@ -376,3 +376,53 @@ func handle_wrong_answer():
 	check_victory()
 	$popupTimer.start()
 
+func find_id_by_sid():
+	http_request.disconnect("request_completed", _on_request_completed)
+	var headers = ["Content-Type: application/json"]
+	http_request.request("https://api-generator.retool.com/R5pZpT/gamedetails", headers)
+	http_request.connect("request_completed", _on_get_request_completed)
+
+func _on_get_request_completed(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.get_data()
+			print("Received Data: ", data)  
+			
+			var user_ids_to_delete = []  
+
+			for entry in data:
+				if typeof(entry) == TYPE_DICTIONARY and entry.has("SID"):
+					if entry["SID"] == Global.sid:
+						user_ids_to_delete.append(entry["id"])
+						print("Matching SID found. User ID: ", entry["id"])
+			
+			if user_ids_to_delete.size() > 0:
+				delete_multiple_records(user_ids_to_delete)
+			else:
+				print("No matching SID found for: ", Global.sid)
+				post_score()
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Failed to GET data. Status code: ", response_code)
+		
+func delete_multiple_records(user_ids: Array):
+	for user_id in user_ids:
+		var url = "https://api-generator.retool.com/R5pZpT/gamedetails/" + str(user_id)
+		print("Deleting record with URL: ", url)
+		
+		var headers = ["Content-Type: application/json"]
+		http_request.request(url, headers, HTTPClient.METHOD_DELETE)
+		http_request.connect("request_completed", _on_delete_request_completed)
+
+func _on_delete_request_completed(result, response_code, headers, body):
+	http_request.disconnect("request_completed", _on_delete_request_completed)
+	
+	if response_code == 200:
+		print("Delete request successful!")
+		if(!data_posted):
+			post_score()
+	else:
+		print("Failed to delete record. Status code: ", response_code)
