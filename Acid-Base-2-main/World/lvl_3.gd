@@ -232,6 +232,12 @@ func gameover():
 	await get_tree().create_timer(1.5).timeout
 	paused = true
 	$hud.game_over()
+	if score >= 21:
+		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = false
+		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true
+	elif score < 21:
+		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.disabled = true
+		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 	if victory:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
 	else:
