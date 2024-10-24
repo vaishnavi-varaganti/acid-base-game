@@ -58,7 +58,7 @@ func display_options_level3():
 	$hud/HBoxContainer/Option2.disabled = false
 	$hud/HBoxContainer/Option3.disabled = false
 	
-	if (Global.question_number % 2 ==0):
+	if (Global.question_number % 2 !=0):
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -66,7 +66,7 @@ func display_options_level3():
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
-	elif (Global.question_number % 2 !=0):
+	elif (Global.question_number % 2 ==0):
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
