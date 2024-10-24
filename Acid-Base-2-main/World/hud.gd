@@ -31,6 +31,11 @@ func _on_restart_pressed():
 		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_1.tscn")
 		pass
+	if Global.current_level == 2:
+		Global.question_number = 0
+		Global.level1_correctAnswers = 0
+		get_tree().change_scene_to_file("res://World/lvl_2.tscn")
+		pass
 
 func _on_go_to_next_level_presses():
 	if Global.current_level == 1:
@@ -62,7 +67,12 @@ func _on_option_button_item_selected(index):
 func quit_game():
 	if Global.current_level == 1:
 		Global.question_number = 0
+		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/mainlevelmenu.tscn")
+	if Global.current_level == 2:
+		Global.question_number = 0
+		Global.level2_correctAnswers = 0
+		get_tree().change_scene_to_file("res://World/level2menu.tscn")
 		
 	
 func resume_game():
