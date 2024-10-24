@@ -58,7 +58,7 @@ func display_options_level3():
 	$hud/HBoxContainer/Option2.disabled = false
 	$hud/HBoxContainer/Option3.disabled = false
 	
-	if (Global.question_number % 2 ==0):
+	if (Global.question_number % 2 !=0):
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -66,7 +66,7 @@ func display_options_level3():
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
-	elif (Global.question_number % 2 !=0):
+	elif (Global.question_number % 2 ==0):
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -245,8 +245,6 @@ func gameover():
 	$hud/Control/VictoryAnims.show()
 	print("Correct answer count", Global.level3_correctAnswers)
 	var wrong_answers = 0
-	if score == 21:
-		wrong_answer_count = 0
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/CorrectlyAnswered.text = "Correct Answers:\n" + str(Global.level3_correctAnswers)
 	$hud/Control/GameOverScreen/VBoxContainer/HBoxContainer2/IncorrectlyAnswered.text = "Wrong Answers:\n" + str(wrong_answer_count)
 	Global.level3Score = score

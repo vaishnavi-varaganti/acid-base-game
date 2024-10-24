@@ -93,7 +93,7 @@ text = "Level -4 "
 [node name="Tutorial" type="Button" parent="Panel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Rules to Play"
+text = "ABOUT THE GAME"
 
 [node name="Exit" type="Button" parent="Panel/PanelContainer/VBoxContainer"]
 layout_mode = 2

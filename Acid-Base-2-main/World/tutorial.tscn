@@ -34,16 +34,25 @@ theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64] [color=red]About the Game [/color][/font_size][/center]
+[center][font_size=64] [color=red]	About the Game [/color][/font_size][/center]
 
-[font_size=18][color=deepskyblue]Game will be containing four levels[/color][/font_size]
+[font_size=18][color=deepskyblue]	The Acid-Base Game is a 2D interactive educational game developed using the Godot Engine.[/color][/font_size]
 
-[font_size=18]Each level must consist of 10 questions.[/font_size]
+[font_size=18][color=deepskyblue]	The Game Contains Four Levels.[/color][/font_size]
 
-[font_size=18][color=green]f the user answers 7 questions correctly, the user must move to the next level.[/color][/font_size]
+[font_size=18][color=deepskyblue]	In Level 1, the duck shoots acids, the  player must select the base to neutralize the attack. [/color][/font_size]
 
+[font_size=18][color=deepskyblue]	Level 2 switches roles with the duck shooting bases, requiring players to choose the acid.[/color][/font_size]
 
-[font_size=18][color=green]The Acid-Base Game is a 2D interactive educational game developed using the Godot Engine. It is designed to teach players about the basics of acid-base reactions through a series of game levels, each with increasing complexity and incorporating different aspects of acid-base chemistry. Players control a character who must defend against attacks from an opposing character, a duck, who shoots either acids or bases. The player's goal is to neutralize these attacks by selecting the appropriate chemical (either an acid or a base) from multiple choice options. The game consists of four levels: In Level 1, the duck shoots acids, and players must select the correct base to neutralize the attack. Level 2 switches roles with the duck shooting bases, requiring players to choose the correct acid. In Level 3, the duck randomly shoots either acids or bases, demanding quick and accurate responses from players. The final challenge, Level 4, involves predicting the products of acid-base reactions. Players earn points for correct answers and lose lives for incorrect ones, needing at least a 70% success rate to advance to the next level.[/color][/font_size]"
+[font_size=18][color=deepskyblue]       In Level 3, the duck randomly shoots either acids or bases, demanding responses from players.[/color][/font_size]
+
+[font_size=18][color=deepskyblue]       In Level 4, the player must balance chemical reactions.[/color][/font_size]
+
+[font_size=18][color=deepskyblue]	each level consists of 10 questions.[/color][/font_size]
+
+[font_size=18][color=deepskyblue]	if the user answers 7 questions correctly, the user qualifies  to the next level.[/color][/font_size]
+
+"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
