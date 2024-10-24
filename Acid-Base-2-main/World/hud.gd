@@ -31,12 +31,12 @@ func _on_restart_pressed():
 		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_1.tscn")
 		pass
-	if Global.current_level == 2:
+	elif Global.current_level == 2:
 		Global.question_number = 0
 		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_2.tscn")
 		pass
-	if Global.current_level == 3:
+	elif Global.current_level == 3:
 		Global.question_number = 0
 		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/lvl_3.tscn")
@@ -74,10 +74,17 @@ func quit_game():
 		Global.question_number = 0
 		Global.level1_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/mainlevelmenu.tscn")
-	if Global.current_level == 2:
+		pass
+	elif Global.current_level == 2:
 		Global.question_number = 0
 		Global.level2_correctAnswers = 0
 		get_tree().change_scene_to_file("res://World/level2menu.tscn")
+		pass
+	elif Global.current_level == 3:
+		Global.question_number = 0
+		Global.level2_correctAnswers = 0
+		get_tree().change_scene_to_file("res://World/level3menu.tscn")
+		pass
 		
 	
 func resume_game():
