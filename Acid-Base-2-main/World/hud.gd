@@ -116,3 +116,7 @@ func _on_option_2_pressed():
 func _on_option_3_pressed():
 	$ButtonClickSound.play()
 	pass 
+
+func _on_view_report_pressed():
+	get_tree().change_scene_to_file("res://report.tscn")
+	pass

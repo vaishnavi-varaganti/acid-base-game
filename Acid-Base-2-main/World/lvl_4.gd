@@ -41,6 +41,7 @@ func _ready():
 	$hud/HBoxContainer/VSeparator2.visible = false
 	connect_option_signals()
 	display_options_level4()
+	$hud/Button.visible = false
 	$enemy.connect("projectile_finished", _on_projectile_finished)
 
 func display_options_level4():
@@ -237,6 +238,7 @@ func gameover():
 	await get_tree().create_timer(1.5).timeout
 	paused = true
 	$hud.game_over()
+	$hud/Button.visible = true
 	if score >= 21:
 		$hud/Control/GameOverScreen/VBoxContainer/MainMenu.visible = false
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = true

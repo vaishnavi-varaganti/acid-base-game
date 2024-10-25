@@ -39,6 +39,7 @@ func _ready():
 	connect_option_signals()
 	# Display options when the scene is loaded
 	display_options_level2()
+	$hud/Button.visible = false
 	# Connect the projectile_finished signal to update options when the projectile is shot
 	$enemy.connect("projectile_finished", _on_projectile_finished)
 		
