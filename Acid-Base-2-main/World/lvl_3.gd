@@ -31,7 +31,6 @@ var timer_expired = false
 
 
 func _ready():
-	$hud/TitleContainer/Title.text = "IDENTIFY THE ACIDS AND BASES"
 	Global.question_number = 0
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
@@ -59,6 +58,7 @@ func display_options_level3():
 	$hud/HBoxContainer/Option3.disabled = false
 	
 	if (Global.question_number % 2 !=0):
+		$hud/TitleContainer/Title.text = "IDENTIFY THE BASE"
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -67,6 +67,7 @@ func display_options_level3():
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	elif (Global.question_number % 2 ==0):
+		$hud/TitleContainer/Title.text = "IDENTIFY THE ACID"
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
@@ -260,6 +261,7 @@ func gameover():
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
 	Global.question_number = 1
+	question_timer.visible = false
 
 func restart():
 	print("restart")
@@ -283,6 +285,7 @@ func restart():
 	$hud/HBoxContainer/Option3.visible = true
 	$hud/HBoxContainer/VSeparator.visible = true
 	$hud/HBoxContainer/VSeparator2.visible = true
+	question_timer.visible = true
 	
 func _on_PopupTimer_timeout():
 	correct_popup.hide()

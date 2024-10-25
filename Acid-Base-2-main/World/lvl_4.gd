@@ -267,6 +267,7 @@ func gameover():
 	$enemy.set_process(false)
 	$enemy.set_physics_process(false)
 	Global.question_number = 1
+	question_timer.visible = false
 	
 func restart():
 	print("restart")
@@ -294,6 +295,7 @@ func restart():
 	$hud/HBoxContainer/Option3.visible = true
 	$hud/HBoxContainer/VSeparator.visible = true
 	$hud/HBoxContainer/VSeparator2.visible = true
+	question_timer.visible = true
 	
 func _on_PopupTimer_timeout():
 	correct_popup.hide()
