@@ -37,6 +37,7 @@ func _ready():
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	connect_option_signals()
 	display_options_level1()
+	$hud/Button.visible = false
 	# Connect the projectile_finished signal to update options when the projectile is shot
 	$enemy.connect("projectile_finished", _on_projectile_finished)
 

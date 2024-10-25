@@ -36,6 +36,7 @@ func _ready():
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
 	connect_option_signals()
+	$hud/Button.visible = false
 	# Display options when the scene is loaded
 	display_options_level3()
 
