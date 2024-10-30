@@ -8,10 +8,10 @@
 [ext_resource type="Material" uid="uid://63cgipkhpvem" path="res://World/water.tres" id="4_u4275"]
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
-[ext_resource type="AudioStream" uid="uid://cqu7hklt24uhv" path="res://Assets/Sounds/game-sound.wav" id="9_lsv7q"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="10_xmbsr"]
 [ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="11_p1rv0"]
 [ext_resource type="AudioStream" uid="uid://c4yluin1nompb" path="res://Assets/Sounds/failure_sound.wav" id="12_ofye4"]
+[ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="13_t8e2m"]
 
 [sub_resource type="Environment" id="Environment_0qi0o"]
 background_mode = 3
@@ -113,7 +113,7 @@ one_shot = true
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_lsv7q")
+stream = ExtResource("13_t8e2m")
 autoplay = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -246,7 +246,7 @@ stream = ExtResource("12_ofye4")
 one_shot = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_lsv7q")
+stream = ExtResource("13_t8e2m")
 autoplay = true
 
 [node name="HTTPRequest2" type="HTTPRequest" parent="."]

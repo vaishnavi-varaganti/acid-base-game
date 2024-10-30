@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_nrrgv"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_sjy2v"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_lar54"]
-[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="5_2h582"]
+[ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="5_pu1iv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x828l"]
 
@@ -102,7 +102,7 @@ text = "Exit
 "
 
 [node name="GameSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_2h582")
+stream = ExtResource("5_pu1iv")
 autoplay = true
 
 [connection signal="pressed" from="Panel/PanelContainer/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]

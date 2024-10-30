@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_f8v5u"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_0ri5x"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="4_cs4xc"]
-[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="6_rps2v"]
+[ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="6_vk4jv"]
 
 [sub_resource type="GDScript" id="GDScript_gb3e0"]
 script/source = "extends CanvasLayer
@@ -190,7 +190,7 @@ stream = ExtResource("4_cs4xc")
 stream = ExtResource("4_cs4xc")
 
 [node name="GameSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_rps2v")
+stream = ExtResource("6_vk4jv")
 autoplay = true
 
 [connection signal="pressed" from="menu/ActionContainer/Button" to="." method="_on_button_pressed"]
