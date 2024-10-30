@@ -82,7 +82,7 @@ func display_options_level4():
 func format_option_text(option: String) -> String:
 	var formatted = "[center][font_size=30]"
 	for char in option:
-		if '0' <= char and char <= '9': 
+		if char in "0123456789": 
 			formatted += "[font_size=14]" + char + "[/font_size]"
 		else:
 			formatted += char
