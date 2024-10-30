@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dmww8qsb15kfy" path="res://Assets/Animations/Player/adventurer-idle-01.png" id="8_8a45m"]
 [ext_resource type="Shader" path="res://blur.gdshader" id="8_26llr"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="13_7217t"]
-[ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="14_q0t3k"]
+[ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="14_n56ds"]
 [ext_resource type="FontFile" uid="uid://dn22uj0hn2mrl" path="res://Clayborn.ttf" id="15_7w6l8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtd2u"]
@@ -391,7 +391,7 @@ theme_override_font_sizes/font_size = 30
 stream = ExtResource("13_7217t")
 
 [node name="GameSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_q0t3k")
+stream = ExtResource("14_n56ds")
 autoplay = true
 
 [node name="TitleContainer" type="HBoxContainer" parent="."]
