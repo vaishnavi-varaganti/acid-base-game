@@ -46,13 +46,9 @@ text = "
 [font_size=40] [color=green] First level is Recognizing bases [/color] [/font_size][/center]
 
 
-[font_size=20]	If you see a formula that ends with \"OH,\" like NaOH or KOH, it’s a clue that the compound is a base.[/font_size]
-
-[font_size=20]	The \"OH\" stands for hydroxide, and when the compound is mixed with water, it releases OH⁻ ions, which make the substance basic.[/font_size]
-
-[font_size=20]	For example, NaOH is sodium hydroxide, a strong base commonly used in cleaning products.[/font_size]
-
-[font_size=20]	If you see a metal combined with oxygen, like in CaO (calcium oxide), this can also indicate a base. When mixed with water, it forms a basic solution.[/font_size]
+[font_size=20]		In Level I you will need to identify the formulas of bases. Most anions (negatively charged ions) can accept protons and are bases. For example, Na2CO3 is a base since it contains the carbonate anion, and CaO is a base since it contains the oxide ion. There are six anions that are such weak bases that we say that they are not bases: Cl-, Br-, I-, NO3-, ClO4-, and HSO4-. 
+		Also, molecular compounds that contain a nitrogen atom are bases. For example, NH3 is a base. However, if the compound that contains a nitrogen atom has a positive charge, such as with NH4+, it is not a base since it has already accepted an H+. 
+[/font_size]
 "
 fit_content = true
 
