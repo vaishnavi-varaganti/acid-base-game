@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjr8twi1l5kkb"]
+[gd_scene load_steps=13 format=3 uid="uid://bjr8twi1l5kkb"]
 
 [ext_resource type="Script" path="res://Projectiles/enemy_projectile.gd" id="1_wfft1"]
 [ext_resource type="Shader" path="res://World/inverse.gdshader" id="2_hbmdt"]
 [ext_resource type="Texture2D" uid="uid://brke4mdx0bp11" path="res://Assets/Animations/Duck/Bullet.png" id="2_qywfp"]
 [ext_resource type="PackedScene" uid="uid://cbcejnjl5loqx" path="res://Projectiles/AcidParticles.tscn" id="3_vj87b"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_0u6th"]
 [ext_resource type="PackedScene" uid="uid://67i2vl4bnmhs" path="res://Projectiles/BaseParticles.tscn" id="4_227i0"]
 [ext_resource type="PackedScene" uid="uid://dlesnyxd1hc3b" path="res://Projectiles/NeutralParticles.tscn" id="5_ri4ve"]
 
@@ -44,6 +45,7 @@ offset_bottom = 15.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 0
 theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("4_0u6th")
 bbcode_enabled = true
 
 [node name="Hurtbox" type="Area2D" parent="."]

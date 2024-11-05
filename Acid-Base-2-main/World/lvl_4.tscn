@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cptb8iloglfde"]
+[gd_scene load_steps=17 format=3 uid="uid://cptb8iloglfde"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Characters/player_lvl_1.tscn" id="1_0511s"]
 [ext_resource type="Script" path="res://World/lvl_4.gd" id="1_rged2"]
@@ -9,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://bpjprpu1i2yu0" path="res://World/lvl_4.tres" id="5_duct7"]
 [ext_resource type="PackedScene" uid="uid://cei4ksh8r3g52" path="res://World/hud.tscn" id="8_eyruw"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="10_xmbsr"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="11_4ouf2"]
 [ext_resource type="AudioStream" uid="uid://cdiigcmyv3ix6" path="res://Assets/Sounds/success_sound.wav" id="11_p1rv0"]
 [ext_resource type="AudioStream" uid="uid://c4yluin1nompb" path="res://Assets/Sounds/failure_sound.wav" id="12_ofye4"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="13_t8e2m"]
@@ -135,13 +136,14 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = 15.0
+offset_top = 10.0
 offset_right = -5.0
-offset_bottom = -5.0
+offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("11_4ouf2")
 bbcode_enabled = true
 
 [node name="Option2" type="Button" parent="HBoxContainer"]
@@ -155,13 +157,14 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = 15.0
+offset_top = 10.0
 offset_right = -5.0
-offset_bottom = -5.0
+offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("11_4ouf2")
 bbcode_enabled = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -181,13 +184,14 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = 15.0
+offset_top = 10.0
 offset_right = -5.0
-offset_bottom = -5.0
+offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("11_4ouf2")
 bbcode_enabled = true
 
 [node name="correctPopup" type="Popup" parent="."]
