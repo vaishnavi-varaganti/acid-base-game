@@ -21,75 +21,54 @@ var duration = 15.0
 var dodging = false
 var returning = false
 
+# Timer to manage animation duration
+var animation_timer := Timer.new()
+
 # --------- FUNCTIONS ---------- #
+func _ready():
+	add_child(animation_timer)
+	animation_timer.connect("timeout", _on_animation_timeout)
+
 func _physics_process(_delta):
 	movement(_delta)
-	
+
 	# Handle jumping logic after question
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		pass
-	
+
 	# Fall logic when in the air
 	elif !is_on_floor() and anim.animation != "Jump" and not dodging and not returning:
-		#anim.play("Fall")
 		pass
-		
+
 	elif is_on_floor() and anim.animation == "Fall":
 		anim.play("Idle") 
-	
-	# Dodging and returning logic remains
-	#if dodging:
-		#t += _delta / duration
-		#var q0 = positionA.lerp(positionC, min(t, 1.0))
-		#var q1 = positionC.lerp(positionB, min(t, 1.0))
-		#self.position = q0.lerp(q1, min(t, 1.0))
-		#anim.flip_h = true
-		#if self.position.distance_to(positionB) < 0.01:
-			#anim.play("Wall_Cling")
-			#await get_tree().create_timer(0.5).timeout
-			#t = 0.0
-			#anim.flip_h = false
-			#dodging = false
-			#returning = true
-			
-	#elif returning:
-		#anim.play("Dodge")
-		#t += _delta / duration
-		#var q0 = positionB.lerp(positionC, min(t, 1.0))
-		#var q1 = positionC.lerp(positionA, min(t, 1.0))
-		#self.position = q0.lerp(q1, min(t, 1.0))
-		#if self.position.distance_to(positionA) < 0.01:
-			#anim.play("Idle")
-			#returning = false
-			#positionA = self.position
-			#t = 0.0
 
 # Handles animations to ensure no overwriting ongoing animations
-func _on_AnimatedSprite_animation_finished(): 
-	pass
-		
+func _on_AnimatedSprite_animation_finished():
+	if anim.animation == "Dodge" or anim.animation == "Hit":  # Replace with "Hit" if using a different hit animation
+		anim.play("Idle")  # Return to Idle after the dodge or hit animation
+
 func movement(delta):
-	
-	if not is_on_floor():# Simple Gravity Calculation
+	if not is_on_floor():  # Simple Gravity Calculation
 		velocity.y += gravity * delta
-	
+
 	# Allow player to move
 	var inputAxis = Input.get_axis("Left", "Right")
 	velocity = Vector2(inputAxis * move_speed, velocity.y)
 	move_and_slide()
 
-func jump():# Player jump function
+func jump():  # Player jump function
 	if is_on_floor():
 		jump_tween()
 	velocity.y = -jump_force
 
-func flip_player(): # Flips sprite for dodging and wall-clinging
+func flip_player():  # Flips sprite for dodging and wall-clinging
 	if velocity.x < 0:
 		anim.flip_h = true
 	elif velocity.x > 0:
 		anim.flip_h = false
 
-func death_tween(): # Updates lives upon death, uses tween to shrink the character
+func death_tween():  # Updates lives upon death, uses tween to shrink the character
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
 	await tween.finished
@@ -101,20 +80,23 @@ func death_tween(): # Updates lives upon death, uses tween to shrink the charact
 	if lives > 0:
 		respawn_tween()
 
-func respawn_tween(): # Respawns the player, resizing back to full size
+func respawn_tween():  # Respawns the player, resizing back to full size
 	anim.material.set_shader_parameter("active", false)
 	var tween = create_tween()
 	tween.stop(); tween.play()
 	tween.tween_property(self, "scale", Vector2.ONE, 0.15) 
-	
-func jump_tween(): # Stretches out the player when jumping, making it look realistic
+
+func jump_tween():  # Stretches out the player when jumping, making it look realistic
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(0.65, 1.2), 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
 
-func ouch(): # When hit, inverts colors, freezes the game, and kills the player
-	anim.material.set_shader_parameter("active", false)
-	set_physics_process(false)
-	await get_tree().create_timer(0.1).timeout
-	#death_tween()
-	set_physics_process(true)
+func ouch():  # Plays the dodge animation in the air, then transitions to idle
+	velocity.y = -400  
+	anim.play("Dodge")
+	anim.material.set_shader_parameter("active", false) 
+	animation_timer.start(4) 
+
+func _on_animation_timeout():
+	velocity.y = 0 
+	anim.play("Idle") 
