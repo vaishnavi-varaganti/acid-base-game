@@ -26,7 +26,7 @@ var wrong_answer_count = 0
 @onready var timer = $QuestionTimer
 @onready var wrong_popup_label = $wrongPopup/wrong
 var timer_expired = false
-
+@onready var player = $player_Lvl1
 
 # --------- FUNCTIONS ---------- #
 
@@ -108,6 +108,7 @@ func check_answer(selected_option: String):
 	
 	if selected_option == Global.correct_answer:
 		print("Correct Answer!!!")
+		player.ouch()
 		correct_popup.popup_centered()
 		$correctPopup/Success_Sound.play()
 		# Highlight correct answer visually (optional, e.g., change button color or text)
