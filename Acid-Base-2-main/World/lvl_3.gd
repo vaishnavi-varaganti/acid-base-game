@@ -33,6 +33,7 @@ var timer_expired = false
 
 func _ready():
 	Global.question_number = 0
+	Global.current_level = 3
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
@@ -244,6 +245,7 @@ func gameover():
 		$hud/Control/GameOverScreen/VBoxContainer/Restart.disabled = false
 	if victory:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
+		Global.level3Cleared = true
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
@@ -278,8 +280,10 @@ func restart():
 	score = 0
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"
+	Global.level3Score = 0
 	Global.level3_correctAnswers = 0
 	Global.question_number = 1
+	Global.level3Cleared = false
 	update_lives(6)
 	$player_Lvl1.set_position(Vector2(155, -300))
 	$player_Lvl1.respawn_tween()
