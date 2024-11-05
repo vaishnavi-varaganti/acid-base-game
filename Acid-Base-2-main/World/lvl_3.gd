@@ -47,7 +47,7 @@ func display_options_level3():
 	var wrong_option1 = ""
 	var wrong_option2 = ""
 	await get_tree().create_timer(1.5).timeout
-	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number)
+	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number) +"/10"
 	
 	# Reset button colors
 	$hud/HBoxContainer/Option1.modulate = Color(1, 1, 1)
