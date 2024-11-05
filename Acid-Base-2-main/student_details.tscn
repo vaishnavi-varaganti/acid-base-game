@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d23x8yrwvrn4i"]
+[gd_scene load_steps=10 format=3 uid="uid://d23x8yrwvrn4i"]
 
 [ext_resource type="Script" path="res://student_details.gd" id="1_4onav"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_e4oxy"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_f8v5u"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_0ri5x"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="4_cs4xc"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="5_cs38k"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="6_vk4jv"]
 
 [sub_resource type="GDScript" id="GDScript_gb3e0"]
@@ -108,10 +109,11 @@ custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
 [node name="firstnametext" type="TextEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/Firstnamecontainer"]
-custom_minimum_size = Vector2(275, 35)
+custom_minimum_size = Vector2(280, 35)
 layout_mode = 2
 theme = ExtResource("3_0ri5x")
-placeholder_text = "enter first name"
+theme_override_fonts/font = ExtResource("5_cs38k")
+placeholder_text = "ENTER FIRST NAME"
 scroll_fit_content_height = true
 
 [node name="lastnamecontainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
@@ -129,9 +131,10 @@ custom_minimum_size = Vector2(38, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/lastnamecontainer"]
-custom_minimum_size = Vector2(275, 35)
+custom_minimum_size = Vector2(280, 35)
 layout_mode = 2
-placeholder_text = "enter last name"
+theme_override_fonts/font = ExtResource("5_cs38k")
+placeholder_text = "ENTER LAST NAME"
 
 [node name="sidcontainer" type="HBoxContainer" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(500, 0)
@@ -147,9 +150,10 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="menu/Panel/PanelContainer/VBoxContainer2/sidcontainer"]
-custom_minimum_size = Vector2(275, 35)
+custom_minimum_size = Vector2(280, 35)
 layout_mode = 2
-placeholder_text = "enter student id"
+theme_override_fonts/font = ExtResource("5_cs38k")
+placeholder_text = "ENTER STUDENT ID"
 
 [node name="Control" type="Control" parent="menu/Panel/PanelContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 20)
