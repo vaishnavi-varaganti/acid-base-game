@@ -1,5 +1,27 @@
 extends CanvasLayer
 
+func _ready():
+	if Global.current_level == 1:
+		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level2.disabled = true
+		$Panel/PanelContainer/VBoxContainer/Level3.disabled = true
+		$Panel/PanelContainer/VBoxContainer/Level4.disabled = true
+	elif Global.level1Cleared == true:
+		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level2.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level3.disabled = true
+		$Panel/PanelContainer/VBoxContainer/Level4.disabled = true
+	elif Global.level2Cleared == true:
+		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level2.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level3.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level4.disabled = true
+	elif Global.level3Cleared == true:
+		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level2.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level3.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level4.disabled = false
+	
 func _on_level_1_pressed():
 	Global.current_level = 1
 	get_tree().change_scene_to_file("res://World/mainlevelmenu.tscn")

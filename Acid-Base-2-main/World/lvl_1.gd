@@ -33,6 +33,7 @@ var timer_expired = false
 
 func _ready():
 	$hud/TitleContainer/Title.text = "IDENTIFY THE BASE"
+	Global.current_level = 1
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + current_value
 	http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
@@ -251,6 +252,7 @@ func gameover():
 	# Set Game Over text depending on victory or not
 	if victory:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
+		Global.level1Cleared = true
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
@@ -286,6 +288,7 @@ func restart():
 	Global.level1Score = 0
 	Global.question_number = 0
 	Global.level1_correctAnswers = 0
+	Global.level1Cleared = false
 	score = 0
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"

@@ -4,6 +4,7 @@ extends Control
 
 
 func _on_start_game_pressed():
+	Global.current_level = 3
 	get_tree().change_scene_to_file("res://World/lvl_3.tscn") # Replace with function body.
 
 

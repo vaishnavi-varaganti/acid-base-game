@@ -32,6 +32,7 @@ var timer_expired = false
 
 func _ready():
 	$hud/TitleContainer/Title.text = "IDENTIFY THE ACID"
+	Global.current_level = 2
 	Global.question_number = 0
 	print($hud/PanelContainer/HBoxContainer/Level.text)
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
@@ -240,6 +241,7 @@ func gameover():
 	# Set Game Over text depending on victory or not
 	if victory:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Win!"
+		Global.level2Cleared = true
 	else:
 		$hud/Control/GameOverScreen/VBoxContainer/GameOverText.text = "You Lost"
 	$hud/Control/VictoryAnims.show()
@@ -274,6 +276,7 @@ func restart():
 	Global.level2Score = 0
 	Global.question_number = 1
 	Global.level2_correctAnswers = 0
+	Global.level2Cleared = false
 	score = 0
 	$hud/PanelContainer/HBoxContainer/ProgressBar.value = 0
 	$hud/PanelContainer/HBoxContainer/Score.text = "Score: 0"

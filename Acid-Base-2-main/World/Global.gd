@@ -1,6 +1,6 @@
 extends Node
 
-var current_level = 0
+var current_level = 1
 var acidArray = []
 var baseArray = []
 var compoundArray = []
@@ -25,7 +25,9 @@ var firstName = ""
 var lastName = ""
 var sid = ""
 var user_id = ""
-
+var level1Cleared = false
+var level2Cleared = false
+var level3Cleared = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(http_request)  # Add the HTTPRequest node dynamically to the scene tree
