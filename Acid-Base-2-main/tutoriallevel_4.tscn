@@ -46,13 +46,7 @@ text = "
 [center][font_size=40] [color=green] Fourth level is Balancing the equations [/color][/font_size][/center]
 
 
-[font_size=20]	(a) Ensure the reactants are an acid and a base.[/font_size]
-
-[font_size=20]	(b) For a base that is an anion, add the appropriate number of H+ ions based on its charge (e.g., CN- accepts 1 H+, CO32- accepts 2 H+). [/font_size]
-
-[font_size=20]	(c) Combine the leftover cation from the base and the leftover anion from the acid to form the other product. [/font_size]
-
-[font_size=20]	(d) Balance the equation, ensuring that both sides have the same total number of each compound. [/font_size]
+[font_size=20]	Choose the correct products of the acid-base reaction. Note that the reactions are not balanced. [/font_size]
 "
 fit_content = true
 
