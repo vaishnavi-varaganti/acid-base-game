@@ -47,7 +47,7 @@ func _ready():
 func display_options_level4():
 	option_selected = false
 	start_question_timer()
-	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number + 1)
+	$hud/QuestionContainer/QuestionNumber.text = "Question - " + str(Global.question_number + 1) +"/10"
 	
 	# Reset all option button colors to default 
 	$HBoxContainer/Option1.modulate = Color(1, 1, 1)  
