@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cei4ksh8r3g52"]
+[gd_scene load_steps=20 format=3 uid="uid://cei4ksh8r3g52"]
 
 [ext_resource type="Texture2D" uid="uid://dxm7xv0oixqie" path="res://healthFull.png" id="1_2t3f8"]
 [ext_resource type="Script" path="res://World/hud.gd" id="1_r5ayd"]
@@ -15,6 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="13_7217t"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="14_n56ds"]
 [ext_resource type="FontFile" uid="uid://dn22uj0hn2mrl" path="res://Clayborn.ttf" id="15_7w6l8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fipcu"]
+bg_color = Color(0, 0.807843, 0.0470588, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtd2u"]
 shader = ExtResource("8_26llr")
@@ -126,9 +129,10 @@ layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="PanelContainer/HBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(200, 10)
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_fipcu")
 
 [node name="VSeparator4" type="VSeparator" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(15, 30)
