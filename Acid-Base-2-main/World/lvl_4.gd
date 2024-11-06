@@ -226,6 +226,9 @@ func update_lives(new_lives: int):
 	
 func _on_projectile_finished():
 	player_dead = false
+	player.jump()
+	await get_tree().create_timer(1.0).timeout
+	player.ouch()
 	var index = get_node("/root/Global")
 	index.set_reaction_index()
 	# Update the options every time the projectile is fired
