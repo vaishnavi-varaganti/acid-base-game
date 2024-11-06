@@ -229,6 +229,9 @@ func update_lives(new_lives: int):
 		gameover()
 
 func _on_projectile_finished():
+	player.jump()
+	await get_tree().create_timer(1.0).timeout
+	player.ouch()
 	player_dead = false
 	display_options_level3()
 	check_victory()
