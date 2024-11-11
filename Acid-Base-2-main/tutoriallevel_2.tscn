@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://e4v8ccm62wtn"]
+[gd_scene load_steps=6 format=3 uid="uid://e4v8ccm62wtn"]
 
 [ext_resource type="Script" path="res://tutoriallevel_2.gd" id="1_12rxy"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_a0wb0"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_cmd3y"]
 [ext_resource type="Script" path="res://World/tutorial3.gd" id="3_ghu0b"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_p52qr"]
 
 [node name="tutoriallevel_2" type="Control"]
 layout_mode = 3
@@ -32,32 +33,22 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
+offset_left = 11.0
 offset_right = 960.0
-offset_bottom = 327.0
+offset_bottom = 472.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_p52qr")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
+[center][font_size=64] [color=beige]LEVEL II TUTORIAL[/color][/font_size]
 
-[center][font_size=64] [color= light green]LEVEL 2 TUTORIAL[/color][/font_size]
+[font_size=40] [color=red] Recognizing acids [/color] [/font_size][/center]
 
-
-
-[font_size=40] [color=green] Second level is Recognizing acids [/color] [/font_size][/center]
-
-
-[font_size=20]	If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. [/font_size]
-
-[font_size=20]	This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion.[/font_size]
-
-[font_size=20]	This is what makes the substance acidic.[/font_size]
-
-[font_size=20]	For example, HCl is hydrochloric acid, which is a strong acid found in your stomach.[/font_size]
-
-[font_size=20] 	If you see “COOH” in the formula, that’s another sign of an acid![/font_size]
-
-[font_size=20]	The “COOH” part is called a carboxyl group, and it shows up in many acids.[/font_size]
+[font_size=22] [color=mistyrose]	If you see a formula that begins with “H”, like HCl, it’s a clue that the compound is an acid. This \"H\" stands for hydrogen, and when the compound is mixed with water, this hydrogen leaves the compound as an H⁺ ion. That is what makes the substance acidic.
+For example, HCl is hydrochloric acid, which is a strong acid found in your stomach.
+If you see “COOH” in the formula, that’s another sign of an acid! and the “COOH” part is called a carboxyl group, and it shows up in many acids.[/color][/font_size]
 "
 fit_content = true
 
