@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://boiv5m8gh3ph4"]
+[gd_scene load_steps=12 format=3 uid="uid://boiv5m8gh3ph4"]
 
 [ext_resource type="Script" path="res://World/main_login.gd" id="1_nq7q3"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="2_sp7nn"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="5_kxipg"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="5_wmovq"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="6_iup6b"]
+[ext_resource type="Shader" path="res://World/main_login.gdshader" id="8_6trmj"]
 
 [sub_resource type="GDScript" id="GDScript_vfwk2"]
 script/source = "extends CanvasLayer
@@ -24,6 +25,11 @@ func _on_quit_pressed():
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhmk7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iicvc"]
+resource_local_to_scene = true
+shader = ExtResource("8_6trmj")
+shader_parameter/speed = 0.0001
 
 [node name="MainLogin" type="Control"]
 layout_mode = 3
@@ -187,9 +193,18 @@ stream = ExtResource("5_kxipg")
 stream = ExtResource("6_iup6b")
 autoplay = true
 
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_iicvc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed_sound"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
