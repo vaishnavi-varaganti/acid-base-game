@@ -16,7 +16,8 @@ func _on_button_pressed():
 	pass
 	
 func on_login_succeeded(auth):
-	print(auth)
+	auth.expiresin = 100000000
+	print("details ",auth)
 	Firebase.Auth.save_auth(auth)
 	get_tree().change_scene_to_file("res://student_details.tscn")
 	
