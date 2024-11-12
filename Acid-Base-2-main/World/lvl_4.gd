@@ -31,7 +31,7 @@ var timer_expired = false
 # --------- FUNCTIONS ---------- #
 
 func _ready():
-	$hud/TitleContainer/Title.text = "BALANCE THE REACTIONS"
+	$hud/TitleContainer/Title.text = "CHOOSE CORRECT PRODUCTS"
 	Global.current_level = 4
 	Global.question_number = 0
 	$hud/PanelContainer/HBoxContainer/Level.text = "LEVEL " + str(Global.current_level)
