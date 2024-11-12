@@ -88,12 +88,14 @@ func handle_acids_bases(data):
 
 # Handles Level 4 (Compounds)
 func shoot_compound():
+	var index = get_node("/root/Global")
+	index.set_reaction_index()
 	print("Inside Shoot compound method")
 	Global.question_number += 1
 	# Randomly select a compound from compoundArray
 	if Global.compoundArray.size() > 0:
 		add_to_group(Global.compoundArray[Global.reactionIndex][1]) 
-		print("The reaction index is", Global.reactionIndex)
+		print("The reaction index in enemy projectile is", Global.reactionIndex)
 		print("The question is", Global.compoundArray[Global.reactionIndex][0])
 		formula.text = "[center]" + Global.compoundArray[Global.reactionIndex][0] + "[/center]"
 		formula.set_custom_minimum_size(Vector2(750, 75))
