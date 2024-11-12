@@ -33,7 +33,7 @@ layout_mode = 2
 layout_mode = 2
 offset_left = 13.0
 offset_right = 999.0
-offset_bottom = 581.0
+offset_bottom = 721.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("3_jmx5y")
@@ -45,8 +45,8 @@ text = "
 
 [center][font_size=40] [color=white]Recognizing [color=red]Acids[/color] and [color=skyblue]Bases [/color][/color][/font_size][/center]
 
-[font_size=22][color=mistyrose]	~If an acid is being shot at you in this level, identify the base that you can use to defend yourself. 
-      ~If a base is being shot at you in this level, identify the acid that you can use to defend yourself. [/color]
+[font_size=22][color=mistyrose]	If an acid is being shot at you in this level, identify the base that you can use to defend yourself. 
+      If a base is being shot at you in this level, identify the acid that you can use to defend yourself. [/color]
 
 
 
@@ -64,10 +64,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -220.0
-offset_right = 50.0
-offset_bottom = -150.0
+offset_left = -130.0
+offset_top = -163.0
+offset_right = 132.0
+offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_kep50")
