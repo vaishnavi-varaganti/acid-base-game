@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6007g5fj3t22"]
+[gd_scene load_steps=5 format=3 uid="uid://c6007g5fj3t22"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_3ly1n"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_kep50"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="3_jmx5y"]
 [ext_resource type="Script" path="res://World/tutorial3.gd" id="3_p0g1e"]
 
 [node name="tutoriallevel_3" type="Control"]
@@ -30,23 +31,22 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_right = 960.0
-offset_bottom = 327.0
+offset_left = 13.0
+offset_right = 999.0
+offset_bottom = 581.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_jmx5y")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64][color=light green]LEVEL 3 TUTORIAL[/color][/font_size][/center]
+[center][font_size=64][color=beige] LEVEL III TUTORIAL[/color][/font_size][/center]
 
+[center][font_size=40] [color=white]Recognizing [color=red]Acids[/color] and [color=skyblue]Bases [/color][/color][/font_size][/center]
 
-[center][font_size=40] [color=green] Third  level is Recognizing Acids and Bases [/color][/font_size][/center]
-
-
-[font_size=20]	If an acid is being shot at you in this level, identify the base that you can use to defend yourself. 
-
-	If a base is being shot at you in this level, identify the acid that you can use to defend yourself. 
+[font_size=22][color=mistyrose]	~If an acid is being shot at you in this level, identify the base that you can use to defend yourself. 
+      ~If a base is being shot at you in this level, identify the acid that you can use to defend yourself. [/color]
 
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbnb3axgv1p0g"]
+[gd_scene load_steps=5 format=3 uid="uid://dbnb3axgv1p0g"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_pmlav"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_fg8or"]
 [ext_resource type="Script" path="res://tutoriallevel1.gd" id="3_mi1tt"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="3_sdqei"]
 
 [node name="tutooriallevel1" type="Control"]
 layout_mode = 3
@@ -30,26 +31,22 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_left = 1.0
+offset_left = 14.0
 offset_right = 993.0
 offset_bottom = 472.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_sdqei")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
+[center][font_size=64] [color= beige]LEVEL I TUTORIAL[/color][/font_size]
 
+[font_size=40] [color=skyblue] Recognizing bases [/color] [/font_size][/center]
 
-[center][font_size=64] [color= light green]LEVEL 1 TUTORIAL[/color][/font_size]
-
-
-[font_size=40] [color=green] First level is Recognizing bases [/color] [/font_size][/center]
-
-
-[font_size=20]		In Level I you will need to identify the formulas of bases. Most anions (negatively charged ions) can accept protons and are bases. For example, Na2CO3 is a base since it contains the carbonate anion, and CaO is a base since it contains the oxide ion. There are six anions that are such weak bases that we say that they are not bases: Cl-, Br-, I-, NO3-, ClO4-, and HSO4-. 
-		Also, molecular compounds that contain a nitrogen atom are bases. For example, NH3 is a base. However, if the compound that contains a nitrogen atom has a positive charge, such as with NH4+, it is not a base since it has already accepted an H+. 
-[/font_size]
-"
+[font_size=22][color=mistyrose]	In Level I you will need to identify the formulas of bases. Most anions (negatively charged ions) can accept protons and are bases. For example, Na2CO3 is a base since it contains the carbonate anion, and CaO is a base since it contains the oxide ion. There are six anions that are such weak bases that we say that they are not bases: Cl-, Br-, I-, NO3-, ClO4-, and HSO4-. 
+		Also, molecular compounds that contain a nitrogen atom are bases. For example, NH3 is a base. However, if the compound that contains a nitrogen atom has a positive charge, such as with NH4+, it is not a base since it has already accepted an H+. [/color]
+[/font_size]"
 fit_content = true
 
 [node name="Button" type="Button" parent="."]
