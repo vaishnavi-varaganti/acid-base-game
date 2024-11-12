@@ -29,7 +29,7 @@ func _on_quit_pressed():
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iicvc"]
 resource_local_to_scene = true
 shader = ExtResource("8_6trmj")
-shader_parameter/speed = 0.0001
+shader_parameter/speed = 0.5
 
 [node name="MainLogin" type="Control"]
 layout_mode = 3
@@ -204,7 +204,7 @@ grow_vertical = 2
 
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed_sound"]
