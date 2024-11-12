@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqv3rm3oytuh6"]
+[gd_scene load_steps=5 format=3 uid="uid://bqv3rm3oytuh6"]
 
 [ext_resource type="Script" path="res://tutoriallevel_4.gd" id="1_a7d1m"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_r87ew"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_6cre8"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_kqycm"]
 
 [node name="tutoriallevel_4" type="Control"]
 layout_mode = 3
@@ -31,22 +32,23 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_left = 1.0
-offset_right = 961.0
+offset_left = 15.0
+offset_right = 1005.0
 offset_bottom = 717.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_kqycm")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64][color=light green]LEVEL 4 TUTORIAL[/color][/font_size][/center]
+[center][font_size=64][color=beige]LEVEL IV TUTORIAL[/color][/font_size][/center]
 
 
-[center][font_size=40] [color=green] Fourth level is Balancing the equations [/color][/font_size][/center]
+[center][font_size=40] [color=white] Choose the correct products [/color][/font_size][/center]
 
 
-[font_size=20]	Choose the correct products of the acid-base reaction. Note that the reactions are not balanced. [/font_size]
+[font_size=22][color=mistyrose]  Choose the correct products of the acid-base reaction (Note that the reactions are not balanced.).[/color] [/font_size]
 "
 fit_content = true
 
@@ -57,10 +59,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -139.0
-offset_top = -92.0
-offset_right = 123.0
-offset_bottom = -27.0
+offset_left = -136.0
+offset_top = -140.0
+offset_right = 126.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_6cre8")
