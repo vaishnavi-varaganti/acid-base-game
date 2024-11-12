@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpbbhcbxn512l"]
+[gd_scene load_steps=5 format=3 uid="uid://cpbbhcbxn512l"]
 
 [ext_resource type="Script" path="res://World/tutorial.gd" id="1_jcemv"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_uy4lp"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_7c4lv"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_y4byc"]
 
 [node name="tutorial" type="CanvasLayer"]
 script = ExtResource("1_jcemv")
@@ -26,31 +27,27 @@ layout_mode = 2
 
 [node name="Basics" type="RichTextLabel" parent="PanelContainer/ScrollContainer/Control"]
 layout_mode = 2
-offset_right = 960.0
-offset_bottom = 327.0
+offset_left = 19.0
+offset_right = 989.0
+offset_bottom = 561.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_y4byc")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
 
-[center][font_size=64] [color=red]	About the Game [/color][/font_size][/center]
+[center][font_size=64][color=red]	About the Game [/color][/font_size][/center]
 
-[font_size=18][color=deepskyblue]	The Acid-Base Game is a 2D interactive educational game developed using the Godot Engine.[/color][/font_size]
+[font_size=22][color=skyblue]The Acid-Base Game is a 2D interactive educational game developed using the Godot Engine.[/color][/font_size]
+[font_size=22][color=deepskyblue]The Game Contains Four Levels.[/color][/font_size]
+[font_size=22][color=skyblue]	 ~In Level 1, the duck shoots acids, the  player must select the base to neutralize the attack. [/color][/font_size]
+[font_size=22][color=skyblue]	 ~In Level 2 switches roles with the duck shooting bases, requiring players to choose the acid.[/color][/font_size]
+[font_size=22][color=skyblue]     ~In Level 3, the duck randomly shoots either acids or bases, demanding responses from players.[/color][/font_size]
+[font_size=22][color=skyblue]      ~In Level 4, the player must balance chemical reactions.[/color][/font_size]
 
-[font_size=18][color=deepskyblue]	The Game Contains Four Levels.[/color][/font_size]
-
-[font_size=18][color=deepskyblue]	In Level 1, the duck shoots acids, the  player must select the base to neutralize the attack. [/color][/font_size]
-
-[font_size=18][color=deepskyblue]	Level 2 switches roles with the duck shooting bases, requiring players to choose the acid.[/color][/font_size]
-
-[font_size=18][color=deepskyblue]       In Level 3, the duck randomly shoots either acids or bases, demanding responses from players.[/color][/font_size]
-
-[font_size=18][color=deepskyblue]       In Level 4, the player must balance chemical reactions.[/color][/font_size]
-
-[font_size=18][color=deepskyblue]	each level consists of 10 questions.[/color][/font_size]
-
-[font_size=18][color=deepskyblue]	if the user answers 7 questions correctly, the user qualifies  to the next level.[/color][/font_size]
+[font_size=22][color=skyblue]Each level consists of 10 questions.[/color][/font_size]
+[font_size=22][color=skyblue]If the user answers 7 questions correctly, the user qualifies  to the next level.[/color][/font_size]
 
 "
 fit_content = true
@@ -61,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -92.5
-offset_top = -70.0
-offset_right = 92.5
-offset_bottom = -48.0
+offset_left = -132.0
+offset_top = -129.0
+offset_right = 144.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_7c4lv")
