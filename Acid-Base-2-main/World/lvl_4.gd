@@ -59,7 +59,7 @@ func display_options_level4():
 	$HBoxContainer/Option2.disabled = false
 	$HBoxContainer2/Option3.disabled = false
 	
-	print("RI is",Global.reactionIndex)
+	print("The reaction Index in level 4 is",Global.reactionIndex)
 	if individualCompoundArray.size() < 3:
 		print("Not enough data in compoundArray to display options")
 		return
@@ -229,8 +229,6 @@ func _on_projectile_finished():
 	player.jump()
 	await get_tree().create_timer(1.0).timeout
 	player.ouch()
-	var index = get_node("/root/Global")
-	index.set_reaction_index()
 	# Update the options every time the projectile is fired
 	display_options_level4()
 	# Call check_victory after the projectile finishes, to ensure game logic continues
