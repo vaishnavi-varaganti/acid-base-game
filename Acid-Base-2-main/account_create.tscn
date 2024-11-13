@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq0w6kohsb7xq"]
+[gd_scene load_steps=12 format=3 uid="uid://cq0w6kohsb7xq"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_hyoc6"]
 [ext_resource type="Script" path="res://Account Create.gd" id="1_vx51a"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="5_1vop0"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="5_54cgf"]
 [ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="6_boate"]
+[ext_resource type="Shader" path="res://account_create.gdshader" id="8_mji4w"]
 
 [sub_resource type="GDScript" id="GDScript_o8nn4"]
 script/source = "extends CanvasLayer
@@ -24,6 +25,11 @@ func _on_quit_pressed():
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ic61"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p83oh"]
+resource_local_to_scene = true
+shader = ExtResource("8_mji4w")
+shader_parameter/speed = 0.5
 
 [node name="Account Create" type="Control"]
 layout_mode = 3
@@ -174,9 +180,18 @@ stream = ExtResource("5_54cgf")
 stream = ExtResource("6_boate")
 autoplay = true
 
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_p83oh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_pressed_sound"]
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/HBoxContainer/Button" to="." method="_on_show_password_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed_sound"]
-[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_button_2_pressed_sound"]
+[connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer2/ActionContainer/Button2" to="." method="_on_cancel_button_pressed"]
