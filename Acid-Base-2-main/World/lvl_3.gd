@@ -12,6 +12,7 @@ signal projectile_finished
 @onready var http_request = $HTTPRequest
 @onready var acidArray = Global.acidArray
 @onready var baseArray = Global.baseArray
+@onready var neitherArray = Global.neitherArray
 @onready var acidShooted = Global.acidShooted
 @onready var baseShooted = Global.baseShooted
 @onready var option1 = $hud/HBoxContainer/Option1
@@ -63,18 +64,18 @@ func display_options_level3():
 	if (Global.question_number % 2 !=0):
 		$hud/TitleContainer/Title.text = "IDENTIFY THE BASE"
 		correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
-		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+		wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
-			wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+			wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	elif (Global.question_number % 2 ==0):
 		$hud/TitleContainer/Title.text = "IDENTIFY THE ACID"
 		correct_option = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
-		wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
+		wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 		while wrong_option1 == correct_option:
-			wrong_option1 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
+			wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 		wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
 		while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 			wrong_option2 = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
