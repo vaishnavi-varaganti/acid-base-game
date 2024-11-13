@@ -13,6 +13,7 @@ signal projectile_finished
 @onready var http_request = $HTTPRequest
 @onready var acidArray = Global.acidArray
 @onready var baseArray = Global.baseArray
+@onready var neitherArray = Global.neitherArray
 @onready var option1 = $hud/HBoxContainer/Option1
 @onready var option2 = $hud/HBoxContainer/Option2
 @onready var option3 = $hud/HBoxContainer/Option3
@@ -55,6 +56,8 @@ func _on_request_completed(result, response_code, headers, body):
 						acidArray.append([entry["Compound"], "Acid"])
 					"Base":
 						baseArray.append([entry["Compound"], "Base"])
+					"Neither":
+						neitherArray.append([entry["Compound"], "Neither"])
 			print("Data fetched and formatted successfully!")
 		else:
 			print("Error parsing JSON: ", parse_result)
@@ -77,9 +80,9 @@ func display_options_level1():
 	$hud/HBoxContainer/Option3.disabled = false
 	
 	var correct_option = Global.baseArray[randi_range(0, baseArray.size() - 1)][0]
-	var wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+	var wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 	while wrong_option1 == correct_option:
-		wrong_option1 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
+		wrong_option1 = Global.neitherArray[randi_range(0, neitherArray.size() - 1)][0]
 	var wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]
 	while wrong_option2 == correct_option or wrong_option2 == wrong_option1:
 		wrong_option2 = Global.acidArray[randi_range(0, acidArray.size() - 1)][0]

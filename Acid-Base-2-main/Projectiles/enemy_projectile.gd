@@ -11,6 +11,7 @@ var acidArray = []
 var baseArray = []
 var compoundArray = []
 var individualCompoundArray = []
+var neitherArray = []
 @onready var http_request = $HTTPRequest
 @onready var formula = $FormulaLabel
 @onready var projectile_sprite = $Sprite2D
@@ -78,6 +79,9 @@ func handle_acids_bases(data):
 			"Base":
 				Global.baseArray.append([entry["Compound"], "Base"])
 				baseArray.append([formatted_compound, "Base"])
+			"Neither":
+				Global.neitherArray.append([entry["Compound"], "Neither"])
+				neitherArray.append([entry["Compound"], "Neither"])
 	match Global.current_level:
 		1:
 			shoot_acid()
@@ -120,7 +124,7 @@ func shoot_acid():
 		add_to_group(acidArray[selection][1])  # Add it to the "Acid" group
 		formula.text = "[center]" + acidArray[selection][0] + "[/center]"
 		formula.set_custom_minimum_size(Vector2(200, 75))
-
+		
 # Shoots base for Level 2
 func shoot_base():
 	if baseArray.size() > 0:

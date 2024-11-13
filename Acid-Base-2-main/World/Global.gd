@@ -5,6 +5,7 @@ var acidArray = []
 var baseArray = []
 var compoundArray = []
 var individualCompoundArray = []
+var neitherArray = []
 var correct_answer = ""  # Variable to store the correct answer for each question
 var acidShooted = false
 var baseShooted = false 
