@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dihjk4i67jg78"]
+[gd_scene load_steps=10 format=3 uid="uid://dihjk4i67jg78"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_gxpix"]
 [ext_resource type="Script" path="res://World/level3menu.gd" id="1_u02ao"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_2505d"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_othyo"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="5_woxni"]
+[ext_resource type="Shader" path="res://World/level3menu.gdshader" id="6_pxo7t"]
 
 [sub_resource type="GDScript" id="GDScript_5gkir"]
 script/source = "extends CanvasLayer
@@ -22,6 +23,11 @@ func _on_quit_pressed():
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1thng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78qof"]
+resource_local_to_scene = true
+shader = ExtResource("6_pxo7t")
+shader_parameter/speed = 0.5
 
 [node name="Level3menu" type="Control"]
 layout_mode = 3
@@ -116,6 +122,12 @@ text = "Quit
 [node name="GameSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_woxni")
 autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_78qof")
+layout_mode = 0
+offset_right = 1010.0
+offset_bottom = 733.0
 
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="menu/Panel/PanelContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
