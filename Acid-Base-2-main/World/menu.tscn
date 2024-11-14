@@ -1,12 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://di8w1a601aass"]
+[gd_scene load_steps=9 format=3 uid="uid://di8w1a601aass"]
 
 [ext_resource type="Script" path="res://World/levelsmenu.gd" id="1_cynw2"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_nrrgv"]
 [ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_sjy2v"]
+[ext_resource type="Shader" path="res://World/menu.gdshader" id="3_ev3dt"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="4_lar54"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="5_pu1iv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x828l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2onf"]
+resource_local_to_scene = true
+shader = ExtResource("3_ev3dt")
+shader_parameter/speed = 0.5
 
 [node name="menu" type="CanvasLayer"]
 script = ExtResource("1_cynw2")
@@ -16,6 +22,15 @@ offset_right = 1000.0
 offset_bottom = 720.0
 theme = ExtResource("1_nrrgv")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_x828l")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+material = SubResource("ShaderMaterial_k2onf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BubbleParticles" parent="Panel" instance=ExtResource("2_sjy2v")]
 texture_filter = 1
