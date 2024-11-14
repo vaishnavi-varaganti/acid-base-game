@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqv3rm3oytuh6"]
+[gd_scene load_steps=7 format=3 uid="uid://bqv3rm3oytuh6"]
 
 [ext_resource type="Script" path="res://tutoriallevel_4.gd" id="1_a7d1m"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_r87ew"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_6cre8"]
+[ext_resource type="Shader" path="res://tutoriallevel_4.gdshader" id="2_s0hk7"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_kqycm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_goixd"]
+shader = ExtResource("2_s0hk7")
+shader_parameter/speed = 0.05
 
 [node name="tutoriallevel_4" type="Control"]
 layout_mode = 3
@@ -13,6 +18,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a7d1m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_goixd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
