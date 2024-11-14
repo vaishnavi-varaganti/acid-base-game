@@ -1,12 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6007g5fj3t22"]
+[gd_scene load_steps=7 format=3 uid="uid://c6007g5fj3t22"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_3ly1n"]
+[ext_resource type="Shader" path="res://World/tutoraillevel_3.gdshader" id="1_cw8xd"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_kep50"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="3_jmx5y"]
 [ext_resource type="Script" path="res://World/tutorial3.gd" id="3_p0g1e"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ujf4n"]
+shader = ExtResource("1_cw8xd")
+shader_parameter/speed = 0.05
+
 [node name="tutoriallevel_3" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ujf4n")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
