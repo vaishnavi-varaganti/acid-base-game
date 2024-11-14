@@ -41,14 +41,11 @@ theme_override_fonts/normal_font = ExtResource("4_kqycm")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "
-
 [center][font_size=64][color=beige]LEVEL IV TUTORIAL[/color][/font_size][/center]
-
 
 [center][font_size=40] [color=white] Choose the correct products [/color][/font_size][/center]
 
-
-[font_size=22][color=mistyrose]  Choose the correct products of the acid-base reaction (Note that the reactions are not balanced.).[/color] [/font_size]
+[font_size=22][color=mistyrose] In this level you need to choose the correct products of the acid-base reaction (Note that the reactions are not balanced.).[/color] [/font_size]
 "
 fit_content = true
 
