@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpbbhcbxn512l"]
+[gd_scene load_steps=8 format=3 uid="uid://cpbbhcbxn512l"]
 
 [ext_resource type="Script" path="res://World/tutorial.gd" id="1_jcemv"]
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_uy4lp"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="2_7c4lv"]
 [ext_resource type="Shader" path="res://World/tutorial.gdshader" id="2_u16w3"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="4_y4byc"]
+[ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="6_yxnpl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oi7wa"]
 resource_local_to_scene = true
@@ -81,5 +82,23 @@ grow_vertical = 0
 theme = ExtResource("2_7c4lv")
 theme_override_font_sizes/font_size = 32
 text = "Return to Menu"
+
+[node name="BubbleParticles" parent="." instance=ExtResource("6_yxnpl")]
+texture_filter = 1
+position = Vector2(500, 800)
+amount = 8
+lifetime = 8.0
+randomness = 0.0
+lifetime_randomness = 0.0
+emission_rect_extents = Vector2(500, 4)
+spread = 3.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 200.0
+initial_velocity_max = 220.0
+angular_velocity_min = 5.0
+linear_accel_min = 0.0
+angle_min = -180.0
+angle_max = 180.0
+color_ramp = null
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
