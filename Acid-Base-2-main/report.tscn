@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://diaif0iucmacl"]
+[gd_scene load_steps=10 format=3 uid="uid://diaif0iucmacl"]
 
 [ext_resource type="Theme" uid="uid://d31rns0bis8jm" path="res://Menu_Theme.tres" id="1_e4oxy"]
 [ext_resource type="Script" path="res://report.gd" id="1_mind0"]
-[ext_resource type="PackedScene" uid="uid://dwd8ry3kcc7gm" path="res://Projectiles/bubble_particles.tscn" id="2_f8v5u"]
 [ext_resource type="Theme" uid="uid://q2pxe47w6snq" path="res://MainMenu.tres" id="3_0ri5x"]
+[ext_resource type="Shader" path="res://report.gdshader" id="3_3fjkv"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="4_cs4xc"]
 [ext_resource type="AudioStream" uid="uid://dyoh0lvw3m2e0" path="res://Assets/Sounds/game_sound.wav" id="6_rps2v"]
 
@@ -24,6 +24,19 @@ func _on_quit_pressed():
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2du8j"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqybi"]
+resource_local_to_scene = true
+shader = ExtResource("3_3fjkv")
+shader_parameter/color1 = Vector3(0.6, 0.4, 0.4)
+shader_parameter/color2 = Vector3(0.6, 0.6, 0.4)
+shader_parameter/color3 = Vector3(0.4, 0.6, 0.4)
+shader_parameter/color4 = Vector3(0.4, 0.6, 0.6)
+shader_parameter/color5 = Vector3(0.4, 0.4, 0.6)
+shader_parameter/color6 = Vector3(0.6, 0.4, 0.6)
+shader_parameter/scale = 10.0
+shader_parameter/dot_size = 0.05
+shader_parameter/speed = 0.2
+
 [node name="Report" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -42,23 +55,14 @@ offset_bottom = 720.0
 theme = ExtResource("1_e4oxy")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2du8j")
 
-[node name="BubbleParticles" parent="menu/Panel" instance=ExtResource("2_f8v5u")]
-texture_filter = 1
-position = Vector2(500, 800)
-amount = 8
-lifetime = 8.0
-randomness = 0.0
-lifetime_randomness = 0.0
-emission_rect_extents = Vector2(500, 4)
-spread = 3.0
-gravity = Vector2(0, -10)
-initial_velocity_min = 200.0
-initial_velocity_max = 220.0
-angular_velocity_min = 5.0
-linear_accel_min = 0.0
-angle_min = -180.0
-angle_max = 180.0
-color_ramp = null
+[node name="ColorRect" type="ColorRect" parent="menu/Panel"]
+material = SubResource("ShaderMaterial_nqybi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="RichTextLabel" parent="menu/Panel"]
 layout_mode = 0
@@ -73,6 +77,7 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
 text = "[center][color=dark_red]REPORT[/color][/center]"
+scroll_active = false
 
 [node name="PanelContainer" type="PanelContainer" parent="menu/Panel"]
 layout_mode = 1
