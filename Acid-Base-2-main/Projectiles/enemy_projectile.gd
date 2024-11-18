@@ -5,7 +5,7 @@ var positionA = Vector2(0, 0)
 var positionC = Vector2(-400, -200)
 var positionB = Vector2(-652, 44)
 var t = 0.0
-var duration = 15.0 
+var duration = 0.0 
 @onready var handled = false
 var acidArray = []	
 var baseArray = []
@@ -30,8 +30,10 @@ func _ready():
 	match Global.current_level:
 		1, 2, 3:
 			http_request.request("https://retoolapi.dev/tnFVDY/acidsbases")
+			duration = 15.0
 		4:
 			http_request.request("https://retoolapi.dev/JgRl9e/reactions")
+			duration = 12.0
 	projectile_sprite.material.set_shader_parameter("active", false)
 	acidParticles.emitting = false
 	baseParticles.emitting = false
@@ -92,8 +94,6 @@ func handle_acids_bases(data):
 
 # Handles Level 4 (Compounds)
 func shoot_compound():
-	var index = get_node("/root/Global")
-	index.set_reaction_index()
 	print("Inside Shoot compound method")
 	Global.question_number += 1
 	# Randomly select a compound from compoundArray
