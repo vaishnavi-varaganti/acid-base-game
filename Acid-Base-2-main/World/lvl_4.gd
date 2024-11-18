@@ -229,6 +229,8 @@ func _on_projectile_finished():
 	player.jump()
 	await get_tree().create_timer(1.0).timeout
 	player.ouch()
+	var index = get_node("/root/Global")
+	index.set_reaction_index()
 	# Update the options every time the projectile is fired
 	display_options_level4()
 	# Call check_victory after the projectile finishes, to ensure game logic continues

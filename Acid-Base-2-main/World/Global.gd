@@ -68,6 +68,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 				Global.compoundArray.append([formatted_compound, "Compound"])
 				Global.individualCompoundArray.append([entry["Answer"], "Compound"])
 			print("Compound data preloaded successfully!")
+			set_reaction_index()
 		else:
 			print("Error parsing JSON.")
 	else:
@@ -86,7 +87,7 @@ func format_compound(compound: String) -> String:
 func set_reaction_index():
 	if compoundArray.size() > 0:
 		reactionIndex = randi_range(0, compoundArray.size() - 1) # Set a random index within the range
-		Global.reactionIndex = reactionIndex
+		Global.reactionIndex = randi_range(0, compoundArray.size() - 1)
 		#Global.correct_answer = individualCompoundArray[reactionIndex]
 		print("New reactionIndex set: ", reactionIndex)
 	else:
