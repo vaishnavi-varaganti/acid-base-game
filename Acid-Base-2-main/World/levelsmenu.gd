@@ -5,7 +5,7 @@ func _ready():
 		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
 		$Panel/PanelContainer/VBoxContainer/Level2.disabled = true
 		$Panel/PanelContainer/VBoxContainer/Level3.disabled = true
-		$Panel/PanelContainer/VBoxContainer/Level4.disabled = false
+		$Panel/PanelContainer/VBoxContainer/Level4.disabled = true
 	elif Global.level1Cleared == true:
 		$Panel/PanelContainer/VBoxContainer/Level1.disabled = false
 		$Panel/PanelContainer/VBoxContainer/Level2.disabled = false
