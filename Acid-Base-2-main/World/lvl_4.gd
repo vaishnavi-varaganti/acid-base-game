@@ -81,12 +81,9 @@ func display_options_level4():
 	Global.correct_answer = format_option_text(correct_option)
 	
 func format_option_text(option: String) -> String:
-	var formatted = "[center][font_size=30]"
+	var formatted = "[center][font_size=25]"
 	for char in option:
-		if '0' <= char and char <= '9': 
-			formatted += "[font_size=14]" + char + "[/font_size]"
-		else:
-			formatted += char
+		formatted += char
 	formatted += "[/font_size][/center]"
 	return formatted
 

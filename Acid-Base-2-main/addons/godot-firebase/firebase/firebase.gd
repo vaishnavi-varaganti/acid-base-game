@@ -50,7 +50,7 @@ const _AUTH_PROVIDERS : String = "firebase/auth_providers"
 # These values can be found in your Firebase Project
 # See the README checked Github for how to access
 var _config : Dictionary = {
-	"apiKey": "",
+	"apiKey": "AIzaSyDgxQJZgayj7UKcVG7Luj4fsAUvpN5y8LA",
 	"authDomain": "",
 	"databaseURL": "",
 	"projectId": "",

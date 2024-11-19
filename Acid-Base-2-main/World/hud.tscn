@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cei4ksh8r3g52"]
+[gd_scene load_steps=21 format=3 uid="uid://cei4ksh8r3g52"]
 
 [ext_resource type="Texture2D" uid="uid://dxm7xv0oixqie" path="res://healthFull.png" id="1_2t3f8"]
 [ext_resource type="Script" path="res://World/hud.gd" id="1_r5ayd"]
@@ -11,8 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bmiyncj72wt8f" path="res://Assets/Animations/Duck/Idle (36x36).png" id="7_jk07a"]
 [ext_resource type="Texture2D" uid="uid://dmww8qsb15kfy" path="res://Assets/Animations/Player/adventurer-idle-01.png" id="8_8a45m"]
 [ext_resource type="Shader" path="res://blur.gdshader" id="8_26llr"]
-[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Textures/Fonts/Star Choco.ttf" id="12_317v8"]
+[ext_resource type="FontFile" uid="uid://bwgnvpp0mqeoc" path="res://Assets/Textures/Fonts/NotoSans_Condensed-Regular.ttf" id="12_teaim"]
 [ext_resource type="AudioStream" uid="uid://cneo7tkaq53li" path="res://Assets/Sounds/click_sound.wav" id="13_7217t"]
+[ext_resource type="FontFile" uid="uid://5ph2v1pn0m3c" path="res://Assets/Textures/Fonts/NotoSans-Bold.ttf" id="13_b08rk"]
 [ext_resource type="AudioStream" uid="uid://cht6wisvns41r" path="res://Assets/Sounds/PeriTune_Sugar_Sprinkle-chosic.com_.wav" id="14_n56ds"]
 [ext_resource type="FontFile" uid="uid://dn22uj0hn2mrl" path="res://Clayborn.ttf" id="15_7w6l8"]
 
@@ -301,14 +302,14 @@ animation = &"player"
 frame_progress = 0.00425463
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 83.0
-offset_top = 180.0
-offset_right = 919.0
+offset_left = 1.0
+offset_top = 181.0
+offset_right = 1001.0
 offset_bottom = 251.0
 alignment = 1
 
 [node name="Option1" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 10)
+custom_minimum_size = Vector2(220, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
 
@@ -325,7 +326,7 @@ grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_317v8")
+theme_override_fonts/normal_font = ExtResource("12_teaim")
 bbcode_enabled = true
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
@@ -333,7 +334,7 @@ custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Option2" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 10)
+custom_minimum_size = Vector2(220, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
 
@@ -350,7 +351,7 @@ grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_317v8")
+theme_override_fonts/normal_font = ExtResource("13_b08rk")
 bbcode_enabled = true
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
@@ -358,7 +359,7 @@ custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 
 [node name="Option3" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 10)
+custom_minimum_size = Vector2(220, 10)
 layout_mode = 2
 theme = ExtResource("4_yl0th")
 
@@ -375,7 +376,7 @@ grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(10, 0)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_317v8")
+theme_override_fonts/normal_font = ExtResource("13_b08rk")
 bbcode_enabled = true
 
 [node name="QuestionContainer" type="HBoxContainer" parent="."]
