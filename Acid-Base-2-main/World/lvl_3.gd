@@ -90,10 +90,10 @@ func display_options_level3():
 	print(wrong_option2)
 	
 func format_option_text(option: String) -> String:
-	var formatted = "[center][font_size=40]"
+	var formatted = "[center][font_size=35]"
 	for char in option:
 		if '0' <= char and char <= '9': 
-			formatted += "[font_size=20]" + char + "[/font_size]"
+			formatted += "[font_size=15]" + char + "[/font_size]"
 		else:
 			formatted += char
 	formatted += "[/font_size][/center]"
